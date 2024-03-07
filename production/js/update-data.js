@@ -1,6 +1,6 @@
 // Replace with your ClickUp API token
-const apiToken = "YOUR_API_TOKEN";
-
+const apiToken = "client_id=Z80TXJ8IFMAAMGLK4MYKKZL3RTB321XN&client_secret=&code=  ";
+const clickUrl="https://api.clickup.com/api/v2/oauth/token?"+apiToken;
 // Replace with the specific ClickUp API endpoint URL
 const apiUrl = "https://api.clickup.com/v2/list/LIST_ID";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
