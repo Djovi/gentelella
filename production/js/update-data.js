@@ -1,5 +1,5 @@
 // Replace with your ClickUp API token
-const apiToken = "client_id=Z80TXJ8IFMAAMGLK4MYKKZL3RTB321XN&client_secret=&code=  ";
+const apiToken = "client_id=Z80TXJ8IFMAAMGLK4MYKKZL3RTB321XN&client_secret=26EUCS1T9X2ESGMMKEDB9Q9NQB1M343U9Q60IAWF2U3ZEVJ2O5UIE6CBG3U1SCY8&code= ";
 const clickUrl="https://api.clickup.com/api/v2/oauth/token?"+apiToken;
 // Replace with the specific ClickUp API endpoint URL
 const apiUrl = "https://api.clickup.com/v2/list/LIST_ID";
