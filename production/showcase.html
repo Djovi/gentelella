@@ -1,32 +1,35 @@
+Sure, here's a simplified and formatted version of the HTML code for the landing page with some optimizations and margin and padding adjustments:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
- 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Rechain Global - Empowering Businesses with Ecological Solutions </title>
-
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rechain Global - Empowering Businesses with Ecological Solutions</title>
+  <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../vendors/nprogress/nprogress.css">
+  <link rel="stylesheet" href="../vendors/animate.css/animate.min.css">
+  <link rel="stylesheet" href="../build/css/custom.min.css">
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    header, main, footer { width: 100%; max-width: 1200px; margin: 0 auto; }
+    nav { background-color: #f8f9fa; padding: 10px 0; }
+    nav ul { list-style-type: none; margin: 0; padding: 0; }
+    nav ul li { display: inline; margin-right: 20px; }
+    .hero { display: flex; justify-content: space-between; align-items: center; margin-top: 50px; }
+    .hero-content { flex: 1; padding: 20px; }
+    .hero-image img { max-width: 100%; }
+    .quality-card { padding: 20px; }
+    .delivery, .call-to-action { padding: 20px 0; }
+    footer { text-align: center; padding: 20px 0; background-color: #f8f9fa; }
+  </style>
+</head>
 <body class="login">
   <header>
     <nav>
-      <a href="#" class=" fafa-globe">Rechain Global</a>
+      <a href="#" class="fafa-globe">Rechain Global</a>
       <ul>
         <li><a href="#">Products</a></li>
         <li><a href="#">Solutions</a></li>
@@ -40,7 +43,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1>Empowering Businesses with Sustainable Solutions</h1>
-        <p>We offer a curated selection of innovative, ecologically responsible products that help large companies reduce their environmental impact, **without compromising on quality or performance.**</p>
+        <p>We offer a curated selection of innovative, ecologically responsible products that help large companies reduce their environmental impact, without compromising on quality or performance.</p>
         <a href="#" class="button">Explore Our Products</a>
       </div>
       <div class="hero-image">
@@ -71,9 +74,9 @@
       <h2>Fast and Reliable Delivery</h2>
       <p>We understand that timely delivery is essential for your business operations. That's why we offer fast and reliable shipping options to get your products to you when you need them.</p>
       <ul>
-        <li>**Free shipping on orders over [amount].**</li>
-        <li>**Multiple shipping options available to meet your needs.**</li>
-        <li>**Real-time order tracking so you can stay informed.**</li>
+        <li>Free shipping on orders over [amount].</li>
+        <li>Multiple shipping options available to meet your needs.</li>
+        <li>Real-time order tracking so you can stay informed.</li>
       </ul>
     </section>
 
@@ -86,6 +89,5 @@
   <footer>
     <p>&copy; 2024 Rechain Global. All rights reserved.</p>
   </footer>
-
 </body>
 </html>
