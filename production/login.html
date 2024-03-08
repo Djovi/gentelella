@@ -20,6 +20,30 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    
+<script>
+  // Check if the user has agreed to cookies and cache
+  function checkAgreement() {
+    if (localStorage.getItem('agreedCookiesCache')) {
+      // User has already agreed
+      return;
+    } else {
+      // Show agreement prompt
+      var agreement = confirm("This website uses cookies and stores data in your browser's cache. Do you agree to this?");
+      if (agreement) {
+        // User agrees, set flag in local storage
+        localStorage.setItem('agreedCookiesCache', true);
+      } else {
+        // User disagrees, redirect to a different page
+        window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+      }
+    }
+  }
+
+  // Call the function on page load
+  window.onload = checkAgreement;
+</script>
+
   </head>
 
   <body class="login">
