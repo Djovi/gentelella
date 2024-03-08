@@ -21,28 +21,47 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     
-<script>
-  // Check if the user has agreed to cookies and cache
-  function checkAgreement() {
-    if (localStorage.getItem('agreedCookiesCache')) {
-      // User has already agreed
-      return;
-    } else {
-      // Show agreement prompt
-      var agreement = confirm("This website uses cookies and stores data in your browser's cache. Do you agree to this?");
-      if (agreement) {
-        // User agrees, set flag in local storage
-        localStorage.setItem('agreedCookiesCache', true);
-      } else {
-        // User disagrees, redirect to a different page
-        window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
-      }
-    }
-  }
 
-  // Call the function on page load
-  window.onload = checkAgreement;
-</script>
+<style>
+  /* Style for the popup widget */
+  .popup-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+</style>
+
+
+  
+  <!-- Your website content here -->
+  
+  
+
+  <!-- JavaScript for showing/hiding the popup widget -->
+  <script>
+    function agree() {
+      localStorage.setItem('agreedCookiesCache', true);
+      document.getElementById('popup-widget').style.display = 'none';
+    }
+
+    function disagree() {
+      window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+    }
+
+    // Check if the user has already agreed
+    window.onload = function() {
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+      }
+    };
+  </script>
+
 
   </head>
 
@@ -123,5 +142,12 @@
         </div>
       </div>
     </div>
+    <!-- Popup widget content -->
+  <div class="popup-widget" id="popup-widget">
+    <p>This website uses cookies and stores data in your browser's cache. Do you agree to this?</p>
+    <button onclick="agree()">Agree</button>
+    <button onclick="disagree()">Disagree</button>
+  </div>
+
   </body>
 </html>
