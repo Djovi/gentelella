@@ -107,7 +107,7 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            <form name="submit-to-google-sheet" >
               <h1>Create Account</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" required="" />
@@ -148,8 +148,20 @@
     <button onclick="agree()">Agree</button>
     <button onclick="disagree()">Disagree</button>
   </div>
-    "https://script.google.com/macros/s/AKfycbw5Cp_svmWExW43BSpAR69KSnXESH3HlWzbI75jOgKMKiTtePXVN6JZhRFYkB9Npv2p/exec"
     
 
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw5Cp_svmWExW43BSpAR69KSnXESH3HlWzbI75jOgKMKiTtePXVN6JZhRFYkB9Npv2pexec'
+     
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
   </body>
 </html>
