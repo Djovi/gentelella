@@ -153,7 +153,7 @@ const successMessage = document.querySelector('.js-success-message')
         .catch(error => showErrorMessage(error))
      // .then(response => console.log('Success!', response))
       //.catch(error => console.error('Error!', error.message))
-    window.location.href = "index.html"
+  
   })
 
   //message error signup!
@@ -163,7 +163,8 @@ const successMessage = document.querySelector('.js-success-message')
         successMessage.classList.remove('is-hidden')
         loading.classList.add('is-hidden')
       }, 500)
-    }
+    window.location.href = "index.html"
+      }
 
     function showErrorMessage (error) {
       console.error('Error!', error.message)
