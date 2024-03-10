@@ -149,9 +149,9 @@
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
   })
-</script>
-    <!-- JavaScript for showing/hiding the popup widget -->
-  <script>
+
+   // <!-- JavaScript for showing/hiding the popup widget -->
+  
     function agree() {
       localStorage.setItem('agreedCookiesCache', true);
       document.getElementById('popup-widget').style.display = 'none';
