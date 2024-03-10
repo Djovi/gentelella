@@ -47,24 +47,7 @@
   
   
 
-  <!-- JavaScript for showing/hiding the popup widget -->
-  <script>
-    function agree() {
-      localStorage.setItem('agreedCookiesCache', true);
-      document.getElementById('popup-widget').style.display = 'none';
-    }
-
-    function disagree() {
-      window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
-    }
-
-    // Check if the user has already agreed
-    window.onload = function() {
-      if (!localStorage.getItem('agreedCookiesCache')) {
-        document.getElementById('popup-widget').style.display = 'block';
-      }
-    };
-  </script>
+  
 
 
   </head>
@@ -167,5 +150,23 @@
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+    <!-- JavaScript for showing/hiding the popup widget -->
+  <script>
+    function agree() {
+      localStorage.setItem('agreedCookiesCache', true);
+      document.getElementById('popup-widget').style.display = 'none';
+    }
+
+    function disagree() {
+      window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+    }
+
+    // Check if the user has already agreed
+    window.onload = function() {
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+      }
+    };
+  </script>
   </body>
 </html>
