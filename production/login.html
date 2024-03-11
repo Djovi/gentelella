@@ -105,7 +105,7 @@
               <div>
                 <input name="email" type="email" class="form-control" placeholder="Email" required="" />
                  <p class="js-success-message is-hidden">Success!</p>
-                  <p class="js-error-message is-hidden">Error!</p>
+                  <p class="js-error-message is-hidden"> There is already an account associated with your email or username <a href="#signin">Login</a> instead. </p>
               </div>
               <div>
                 <input name="password" type="password" class="form-control" placeholder="Password" required="" />
@@ -173,7 +173,7 @@ const successMessage = document.querySelector('.js-success-message')
     function showErrorMessage (error) {
       console.error('Error!', error.message)
       setTimeout(() => {
-        errorMessage.textContent ='There is already an account associated with your email or username</b>Login instead.'
+       // errorMessage.textContent ='There is already an account associated with your email or username</b>Login instead.'
         errorMessage.classList.remove('is-hidden')
      //   loading.classList.add('is-hidden')
       }, 500)
