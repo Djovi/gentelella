@@ -21,31 +21,7 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     
-
-<style>
-  /* Style for the popup widget */
-  .popup-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-  }
- .is-hidden {
-      display: none !important;
-    } 
-</style>
-  <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
-<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
-<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
-<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
-
  
-  
   <!-- Your website content here -->
   
   
@@ -173,7 +149,7 @@ const successMessage = document.querySelector('.js-success-message')
     function showErrorMessage (error) {
       console.error('Error!', error.message)
       setTimeout(() => {
-        errorMessage.textContent ='There is already an account associated with your email or username</b>Login instead.'
+        errorMessage.textContent =error.message//'There is already an account associated with your email or username</b>Login instead.'
         errorMessage.classList.remove('is-hidden')
      //   loading.classList.add('is-hidden')
       }, 500)
@@ -196,5 +172,32 @@ const successMessage = document.querySelector('.js-success-message')
       }
     };
   </script>
+    <style>
+  /* Style for the popup widget */
+  .popup-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+ .is-hidden {
+      display: none !important;
+    } 
+</style>
+  <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+
+ 
+  
+  <!-- Your website content here -->
+  
+  
   </body>
 </html>
