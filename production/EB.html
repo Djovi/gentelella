@@ -301,6 +301,31 @@ const successMessage = document.querySelector('.js-success-message')
       display: none !important;
     } 
 </style>
+  <script>function formatCardNumber() {
+  
+    var cardNumber = document.getElementById("cardNumber");
+var value = cardNumber.value.replace(/\D/g, '');
+var formattedValue = "";
+  for (var i = 0; i < value.length; i++) {
+    if (i % 4 == 0 && i > 0) {
+      formattedValue += " ";
+    }
+    formattedValue += value[i];
+  }
+  cardNumber.value = formattedValue; } 
+function formatCardD() {
+var cardNumber = document.getElementById("cardD");
+var value = cardNumber.value.replace(/\D/g, '');
+var formattedValue = "";
+  for (var i = 0; i < value.length; i++) {
+    if (i % 2 == 0 && i > 0) {
+      formattedValue += "/";
+    }
+    formattedValue += value[i];
+  }
+  cardNumber.value = formattedValue; } 
+
+</script>
   <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
 <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
 <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
