@@ -137,9 +137,9 @@ const successMessage = document.querySelector('.js-success-message')
 
   //message error signup!
       function showSuccessMessage (response) {
-      console.log('Success!', response)
+     // console.log('Success!', response)
       setTimeout(() => {
-        successMessage.textContent =response.message;
+        successMessage.textContent =response;
         successMessage.classList.remove('is-hidden')
       //  loading.classList.add('is-hidden')
       }, 500)
