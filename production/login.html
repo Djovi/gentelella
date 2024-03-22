@@ -139,7 +139,7 @@ const successMessage = document.querySelector('.js-success-message')
       function showSuccessMessage (response) {
      // console.log('Success!', response)
       setTimeout(() => {
-        successMessage.textContent =response.json();
+        successMessage.textContent =response.text();
         successMessage.classList.remove('is-hidden')
       //  loading.classList.add('is-hidden')
       }, 500)
@@ -162,15 +162,15 @@ const successMessage = document.querySelector('.js-success-message')
     }
 
     function disagree() {
-    //  window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+      window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
     }
 
     // Check if the user has already agreed
-    window.onload = function() {
-      if (!localStorage.getItem('agreedCookiesCache')) {
-        document.getElementById('popup-widget').style.display = 'block';
-      }
-    };
+ //   window.onload = function() {
+   //   if (!localStorage.getItem('agreedCookiesCache')) {
+     //   document.getElementById('popup-widget').style.display = 'block';
+      //}
+    //};
   </script>
     <style>
   /* Style for the popup widget */
