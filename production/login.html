@@ -148,7 +148,7 @@ const successMessage = document.querySelector('.js-success-message')
       function showSuccessMessage (response) {
      // console.log('Success!', response)
       setTimeout(() => {
-        successMessage.textContent =response;
+        successMessage.textContent =response.result;
         successMessage.classList.remove('is-hidden')
       //  loading.classList.add('is-hidden')
       }, 500)
