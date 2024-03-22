@@ -128,7 +128,7 @@ const successMessage = document.querySelector('.js-success-message')
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-         .then(response => showSuccessMessage(response))
+         .then(data => showSuccessMessage(data))
         .catch(error => showErrorMessage(error))
      // .then(response => console.log('Success!', response))
       //.catch(error => console.error('Error!', error.message))
