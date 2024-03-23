@@ -181,7 +181,9 @@
 
                     </div>
                     <!-- End SmartWizard Content -->
-                        
+             <p class="js-success-message is-hidden">Success!</p>
+                  <p class="js-error-message is-hidden">  User already Exists!</p>
+                         
 <input type="checkbox" id="check-all" > <p><a href="payment_policy">I agree to the terms and conditions to allow Rechain Global LLC process my card according to the rules as stated on the page</a></p>
 
         <div id="register" class="animate form registration_form">
@@ -241,8 +243,17 @@ const successMessage = document.querySelector('.js-success-message')
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-         .then(response => showSuccessMessage(response))
-        .catch(error => showErrorMessage(error))
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+})
+.then(data => showSuccessMessage(data)) // Access data.result and data.errorMessage
+.catch(error => showErrorMessage(error));
+         //.then(response => showSuccessMessage(response))
+       // .catch(error => showErrorMessage(error))
      // .then(response => console.log('Success!', response))
       //.catch(error => console.error('Error!', error.message))
   
