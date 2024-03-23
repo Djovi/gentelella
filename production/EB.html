@@ -226,12 +226,12 @@
         </div>
       </div>
     </div>
-    <!-- Popup widget content -->
+    <!-- Popup widget content --
   <div class="popup-widget" id="popup-widget">
     <p>This website uses cookies and stores data in your browser's cache. Do you agree to this?</p>
     <button onclick="agree()">Agree</button>
     <button onclick="disagree()">Disagree</button>
-  </div>
+  </div>-->
     
 
 
@@ -244,9 +244,9 @@ const successMessage = document.querySelector('.js-success-message')
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-  if (response.ok) {showErrorMessage(response.statusText)
+  if (response.ok) {showErrorMessage(response)
     return response.json(); // Parse JSON only on successful response
-  } else {showErrorMessage(response.statusText)
+  } else {showErrorMessage(response)
     throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
   }
 })
