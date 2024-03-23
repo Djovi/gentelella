@@ -175,11 +175,11 @@ const successMessage = document.querySelector('.js-success-message')
     }
 
     // Check if the user has already agreed
- //   window.onload = function() {
-   //   if (!localStorage.getItem('agreedCookiesCache')) {
-     //   document.getElementById('popup-widget').style.display = 'block';
-      //}
-    //};
+    window.onload = function() {
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+      }
+    };
   </script>
     <style>
   /* Style for the popup widget */
