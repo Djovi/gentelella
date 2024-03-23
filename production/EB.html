@@ -244,9 +244,9 @@ const successMessage = document.querySelector('.js-success-message')
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-  if (response.ok) {showErrorMessage(response.statusText)
+  if (response.ok) {showErrorMessage("response.statusText")
     return response.json(); // Parse JSON only on successful response
-  } else {showErrorMessage(response.statusText)
+  } else {showErrorMessage("response.statusText")
     throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
   }
 })
