@@ -242,10 +242,10 @@ const successMessage = document.querySelector('.js-success-message')
     const errorMessage = document.querySelector('.js-error-message')
       // Check if the user has already agreed
     
-      alert("Leaving step " +  " to go to step " );
+      
       
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', e => {alert("Leaving step " +  " to go to step " );
     e.preventDefault()
     showErrorMessage("response.statusText")
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
