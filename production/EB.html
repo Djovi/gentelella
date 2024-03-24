@@ -235,7 +235,7 @@
    --> 
 
 
-<script>window.onload = function() {
+<script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzfmIhkX_PGrYMEmU3H_vSrbbdgBOvHkKw_8fewMvqS5rBTTQyFeTtGAMMYkcov7Beq/exec'
   const form = document.forms['submit-to-google-sheet']
 const successMessage = document.querySelector('.js-success-message')
@@ -264,7 +264,7 @@ const successMessage = document.querySelector('.js-success-message')
       //.catch(error => console.error('Error!', error.message))
   
   })
-      if (!localStorage.getItem('agreedCookiesCache')) {
+     window.onload = function() { if (!localStorage.getItem('agreedCookiesCache')) {
         document.getElementById('popup-widget').style.display = 'block';
         
       }
