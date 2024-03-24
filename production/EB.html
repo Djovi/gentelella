@@ -246,7 +246,7 @@ const successMessage = document.querySelector('.js-success-message')
       
 
   form.addEventListener('submit', e => {
-    e.preventDefault() alert("Leaving step " +  " to go to step " );
+    e.preventDefault() alert("Leaving step " +  " to go to step " )
     showErrorMessage("response.statusText")
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
