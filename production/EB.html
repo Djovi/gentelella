@@ -235,13 +235,13 @@
    --> 
 
 
-<script>
+<script>window.onload = function() {
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzfmIhkX_PGrYMEmU3H_vSrbbdgBOvHkKw_8fewMvqS5rBTTQyFeTtGAMMYkcov7Beq/exec'
   const form = document.forms['submit-to-google-sheet']
 const successMessage = document.querySelector('.js-success-message')
     const errorMessage = document.querySelector('.js-error-message')
       // Check if the user has already agreed
-    window.onload = function() {
+    
       alert("Leaving step " +  " to go to step " );
       
 
