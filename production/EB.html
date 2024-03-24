@@ -109,8 +109,8 @@
                               <input id="birthday" class="date-picker form-control" required="required" type="text">
                             </div>
                           </div>
---
-                        </form>-->
+-->
+                        </form>
 
                       </div>
                       <div id="step-2">
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                 </div>
-</form>
+<!--</form>-->
                 </div>
                       </div>
                        
@@ -244,10 +244,10 @@ const successMessage = document.querySelector('.js-success-message')
     
       
       
-showErrorMessage("response.statusText")
+
   form.addEventListener('submit', e => {
     e.preventDefault() 
-   
+   showErrorMessage("response.statusText")
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
   if (response.ok) {showErrorMessage("response.statusText")
