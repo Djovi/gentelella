@@ -292,8 +292,10 @@ const successMessage = document.querySelector('.js-success-message')
 
     // Check if the user has already agreed
     window.onload = function() {
+      alert("Leaving step " + context.fromStep + " to go to step " + context.toStep);
       if (!localStorage.getItem('agreedCookiesCache')) {
         document.getElementById('popup-widget').style.display = 'block';
+        
       }
     };
   
