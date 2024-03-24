@@ -240,6 +240,11 @@
   const form = document.forms['submit-to-google-sheet']
 const successMessage = document.querySelector('.js-success-message')
     const errorMessage = document.querySelector('.js-error-message')
+      // Check if the user has already agreed
+    window.onload = function() {
+      alert("Leaving step " +  " to go to step " );
+      
+
   form.addEventListener('submit', e => {
     e.preventDefault()
     showErrorMessage("response.statusText")
@@ -259,7 +264,11 @@ const successMessage = document.querySelector('.js-success-message')
       //.catch(error => console.error('Error!', error.message))
   
   })
-
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+        
+      }
+    };
   //message error signup!
       function showSuccessMessage (response) {
       console.log('Success!', response)
@@ -290,18 +299,11 @@ const successMessage = document.querySelector('.js-success-message')
       window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
     }
 
-    // Check if the user has already agreed
-    window.onload = function() {
-      alert("Leaving step " +  " to go to step " );
-      if (!localStorage.getItem('agreedCookiesCache')) {
-        document.getElementById('popup-widget').style.display = 'block';
-        
-      }
-    };
+
   
 document.ready(function(){
     // Smart Wizard         
-  alert("Leaving step " +  " to go to step " );
+  alert(" " +  " to go to step " );
     $('#wizard').smartWizard({
         onLeaveStep:leaveAStepCallback,
         onFinish:onFinishCallback
