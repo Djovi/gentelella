@@ -242,6 +242,7 @@ const successMessage = document.querySelector('.js-success-message')
     const errorMessage = document.querySelector('.js-error-message')
   form.addEventListener('submit', e => {
     e.preventDefault()
+    showErrorMessage("response.statusText")
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
   if (response.ok) {showErrorMessage("response.statusText")
