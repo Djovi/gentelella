@@ -73,14 +73,14 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-na">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input  name="Number" type="text" id="first-na" required="required" class="form-control  ">
+                              <input  name="Number" type="text" id="first-na" oninput="setName()" required="required" class="form-control  ">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-na">Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input    type="text" id="last-na" name="last-na" required="required" class="form-control ">
+                              <input    type="text" id="last-na" name="last-na" oninput="setEmail()" required="required" class="form-control ">
                             </div>
                           </div>
                       <!--    <div class="form-group row">
@@ -351,6 +351,19 @@ document.ready(function(){
         return isStepValid;
     }          
 });
+
+  function setEmail (){
+var e1= document.getElementById("last-na");
+    var e2= document.getElementById("last-name");
+e2.value=e1.value;
+
+  }
+  function setName(){
+
+var e1= document.getElementById("first-na");
+    var e2= document.getElementById("first-name");
+e2.value=e1.value;
+}
 function formatCardNumber() {
   
     var cardNumber = document.getElementById("cardNumber");
