@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rechain | </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    
+ 
+  <!-- Your website content here -->
+  
+  
+
+  
+
+
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            
+              <h1>Thanks! Card added successfully!</h1>
+              
+              
+              <div>
+                <a class="btn btn-default submit" href="showcase.html">Home</a>
+                
+              </div>
+              <div class="clearfix"></div>
+
+              
+                  <h1><i class="fa fa-globe"></i> Rechain Dashboard</h1>
+                  <p>©2024 All Rights Reserved. Rechain Global Trade & Business LLC. Privacy and Terms</p>
+                </div>
+              </div>
+            
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form name="submit-to-google-sheet" >
+              <h1>Create Account</h1>
+              <div>
+                <input name="username" type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input name="email" type="email" class="form-control" placeholder="Email" required="" />
+                 <p class="js-success-message is-hidden">Success!</p>
+                  <p class="js-error-message is-hidden">  User already Exists!</p>
+              </div>
+              <div>
+                <input name="password" type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <button type="submit" class="btn btn-default submit">Submit</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-globe"></i> Rechain Dashboard</h1>
+                  <p>©2024 All Rights Reserved. Rechain Global Trade & Business LLC. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Popup widget content -->
+  <div class="popup-widget" id="popup-widget">
+    <p>This website uses cookies and stores data in your browser's cache. Do you agree to this?</p>
+    <button onclick="agree()">Agree</button>
+    <button onclick="disagree()">Disagree</button>
+  </div>
+    
+
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzoGAkv9X5ydDlj6S3EBukUgrqEfRl82bEa8RN83j7_exd1-gL6i1yjh0rVnsTR1K0f/exec'
+                     
+  const form = document.forms['submit-to-google-sheet']
+const successMessage = document.querySelector('.js-success-message')
+    const errorMessage = document.querySelector('.js-error-message')
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+})
+.then(data => showSuccessMessage(data)) // Access data.result and data.errorMessage
+.catch(error => showErrorMessage(error));
+    //   .then(response => showSuccessMessage(response))
+        ///.catch(error => showErrorMessage(error))
+     // .then(response => console.log('Success!', response))
+      //.catch(error => console.error('Error!', error.message))
+  
+  })
+
+  //message error signup!
+      function showSuccessMessage (response) {
+     // console.log('Success!', response)
+      setTimeout(() => {
+        successMessage.textContent =response.result;
+        successMessage.classList.remove('is-hidden')
+      //  loading.classList.add('is-hidden')
+      }, 500)
+ //   window.location.href = "index.html"
+      }
+
+    function showErrorMessage (error) {
+      console.error('Error!', error.message)
+      setTimeout(() => {
+        errorMessage.textContent =error//'There is already an account associated with your email or username</b>Login instead.'
+        errorMessage.classList.remove('is-hidden')
+     //   loading.classList.add('is-hidden')
+      }, 500)
+    }
+   // <!-- JavaScript for showing/hiding the popup widget -->
+  
+    function agree() {
+      localStorage.setItem('agreedCookiesCache', true);
+      document.getElementById('popup-widget').style.display = 'none';
+    }
+
+    function disagree() {
+      window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+    }
+
+    // Check if the user has already agreed
+    window.onload = function() {
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+      }
+    };
+  </script>
+    <style>
+  /* Style for the popup widget */
+  .popup-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+ .is-hidden {
+      display: none !important;
+    } 
+</style>
+  <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+
+ 
+  
+  <!-- Your website content here -->
+  
+  
+  </body>
+</html>
