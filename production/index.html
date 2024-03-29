@@ -964,7 +964,7 @@
         <!-- /footer content -->
       </div>
     </div>
-<script>function openLink(url) {alert("ho f!");
+<script>function openLink(url) {
   const urlObject = new URL(url);
   const searchParams = urlObject.searchParams;
 
@@ -973,10 +973,10 @@
   const variable2 = searchParams.get('variable2');
  
   // Do something with the variables
-alert("ho !");
+
   // Open the link (optional)
-	if(variable1==''){alert("ho !");
-  window.open('login', '_blank'); // Opens in a new tab
+	if(variable1==null){alert("ho !");
+  window.location.href='login'; // Opens in a new tab
 	}
 }
 
