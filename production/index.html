@@ -964,7 +964,26 @@
         <!-- /footer content -->
       </div>
     </div>
+<script>function openLink(url) {
+  const urlObject = new URL(url);
+  const searchParams = urlObject.searchParams;
 
+  // Access specific variables by key
+  const variable1 = searchParams.get('user');
+  const variable2 = searchParams.get('variable2');
+
+  // Do something with the variables
+
+  // Open the link (optional)
+	if(variable1=='')
+  window.open('login', '_blank'); // Opens in a new tab
+}
+
+// Example usage:
+const targetURL = window.location.href;
+openLink(targetURL);
+</script>
+	
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
