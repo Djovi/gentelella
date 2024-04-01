@@ -1,1 +1,160 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rechain | </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    
+ 
+  <!-- Your website content here -->
+  
+  
+
+  
+
+
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form>
+              <h1>Unsubscribe</h1>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="index.html">Remove Email</a>
+                
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-globe"></i> Rechain Dashboard</h1>
+                  <p>©2024 All Rights Reserved. Rechain Global Trade & Business LLC. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        
+      </div>
+    </div>
+
+    
+
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzoGAkv9X5ydDlj6S3EBukUgrqEfRl82bEa8RN83j7_exd1-gL6i1yjh0rVnsTR1K0f/exec'
+                     
+  const form = document.forms['submit-to-google-sheet']
+const successMessage = document.querySelector('.js-success-message')
+    const errorMessage = document.querySelector('.js-error-message')
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+})
+.then(data => showSuccessMessage(data)) // Access data.result and data.errorMessage
+.catch(error => showErrorMessage(error));
+    //   .then(response => showSuccessMessage(response))
+        ///.catch(error => showErrorMessage(error))
+     // .then(response => console.log('Success!', response))
+      //.catch(error => console.error('Error!', error.message))
+  
+  })
+
+  //message error signup!
+      function showSuccessMessage (response) {
+     // console.log('Success!', response)
+      setTimeout(() => {
+        successMessage.textContent =response.result;
+        successMessage.classList.remove('is-hidden')
+      //  loading.classList.add('is-hidden')
+      }, 500)
+ //   window.location.href = "index.html"
+      }
+
+    function showErrorMessage (error) {
+      console.error('Error!', error.message)
+      setTimeout(() => {
+        errorMessage.textContent =error//'There is already an account associated with your email or username</b>Login instead.'
+        errorMessage.classList.remove('is-hidden')
+     //   loading.classList.add('is-hidden')
+      }, 500)
+    }
+   // <!-- JavaScript for showing/hiding the popu
+
+  
+
+    // Check if the user has already agreed
+    window.onload = function() {
+      if (!localStorage.getItem('agreedCookiesCache')) {
+        document.getElementById('popup-widget').style.display = 'block';
+      }
+    };
+  </script>
+    <style>
+  /* Style for the popup widget */
+  .popup-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+ .is-hidden {
+      display: none !important;
+    } 
+</style>
+  <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+
+ 
+  
+  <!-- Your website content here -->
+  
+  
+  </body>
+</html>
