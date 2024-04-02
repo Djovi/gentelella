@@ -113,7 +113,7 @@ const successMessage = document.querySelector('.js-success-message')
       }
 
     function showErrorMessage (error) {
-      console.error('Error!', error.message)
+      alert('Error!'+ error.message)
       setTimeout(() => {
         errorMessage.textContent =error.message//'There is already an account associated with your email or username</b>Login instead.'
         errorMessage.classList.remove('is-hidden')
