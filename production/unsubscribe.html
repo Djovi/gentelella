@@ -111,7 +111,30 @@ const successMessage = document.querySelector('.js-success-message')
       }, 500)
  //   window.location.href = "index.html"
       }
+function openLink(url) {
+  const urlObject = new URL(url);
+  const searchParams = urlObject.searchParams;
 
+  // Access specific variables by key
+  const variable1 = searchParams.get('em');
+  const variable2 = searchParams.get('variable2');
+     fetch(scriptURL, { method: 'POST', body: variable1})
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+})
+.then(data => showSuccessMessage(data)) // Access data.result and data.errorMessage
+.catch(error => showErrorMessage(error));
+  // Do something with the variables
+
+  // Open the link (optional)
+	if(variable1==null){
+  window.location.href='login'; // Opens in a new tab
+	}
+}
     function showErrorMessage (error) {
       alert('Error!'+ error.message)
       setTimeout(() => {
