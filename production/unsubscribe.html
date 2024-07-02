@@ -131,9 +131,7 @@ function openLink(url) {
   // Do something with the variables
 
   // Open the link (optional)
-	if(variable1==null){
-  window.location.href='login'; // Opens in a new tab
-	}
+ 
 }
     function showErrorMessage (error) {
       alert('Error!'+ error.message)
@@ -149,6 +147,7 @@ function openLink(url) {
 
     // Check if the user has already agreed
     window.onload = function() {
+	   openLink(url);
       if (!localStorage.getItem('agreedCookiesCache')) {
         document.getElementById('popup-widget').style.display = 'block';
       }
