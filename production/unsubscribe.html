@@ -112,6 +112,7 @@ const successMessage = document.querySelector('.js-success-message')
  //   window.location.href = "index.html"
       }
 function openLink(url) {
+	
   const urlObject = new URL(url);
   const searchParams = urlObject.searchParams;
 
@@ -147,7 +148,8 @@ function openLink(url) {
 
     // Check if the user has already agreed
     window.onload = function() {
-	   openLink(url);
+	    const targetURL = window.location.href;
+	   openLink(utargetURL);
       if (!localStorage.getItem('agreedCookiesCache')) {
         document.getElementById('popup-widget').style.display = 'block';
       }
