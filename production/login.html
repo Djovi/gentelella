@@ -48,7 +48,7 @@
                 <input type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="#">Log in</a>
+                <a button type="submit" class="btn btn-default submit" href="#">Log in</a>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
@@ -142,7 +142,29 @@ const successMessage = document.querySelector('.js-success-message')
      // .then(response => console.log('Success!', response))
       //.catch(error => console.error('Error!', error.message))
   
+  })  //end form 1
+  const form2 = document.forms['submit-to-google-sheet']
+//const successMessage = document.querySelector('.js-success-message')
+//    const errorMessage = document.querySelector('.js-error-message')
+  form2.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form2)})
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+})
+.then(data => showSuccessMessage(data)) // Access data.result and data.errorMessage
+.catch(error => showErrorMessage(error));
+    //   .then(response => showSuccessMessage(response))
+        ///.catch(error => showErrorMessage(error))
+     // .then(response => console.log('Success!', response))
+      //.catch(error => console.error('Error!', error.message))
+  
   })
+  
 
   //message error signup!
       function showSuccessMessage (response) {
