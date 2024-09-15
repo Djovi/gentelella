@@ -1,5 +1,23 @@
 <!DOCTYPE html> 
 <html lang="en"><script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 <div class="elfsight-app-ccf374f8-b99a-4a7d-8ad4-bce79b7cb979" data-elfsight-app-lazy></div>
- 
+<Script type="javascript"> const url = "https://instantapi.ai/api/retrieve/";
+
+const data = {
+    "webpage_url": "https://www.ebay.com/itm/175955440726",
+    "api_method_name": "getItemDetails",
+    "api_response_structure": "{\"item_name\":\"<the item name>\",\"item_price\":\"<the item price>\",\"item_image\":\"<the absolute URL of the first item image>\",\"item_url\":\"<the absolute URL of the item>\",\"item_type\":\"<the item type>\",\"item_weight\":\"<the item weight>\",\"item_main_feature\":\"<the main feature of this item that would most appeal to its target audience>\",\"item_review_summary\":\"<a summary of the customer reviews received for this item>\",\"item_available_colors\":\"<the available colors of the item, converted to closest primary colors>\",\"item_materials\":\"<the materials used in the item>\",\"item_shape\":\"<the shape of the item>\"}",
+    "api_key": "<your api key>"
+};
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));</script>
 </html>
