@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Rechain | </title></head></html>
+    <title>Rechain | </title></head> <script>
 const url = "https://instantapi.ai/api/retrieve/";
 
 const data = {
@@ -26,5 +26,5 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data => console.log(data))
-.catch(error => console.error('Error:', error));
+.catch(error => console.error('Error:', error));</script>
 </html>
