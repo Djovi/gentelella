@@ -11,7 +11,7 @@
 const url = "https://instantapi.ai/api/retrieve/";
 
 const data = {
-    "webpage_url": "https://www.tiktok.com/channel/tokyo-travel?lang=en",
+    "webpage_url": "https://tg.coinafrique.com/profil/c4c18891-6b02-4cf2-881c-6de09703ec3f?page=1",
     "api_method_name": "getAllVideos",
     "api_response_structure": "{\"videos\":[{\"name\":\"<the full title of the video, including any hashtags and emojis>\",\"plays\":\"<the number of views/plays the video has received>\",\"author\":\"<the author of the video>\",\"video_url\":\"<the absolute URL to the video>\"}]}",
     "api_key": "<your api key>"
