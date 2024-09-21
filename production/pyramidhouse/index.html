@@ -20,7 +20,10 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head> 
   <body>
-
+<div id="div1">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
     
   </body>
   <script>
@@ -42,5 +45,14 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data => console.log(data))
-.catch(error => console.error('Error:', error));</script>
+.catch(error => console.error('Error:', error));
+  showsuccess(){
+    const para = document.createElement("p");
+const node = document.createTextNode("This is new.");
+para.appendChild(node);
+
+const element = document.getElementById("div1");
+element.appendChild(para);
+  }
+  </script>
 </html>
