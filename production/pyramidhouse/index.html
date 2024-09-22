@@ -44,11 +44,11 @@ fetch(url, {
     body: JSON.stringify(data)
 })
 .then(response => response.json())
-.then(data => console.log(data))
+.then(data =>  showsuccess(data))
 .catch(error => console.error('Error:', error));
-  function showsuccess(data){
+  function showsuccess(rdata){
     const para = document.createElement("p");
-const node = document.createTextNode(data.item_picture);
+const node = document.createTextNode(rdata.item_picture);
 para.appendChild(node);
 
 const element = document.getElementById("div1");
