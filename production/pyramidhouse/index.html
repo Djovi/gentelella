@@ -48,7 +48,7 @@ fetch(url, {
 .catch(error => console.error('Error:', error));
   function showsuccess(rdata){
     const para = document.createElement("p");
-const node = document.createTextNode(rdata.item_picture);
+const node = document.createTextNode(rdata);
 para.appendChild(node);
 
 const element = document.getElementById("div1");
