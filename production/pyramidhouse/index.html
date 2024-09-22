@@ -45,10 +45,10 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data =>  showsuccess(data))
-.catch(error => console.error('Error:', error));
+.catch(error => showsuccess(error));
   function showsuccess(rdata){
     const para = document.createElement("p");
-const node = document.createTextNode(rdata.result);
+const node = document.createTextNode(rdata.Items);
 para.appendChild(node);
 
 const element = document.getElementById("div1");
