@@ -46,9 +46,9 @@ fetch(url, {
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
-  showsuccess(){
+  function showsuccess(data){
     const para = document.createElement("p");
-const node = document.createTextNode("This is new.");
+const node = document.createTextNode(data.item_picture);
 para.appendChild(node);
 
 const element = document.getElementById("div1");
