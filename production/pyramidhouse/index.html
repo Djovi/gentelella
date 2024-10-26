@@ -35,8 +35,40 @@ const data = {
     "api_response_structure": "{\"Items\":[{\"name\":\"<the full title of the item, including any hashtags and emojis>\",\"price\":\"<the defined price of the item>\",\"author\":\"<the publisher of the item>\",\"item_url\":\"<the absolute URL to the item details>\",\"item_image\":\"<the absolute URL to the item image>\"}]}",
     "api_key": "free_joel@rechainglobal.com"
 };
-
 fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+})
+.then(data => showsuccess(data))
+.catch(error => showerror(error));
+
+function showsuccess(rdata) {
+    const element = document.getElementById("div1");
+
+    if (rdata.Items) {
+        const para = document.createElement("p");
+        const node = document.createTextNode(JSON.stringify(rdata.Items, null, 2));
+        para.appendChild(node);
+        element.appendChild(para);
+    } else {
+        element.textContent = "No items found in the response.";
+    }
+}
+
+function showerror(error) {
+    const element = document.getElementById("div1");
+    element.textContent = `Error: ${error.message}`;
+}
+/*fetch(url, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -53,6 +85,6 @@ para.appendChild(node);
 
 const element = document.getElementById("div1");
 element.appendChild(para);
-  }
+  }*/
   </script>
 </html>
