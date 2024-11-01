@@ -56,7 +56,7 @@ function showsuccess(rdata) {
   element.textContent = "No items found in the response.";
     if (rdata.Items) {
         const para = document.createElement("p");
-        const node = document.createTextNode("JSON.stringify(rdata.Items, null, 2)");
+        const node = document.createTextNode(JSON.stringify(rdata.Items, null, 2));
         para.appendChild(node);
         element.appendChild(para);
     } else {
