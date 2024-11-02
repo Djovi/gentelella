@@ -1,0 +1,19 @@
+const url = "https://instantapi.ai/api/retrieve/";
+
+const data = {
+    "webpage_url": "https://www.tiktok.com/channel/tokyo-travel?lang=en",
+    "api_method_name": "getAllVideos",
+    "api_response_structure": "{\"videos\":[{\"name\":\"<the full title of the video, including any hashtags and emojis>\",\"plays\":\"<the number of views/plays the video has received>\",\"author\":\"<the author of the video>\",\"video_url\":\"<the absolute URL to the video>\"}]}",
+    "api_key": "free_joel@rechainglobal.com"
+};
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
