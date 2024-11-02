@@ -50,7 +50,8 @@ fetch(url, {
 .then(response => {
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    } const element = document.getElementById("div1");
+  element.textContent = "No items found in the response.";
     return response.json();
 })
 .then(data => showsuccess(data))
