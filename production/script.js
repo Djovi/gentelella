@@ -27,7 +27,7 @@ fetch(url, {
 .then(data => {
     console.log(data);
     // Replace loading message with JSON data in a readable format
-    document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
+    document.getElementById("responseContainer").textContent = JSON.stringify(data.items, null, 2);
 })
 .catch(error => {
     console.error('Error:', error);
