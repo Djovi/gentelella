@@ -1,0 +1,21 @@
+/* Style for the loading cursor animation */
+#responseContainer {
+    white-space: pre-wrap;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-family: monospace;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #333;
+    margin-left: 3px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
