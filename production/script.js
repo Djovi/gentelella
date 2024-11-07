@@ -30,7 +30,13 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data => {
-   fetch(scriptURL, { method: 'POST', body: JSON.stringify(data)})
+   fetch(scriptURL, { method: 'POST', body: '
+      "name": "Location boutique - Kodjoviakope ",
+      "price": "120 000",
+      "author": "Samuel",
+      "item_url": "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416",
+      "item_image": "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
+   '})
       .then(response => {
   if (response.ok) {
     return response.json(); // Parse JSON only on successful response
