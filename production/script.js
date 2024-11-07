@@ -1,5 +1,10 @@
 const url = "https://instantapi.ai/api/retrieve/";
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbysySDdjSw5cX5i9yBR85E83Op2FduLTioSkIkDFY8IV1pj11uenH_6QKlplmhbfMPP/exec'
+                     
 
+   
+     
+   
 const data = {
   "webpage_url": "https://tg.coinafrique.com/profil/c4c18891-6b02-4cf2-881c-6de09703ec3f?page=1",
  //  "webpage_url": "https://tg.coinafrique.com/annonce/appartements/location-appartement-attilamonou-4930530",
@@ -25,6 +30,14 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data => {
+   fetch(scriptURL, { method: 'POST', body: JSON.stringify(data)})
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+});
     console.log(data);
     // Replace loading message with JSON data in a readable format
     document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
