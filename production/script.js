@@ -19,9 +19,22 @@ const data = {
 
 // Display a loading message while waiting for the API response
 document.getElementById("responseContainer").innerHTML = '<span class="loading">Loading<span class="cursor">|</span></span>';
-
+   fetch(scriptURL, { method: 'POST', body: JSON.stringify({
+      "name": "Location boutique - Kodjoviakope ",
+      "price": "120 000",
+      "author": "Samuel",
+      "item_url": "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416",
+      "item_image": "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"})
+   })
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+});
 // Function to fetch data and display it in the responseContainer div
-fetch(url, {
+/*fetch(url, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -30,20 +43,7 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data => {
-   fetch(scriptURL, { method: 'POST', body: '
-      "name": "Location boutique - Kodjoviakope ",
-      "price": "120 000",
-      "author": "Samuel",
-      "item_url": "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416",
-      "item_image": "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
-   '})
-      .then(response => {
-  if (response.ok) {
-    return response.json(); // Parse JSON only on successful response
-  } else {
-    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
-  }
-});
+
     console.log(data);
     // Replace loading message with JSON data in a readable format
     document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
@@ -51,4 +51,4 @@ fetch(url, {
 .catch(error => {
     console.error('Error:', error);
     document.getElementById("responseContainer").textContent = `Error: ${error.message}`;
-});
+});*/
