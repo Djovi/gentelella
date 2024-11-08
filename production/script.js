@@ -32,7 +32,17 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
   } else {
     throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
   }
+}).then(data => {
+
+    console.log(data);
+    // Replace loading message with JSON data in a readable format
+    document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
+})
+.catch(error => {
+    console.error('Error:', error);
+    document.getElementById("responseContainer").textContent = `Error: ${error.message}`;
 });
+
 // Function to fetch data and display it in the responseContainer div
 /*fetch(url, {
     method: 'POST',
