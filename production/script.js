@@ -23,7 +23,7 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
       name: 'Location boutique - Kodjoviakope ',
       price: '120 000',
       author: 'Samuel',
-      item_url: 'https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416',
+      product_url: 'https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416',
       item_image: 'https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg'})
    })
       .then(response => {
