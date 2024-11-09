@@ -20,7 +20,7 @@ const data = {
 // Display a loading message while waiting for the API response
 document.getElementById("responseContainer").innerHTML = '<span class="loading">Loading<span class="cursor">|</span></span>';
    fetch(scriptURL, { method: 'POST', body: JSON.stringify({
-      name: 'Location boutique - Kodjoviakope ',
+      offre: 'Location boutique - Kodjoviakope ',
       price: '120 000',
       author: 'Samuel',
       product_url: 'https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416',
