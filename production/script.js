@@ -27,13 +27,13 @@ const jsonData = {
       item_image: 'https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg'
 };
 
-   fetch(scriptURL { 
+   fetch(scriptURL, { 
     method: 'POST',
-      headers: {
+      headers: { 
         'Content-Type': 'application/json'
     },
      body: JSON.stringify(jsonData)
-   })
+   } )
       .then(response => {
   if (response.ok) {
     return response.json(); // Parse JSON only on successful response
