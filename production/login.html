@@ -25,13 +25,36 @@
   <!-- Your website content here -->
   
   
+<style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* Adjust background color as needed */
+  z-index: 1000; /* Ensure logo stays on top */
+}
 
+.logo {
+  height: 50px; /* Adjust logo height as needed */
+  margin: 10px;
+}
+
+.content {
+  margin-top: 60px; /* Adjust margin to account for header height */
+}</style>
+ 
+ 
+ 
   
 
 
   </head>
 
   <body class="login">
+   <header>
+   <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
+  </header>
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
