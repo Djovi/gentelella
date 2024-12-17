@@ -39,7 +39,27 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
 .then(response => response.json())
 .then(data => {
 
-  
+   fetch(scriptURL, { 
+    method: 'POST',
+    
+     body: JSON.stringify(data)
+   } )
+      .then(response => {
+  if (response.ok) {
+    return response.json(); // Parse JSON only on successful response
+  } else {
+    throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
+  }
+}).then(data => {
+
+    console.log(data);
+    // Replace loading message with JSON data in a readable format
+    document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
+})
+.catch(error => {
+    console.error('Error:', error);
+    document.getElementById("responseContainer").textContent = `Error: ${error.message}`;
+});
     console.log(data);
     // Replace loading message with JSON data in a readable format
     document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
