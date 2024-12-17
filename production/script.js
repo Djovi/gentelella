@@ -19,7 +19,7 @@
 
 // Display a loading message while waiting for the API response
 document.getElementById("responseContainer").innerHTML = '<span class="loading">Loading<span class="cursor">|</span></span>';
-const jsonData = {
+const data = {
        "title": "Location boutique - Kodjoviakope",
       "price": "120 000",
       "author": "Samuel",
@@ -30,7 +30,7 @@ const jsonData = {
    fetch(scriptURL, { 
     method: 'POST',
     
-     body: JSON.stringify(jsonData)
+     body: JSON.stringify(data)
    } )
       .then(response => {
   if (response.ok) {
