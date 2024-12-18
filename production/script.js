@@ -29,7 +29,46 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
 
 
 // Function to fetch data and display it in the responseContainer div
- fetch(url, {
+const responseContainer = document.getElementById("responseContainer"); // Get the element once
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(mdata)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+    }
+    return response.json(); // Parse response as JSON
+})
+.then(dataFromFirstFetch => {
+    // Now send the data to your Apps Script
+    return fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(dataFromFirstFetch), // Send data from the first fetch
+        headers: {
+            'Content-Type': 'application/json' // Important for Apps Script
+        }
+    });
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`Apps Script response was not ok: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+})
+.then(dataFromAppsScript => {
+    console.log("Data from Apps Script:", dataFromAppsScript);
+    responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
+})
+.catch(error => {
+    console.error("Error:", error);
+    responseContainer.textContent = `Error: ${error.message}`;
+});
+ /**fetch(url, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -67,5 +106,5 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
 .catch(error => {
     console.error('Error:', error);
     document.getElementById("responseContainer").textContent = `Error: ${error.message}`;
-}); 
+}); **/
  
