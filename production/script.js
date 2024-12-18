@@ -66,7 +66,7 @@ fetch(url, {
 })
 .catch(error => {
     console.error("Error:", error);
-    responseContainer.textContent = `Error: ${error.message}`;
+  //  responseContainer.textContent = `Error: ${error.message}`;
 });
  /**fetch(url, {
     method: 'POST',
