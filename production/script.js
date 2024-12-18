@@ -42,7 +42,7 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
    fetch(scriptURL, { 
     method: 'POST',
     
-     body: data//JSON.stringify(data)
+     body:  JSON.stringify(data)
    } )
       .then(response => {
   if (response.ok) {
@@ -50,11 +50,11 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
   } else {
     throw new Error(`Error: ${response.statusText}`); // Handle non-200 status codes
   }
-}).then(data => {
+}).then(data1 => {
 
     console.log(data);
     // Replace loading message with JSON data in a readable format
-    document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
+    document.getElementById("responseContainer").textContent = JSON.stringify(data1, null, 2);
 })
 .catch(error => {
     console.error('Error:', error);
@@ -62,7 +62,7 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
 });
     console.log(data);
     // Replace loading message with JSON data in a readable format
-    document.getElementById("responseContainer").textContent = JSON.stringify(data, null, 2);
+    document.getElementById("responseContainer").textContent = JSON.stringify(data1, null, 2);
 })
 .catch(error => {
     console.error('Error:', error);
