@@ -1,5 +1,5 @@
  const url = "https://instantapi.ai/api/retrieve/";
- const scriptURL = 'https://script.google.com/macros/s/AKfycbx6sNcLlKSg8Ysc8pgp_UQQm8Z4d2nXzJoUaOpqFC-e77s1kQHnzbvwmcf_woT9ecDv/exec'
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbw9mMuQMlviIpB-x3iyvLFblvh3CZKr21NBqjUMCwIChdQc3-lK1LEPAae9e_c9DVTx/exec'
                      
 
     
