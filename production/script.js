@@ -42,7 +42,7 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
    fetch(scriptURL, { 
     method: 'POST',
     
-     body: JSON.stringify(data)
+     body: data//JSON.stringify(data)
    } )
       .then(response => {
   if (response.ok) {
