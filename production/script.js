@@ -59,7 +59,7 @@ fetch(url, {
                 productItem.className = 'product-item';
                 
                 const img = document.createElement('img');
-                img.src = "https://m.media-amazon.com/images/I/41u2CjtkyOL.jpg"//product.image_url;
+                img.src = product.item_image;
                 
         // Add error handling for image loading
         img.onerror = () => {
