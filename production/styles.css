@@ -19,3 +19,33 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+.product-listing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-item .name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-item .price {
+    color: #f00;
+    font-size: 14px;
+    margin: 5px 0;
+}
