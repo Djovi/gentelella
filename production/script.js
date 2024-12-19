@@ -63,7 +63,7 @@ fetch(url, {
                 
         // Add error handling for image loading
         img.onerror = () => {
-            img.src = 'images/logo.png'; // Fallback image URL
+            img.src = 'https://m.media-amazon.com/images/I/41u2CjtkyOL.jpg'; // Fallback image URL
             console.error(`Failed to load image: ${product.image_url}`);
         };
                 const name = document.createElement('div');
