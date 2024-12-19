@@ -26,11 +26,86 @@
             font-size: 20px;
             margin: 5px 0;
         }
+        .product-details .buy-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>Product Details</h1>
     <div id="productDetails" class="product-details"></div>
-    <script src="script.js"></script>
+    <script>
+        // Function to get query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                price: params.get('price'),
+                image_url: params.get('image_url')
+            };
+        }
+
+        // Function to render product details
+        function renderProductDetails(product) {
+            const container = document.getElementById('productDetails');
+            
+            const img = document.createElement('img');
+            img.src = product.image_url;
+            container.appendChild(img);
+            
+            const name = document.createElement('div');
+            name.className = 'name';
+            name.textContent = product.name;
+            container.appendChild(name);
+            
+            const price = document.createElement('div');
+            price.className = 'price';
+            price.textContent = product.price;
+            container.appendChild(price);
+            
+            const buyButton = document.createElement('a');
+            buyButton.className = 'buy-button';
+            buyButton.href = `#`; // This will be updated with the Stripe payment link
+            buyButton.textContent = 'Buy Now';
+            container.appendChild(buyButton);
+        }
+
+        // Fetch product details from query parameters
+        const product = getQueryParams();
+        renderProductDetails(product);
+
+        // Function to create Stripe payment link
+        async function createStripePaymentLink(name, price) {
+            const response = await fetch('your-server-endpoint', { // Replace with your server endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    price: parseFloat(price.replace('$', '')) * 100, // Convert price to cents
+                    image_url: product.image_url
+                })
+            });
+            const data = await response.json();
+            return data.paymentLink;
+        }
+
+        // Update the buy button with the Stripe payment link
+        createStripePaymentLink(product.name, product.price)
+            .then(paymentLink => {
+                document.querySelector('.buy-button').href = paymentLink;
+            })
+            .catch(error => {
+                console.error('Error creating Stripe payment link:', error);
+            });
+    </script>
 </body>
 </html>
