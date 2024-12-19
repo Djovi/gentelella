@@ -115,7 +115,7 @@ fetch(url, {
                 productItem.appendChild(img);
                 productItem.appendChild(name);
                 productItem.appendChild(price);
-                
+                 container.appendChild(link);
                 container.appendChild(productItem);
             });
         }
