@@ -56,7 +56,7 @@ fetch(url, {
             const container = document.getElementById('productContainer');
             products.Items.forEach(product => {
                 const productItem = document.createElement('div');
-                productItem.className = 'product-item';
+                productItem.className = 'images/logoal.jpg';
                 
                 const img = document.createElement('img');
                 img.src = product.image_url;
