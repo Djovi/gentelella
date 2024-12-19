@@ -1,7 +1,7 @@
   const url = "https://instantapi.ai/api/retrieve/";
  const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec'
                      
-/*const stripe = require('stripe')('your-stripe-secret-key');
+const stripe = require('stripe')('pk_live_fgMxvyvoSrhEGCMCNixTpD7R');
 
 // Function to create a product in Stripe
 async function createProduct(name, description, image) {
@@ -37,7 +37,7 @@ async function createPaymentLink(priceId) {
     const priceId = await createPrice(productId, 2000); // Amount in cents
     const paymentLink = await createPaymentLink(priceId);
     console.log('Payment Link:', paymentLink);
-})();**/
+})();/***/
      
      
    
