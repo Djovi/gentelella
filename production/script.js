@@ -46,12 +46,38 @@ fetch(url, {
 })
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
-     responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
+     //responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
    
- 
+     // Call the render function with data
+        renderProducts(dataFromFirstFetch);
  
 }); 
- 
+ function renderProducts(products) {
+            const container = document.getElementById('productContainer');
+            products.Items.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                
+                const img = document.createElement('img');
+                img.src = product.image_url;
+                
+                const name = document.createElement('div');
+                name.className = 'name';
+                name.textContent = product.name;
+                
+                const price = document.createElement('div');
+                price.className = 'price';
+                price.textContent = product.price;
+                
+                productItem.appendChild(img);
+                productItem.appendChild(name);
+                productItem.appendChild(price);
+                
+                container.appendChild(productItem);
+            });
+        }
+
+    
  /**fetch(url, {
     method: 'POST',
     headers: {
