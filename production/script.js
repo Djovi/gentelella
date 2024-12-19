@@ -98,15 +98,19 @@ fetch(url, {
 })
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
-    return fetch(scriptURL, {
+     console.log("Data from Apps Script:", dataFromAppsScript);
+    responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
+    // Clear the loading message
+    responseContainer.innerHTML = JSON.stringify(dataFromFirstFetch, null, 2);
+   /** return fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify(dataFromFirstFetch), // Send data from the first fetch
         headers: {
             'Content-Type': 'application/json' // Important for Apps Script
         }
-    });
+    });**/
 })
-.then(response => {
+/**.then(response => {
     if (!response.ok) {
         throw new Error(`Apps Script response was not ok: ${response.status} ${response.statusText}`);
     }
@@ -117,7 +121,7 @@ fetch(url, {
     responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
     // Clear the loading message
     responseContainer.innerHTML = JSON.stringify(dataFromAppsScript, null, 2);
-})
+})**/
 .catch(error => {
     console.error("Error:", error);
     responseContainer.textContent = `Error: ${error.message}`;
