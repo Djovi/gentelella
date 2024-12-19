@@ -61,6 +61,11 @@ fetch(url, {
                 const img = document.createElement('img');
                 img.src = product.image_url;
                 
+        // Add error handling for image loading
+        img.onerror = () => {
+            img.src = 'images/logo.png'; // Fallback image URL
+            console.error(`Failed to load image: ${product.image_url}`);
+        };
                 const name = document.createElement('div');
                 name.className = 'name';
                 name.textContent = product.name;
