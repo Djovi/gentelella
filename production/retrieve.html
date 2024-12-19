@@ -3,6 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+    /* style.css */
+<style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* Adjust background color as needed */
+  z-index: 1000; /* Ensure logo stays on top */
+}
+
+.logo {
+  height: 50px; /* Adjust logo height as needed */
+  margin: 10px;
+}
+
+.content {
+  margin-top: 60px; /* Adjust margin to account for header height */
+}</style>
      <title>Fetch API Example</title>
     <!--Updated CSP to allow external script and style files-->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://instantapi.ai; img-src 'self' https://images.coinafrique.com;  style-src 'self'; script-src 'self';">
