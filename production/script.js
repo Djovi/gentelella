@@ -46,19 +46,10 @@ fetch(url, {
 })
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
-    return fetch(scriptURL, {
-      console.log("Data from Apps Script:", dataFromAppsScript);
-    responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`Apps Script response was not ok: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-}) 
-.catch(error => {
-    console.error("Error:", error);
-   responseContainer.textContent = `Error: ${error.message}`;
+     responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
+   
+ 
+ 
 }); 
  
  /**fetch(url, {
