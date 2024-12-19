@@ -46,7 +46,7 @@ fetch(url, {
 })
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
-    //  responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
+      responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
    
      // Call the render function with data
         renderProducts(dataFromFirstFetch);
@@ -64,7 +64,7 @@ fetch(url, {
         // Add error handling for image loading
         img.onerror = () => {
             img.src = product.item_image; // Fallback image URL
-            console.error(`Failed to load image: ${product.image_url}`);
+            console.error(`Failed to load image: ${product.item_image}`);
         };
                 const name = document.createElement('div');
                 name.className = 'name';
