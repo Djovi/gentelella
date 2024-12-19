@@ -93,7 +93,9 @@ fetch(url, {
             products.Items.forEach(product => {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
-                
+                 const link = document.createElement('a');
+        link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price)}&image_url=${encodeURIComponent(product.item_image)}`;
+        link.appendChild(productItem);
                 const img = document.createElement('img');
                 img.src = product.item_image;
                 
