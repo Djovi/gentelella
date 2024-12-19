@@ -8,6 +8,34 @@
     
    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://instantapi.ai; style-src 'self'; script-src 'self';">    
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-listing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-item .name {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-item .price {
+            color: #f00;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>API Response</h1>
@@ -15,5 +43,56 @@
     <div id="responseContainer">Loading<span class="cursor">|</span></div>
 
     <script src="script.js"></script>
+ 
+ 
+    <div id="productContainer" class="product-listing"></div>
+
+    <script>
+        const dataFromFirstFetch = {
+            "Items": [
+                {
+                    "name": "Product 1",
+                    "price": "$100",
+                    "author": "Author 1",
+                    "image_url": "https://via.placeholder.com/150"
+                },
+                {
+                    "name": "Product 2",
+                    "price": "$200",
+                    "author": "Author 2",
+                    "image_url": "https://via.placeholder.com/150"
+                }
+                // Add more product items as needed
+            ]
+        };
+
+        function renderProducts(products) {
+            const container = document.getElementById('productContainer');
+            products.Items.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                
+                const img = document.createElement('img');
+                img.src = product.image_url;
+                
+                const name = document.createElement('div');
+                name.className = 'name';
+                name.textContent = product.name;
+                
+                const price = document.createElement('div');
+                price.className = 'price';
+                price.textContent = product.price;
+                
+                productItem.appendChild(img);
+                productItem.appendChild(name);
+                productItem.appendChild(price);
+                
+                container.appendChild(productItem);
+            });
+        }
+
+        // Call the render function with data
+        renderProducts(dataFromFirstFetch);
+    </script>
 </body>
 </html>
