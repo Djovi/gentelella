@@ -1,4 +1,4 @@
-/* const url = "https://instantapi.ai/api/retrieve/";
+  const url = "https://instantapi.ai/api/retrieve/";
  const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec'
                      
 
@@ -47,85 +47,20 @@ fetch(url, {
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
     return fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(dataFromFirstFetch), // Send data from the first fetch
-        headers: {
-            'Content-Type': 'application/json' // Important for Apps Script
-        }
-    });
+      console.log("Data from Apps Script:", dataFromAppsScript);
+    responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
 })
 .then(response => {
     if (!response.ok) {
         throw new Error(`Apps Script response was not ok: ${response.status} ${response.statusText}`);
     }
     return response.json();
-})
-.then(dataFromAppsScript => {
-    console.log("Data from Apps Script:", dataFromAppsScript);
-    responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
-})
+}) 
 .catch(error => {
     console.error("Error:", error);
-  //  responseContainer.textContent = `Error: ${error.message}`;
-});**/
-const url = "https://instantapi.ai/api/retrieve/";
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec';
-
-const mdata = {
-  "api_method_name": "getProductsList",
-  "api_response_structure": "{\"Items\":[{\"name\":\"<the full title of the item, including any hashtags and emojis>\",\"price\":\"<the defined price of the item>\",\"author\":\"<the publisher of the item>\"}]}",
-  "webpage_url": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ/ref=sr_1_5?crid=GO5AGC9SDDB7&dib=eyJ2IjoiMSJ9.uE4deo7r5VmfAYy0VaoW5gZ-srtMCvhZPBYVlq8YKWUPWVI",
-  "api_key": "free_joel@rechainglobal.com"
-};
-
-// Display a loading message while waiting for the API response
-document.getElementById("responseContainer").innerHTML = '<span class="loading">Loading<span class="cursor">|</span></span>';
-
-const responseContainer = document.getElementById("responseContainer"); // Get the element once
-
-fetch(url, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(mdata)
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-    }
-    return response.json(); // Parse response as JSON
-})
-.then(dataFromFirstFetch => {
-    // Now send the data to your Apps Script
-     console.log("Data from Apps Script:", dataFromAppsScript);
-    responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
-    // Clear the loading message
-    responseContainer.innerHTML = JSON.stringify(dataFromFirstFetch, null, 2);
-   /** return fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(dataFromFirstFetch), // Send data from the first fetch
-        headers: {
-            'Content-Type': 'application/json' // Important for Apps Script
-        }
-    });**/
-})
-/**.then(response => {
-    if (!response.ok) {
-        throw new Error(`Apps Script response was not ok: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-})
-.then(dataFromAppsScript => {
-    console.log("Data from Apps Script:", dataFromAppsScript);
-    responseContainer.textContent = JSON.stringify(dataFromAppsScript, null, 2);
-    // Clear the loading message
-    responseContainer.innerHTML = JSON.stringify(dataFromAppsScript, null, 2);
-})**/
-.catch(error => {
-    console.error("Error:", error);
-    responseContainer.textContent = `Error: ${error.message}`;
-});
+   responseContainer.textContent = `Error: ${error.message}`;
+}); 
+ 
  /**fetch(url, {
     method: 'POST',
     headers: {
