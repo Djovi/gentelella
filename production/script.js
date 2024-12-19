@@ -56,10 +56,10 @@ fetch(url, {
             const container = document.getElementById('productContainer');
             products.Items.forEach(product => {
                 const productItem = document.createElement('div');
-                productItem.className = 'images/logoal.jpg';
+                productItem.className = 'product-item';
                 
                 const img = document.createElement('img');
-                img.src = product.image_url;
+                img.src = "images/logoal.jpg"//product.image_url;
                 
         // Add error handling for image loading
         img.onerror = () => {
