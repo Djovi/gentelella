@@ -82,7 +82,7 @@ fetch(url, {
 })
 .then(dataFromFirstFetch => {
     // Now send the data to your Apps Script
-      responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
+     // responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
    
      // Call the render function with data
         renderProducts(dataFromFirstFetch);
