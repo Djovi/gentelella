@@ -62,7 +62,13 @@ document.getElementById("responseContainer").innerHTML = '<span class="loading">
 //       product_url: "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416", 
 //      item_image: "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
 //};
-
+ function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('listings'),
+            };
+        }
+const mproducts = getQueryParams();
 
 // Function to fetch data and display it in the responseContainer div
 const responseContainer = document.getElementById("responseContainer"); // Get the element once
