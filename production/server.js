@@ -11,7 +11,47 @@
 //
 // 3) Run the server on http://localhost:4242
 //   node server.js
+// server.js
+const express = require('express');
+const stripe = require('stripe')('your-secret-key'); // Replace with your Stripe secret key
 
+const app = express();
+app.use(express.json());
+
+// Endpoint to create a checkout session
+app.post('/create-checkout-session', async (req, res) => {
+    const { name, price, image } = req.body;
+
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: name,
+                        images: [image]
+                    },
+                    unit_amount: price
+                },
+                quantity: 1
+            }],
+            mode: 'payment',
+            success_url: 'https://yourdomain.com/success', // Replace with your success URL
+            cancel_url: 'https://yourdomain.com/cancel' // Replace with your cancel URL
+        });
+
+        res.json({ id: session.id });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 // The library needs to be configured with your account's secret key.
 // Ensure the key is kept out of any version control system you might be using.
 const stripe = require('stripe')('sk_test_...');
