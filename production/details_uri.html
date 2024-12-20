@@ -125,7 +125,13 @@
             const data = await response.json();
             return data.paymentLink;
         }
-
+// Example usage
+(async () => {
+    const productId = await createProduct(product.name, product.name, product.image_url);
+    const priceId = await createPrice(productId, parseFloat(product.price.replace('$', '')) * 180); // Amount in cents
+    const paymentLink = await createPaymentLink(priceId);
+    console.log('Payment Link:', paymentLink);
+})();
         // Update the buy button with the Stripe payment link
         createStripePaymentLink(product.name, product.price)
             .then(paymentLink => {
@@ -135,5 +141,6 @@
                 console.error('Error creating Stripe payment link:', error);
             });
     </script>
+     <script src="script.js"></script>
 </body>
 </html>
