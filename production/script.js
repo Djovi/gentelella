@@ -32,12 +32,12 @@ async function createPaymentLink(priceId) {
 }
 
 // Example usage
-(async () => {
+/*(async () => {
     const productId = await createProduct('Product Name', 'Product Description', 'https://via.placeholder.com/150');
     const priceId = await createPrice(productId, 2000); // Amount in cents
     const paymentLink = await createPaymentLink(priceId);
     console.log('Payment Link:', paymentLink);
-})();/***/
+})();**/
      
      
    
