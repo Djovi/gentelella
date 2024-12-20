@@ -103,11 +103,12 @@
             buyButton.href = `#`; // This will be updated with the Stripe payment link
             buyButton.textContent = 'Buy Now';
             container.appendChild(buyButton);
+             return buyButton;
         }
 
         // Fetch product details from query parameters
         const product = getQueryParams();
-        renderProductDetails(product);
+       const buyButton= renderProductDetails(product);
 
         // Function to create Stripe payment link
         async function createStripePaymentLink(name, price) {
@@ -130,6 +131,7 @@
     const productId = await createProduct(product.name, product.name, product.image_url);
     const priceId = await createPrice(productId, parseFloat(product.price.replace('$', '')) * 180); // Amount in cents
     const paymentLink = await createPaymentLink(priceId);
+    buyButton.href=paymentLink;
     console.log('Payment Link:', paymentLink);
 })();
         // Update the buy button with the Stripe payment link
