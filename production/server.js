@@ -13,7 +13,7 @@
 //   node server.js
 // server.js
 const express = require('express');
-const stripe = require('stripe')('your-secret-key'); // Replace with your Stripe secret key
+const stripe = require('stripe')('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe secret key
 
 const app = express();
 app.use(express.json());
