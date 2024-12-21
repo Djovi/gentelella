@@ -136,7 +136,7 @@ header {
 
         // Event listener for Buy Now button
         buyButton.addEventListener('click', async () => {
-            const sessionId = await createCheckoutSession(product.name, product.price, product.image_url);
+            const sessionId = await createCheckoutSession(product.name,  parseFloat(product.price.replace('$', '')) * 100, product.image_url);
             await redirectToCheckout(sessionId);
         });
     </script>
