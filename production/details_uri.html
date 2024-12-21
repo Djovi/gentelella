@@ -126,7 +126,7 @@
             const data = await response.json();
             return data.paymentLink;
         }
-        const stripe = Stripe('your-publishable-key'); // Replace with your Stripe publishable key
+        const stripe = Stripe('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe publishable key
 
 async function createCheckoutSession(name, price, image) {
     const response = await fetch('/.netlify/functions/createCheckoutSession', {
