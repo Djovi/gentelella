@@ -4,69 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title> 
-          <link rel="stylesheet" href="style.css">
-  
-           <link rel="stylesheet" href="styles.css">
- 
- 
-    <!--Updated CSP to allow external script and style files
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://instantapi.ai; img-src 'self' https://images.coinafrique.com;  style-src 'self'; script-src 'self';">
-    -->
-  <!--https://images.coinafrique.com/thumb_5098941_uploaded_image1_1734605870.jpg <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://instantapi.ai; style-src 'self'; script-src 'self';"> -->   
- 
-    <style>
-        header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff; /* Adjust background color as needed */
-  z-index: 1000; /* Ensure logo stays on top */
-}
-
-.logo {
-  height: 50px; /* Adjust logo height as needed */
-  margin: 10px;
-}
-
-.content {
-  margin-top: 60px; /* Adjust margin to account for header height */
-}
-        .product-listing {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .product-item {
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            width: 200px;
-            text-align: center;
-        }
-        .product-item img {
-            max-width: 100%;
-            height: auto;
-        }
-        .product-item .name {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .product-item .price {
-            color: #f00;
-            font-size: 14px;
-            margin: 5px 0;
-        }
-    </style>
-
-    
-   
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-     <header>
-   <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
-  </header>
+    <header>
+        <a href="https://www.rechainglobal.com">
+            <img src="images/rechain.jpg" alt="Your Company Logo" class="logo">
+        </a>
+    </header>
     <h1>Product Details</h1>
     <div id="productDetails" class="product-details"></div>
     <script>
@@ -95,89 +41,57 @@
             
             const price = document.createElement('div');
             price.className = 'price';
-            price.textContent = parseFloat(product.price.replace('$', '')) * 1.8;//product.price;
+            price.textContent = parseFloat(product.price.replace('$', '')) * 1.8;
             container.appendChild(price);
             
             const buyButton = document.createElement('a');
             buyButton.className = 'buy-button';
-            buyButton.href = `#`; // This will be updated with the Stripe payment link
+            buyButton.href = `#`;
             buyButton.textContent = 'Buy Now';
             container.appendChild(buyButton);
-             return buyButton;
+            return buyButton;
         }
 
         // Fetch product details from query parameters
         const product = getQueryParams();
-       const buyButton= renderProductDetails(product);
+        const buyButton = renderProductDetails(product);
 
-        // Function to create Stripe payment link
-        async function createStripePaymentLink(name, price) {
-            const response = await fetch('your-server-endpoint', { // Replace with your server endpoint
+        const stripe = Stripe('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe publishable key
+
+        async function createCheckoutSession(name, price, image) {
+            const response = await fetch('/.netlify/functions/createCheckoutSession', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     name: name,
-                    price: parseFloat(price.replace('$', '')) * 180, // Convert price to cents
-                    image_url: product.image_url
+                    price: parseFloat(price.replace('$', '')) * 100, // Convert price to cents
+                    image: image
                 })
             });
-            const data = await response.json();
-            return data.paymentLink;
+
+            const session = await response.json();
+            return session.id;
         }
-        const stripe = Stripe('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe publishable key
 
-async function createCheckoutSession(name, price, image) {
-    const response = await fetch('/.netlify/functions/createCheckoutSession', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            price: parseFloat(price.replace('$', '')) * 100, // Convert price to cents
-            image: image
-        })
-    });
-
-    const session = await response.json();
-    return session.id;
-}
-
-async function redirectToCheckout(sessionId) {
-    const result = await stripe.redirectToCheckout({
-        sessionId: sessionId
-    });
-
-    if (result.error) {
-        console.error(result.error.message);
-    }
-}
-
-// Example usage
-buyButton.addEventListener('click', async () => {
-    const sessionId = await createCheckoutSession(product.name, product.price, product.image_url);
-    await redirectToCheckout(sessionId);
-});
-// Example usage
-/**(async () => {
-    const productId = await createProduct(product.name, product.name, product.image_url);
-    const priceId = await createPrice(productId, parseFloat(product.price.replace('$', '')) * 180); // Amount in cents
-    const paymentLink = await createPaymentLink(priceId);
-    buyButton.href=paymentLink;
-    console.log('Payment Link:', paymentLink);
-})();**/
-        // Update the buy button with the Stripe payment link
-        createStripePaymentLink(product.name, product.price)
-            .then(paymentLink => {
-                document.querySelector('.buy-button').href = paymentLink;
-            })
-            .catch(error => {
-                console.error('Error creating Stripe payment link:', error);
+        async function redirectToCheckout(sessionId) {
+            const result = await stripe.redirectToCheckout({
+                sessionId: sessionId
             });
+
+            if (result.error) {
+                console.error(result.error.message);
+            }
+        }
+
+        // Event listener for Buy Now button
+        buyButton.addEventListener('click', async () => {
+            const sessionId = await createCheckoutSession(product.name, product.price, product.image_url);
+            await redirectToCheckout(sessionId);
+        });
     </script>
-     <script src="script.js"></script>
+    <script src="script.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
 </body>
 </html>
