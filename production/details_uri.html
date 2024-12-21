@@ -15,6 +15,7 @@
     </header>
     <h1>Product Details</h1>
     <div id="productDetails" class="product-details"></div>
+     <script src="https://js.stripe.com/v3/"></script> <!-- Load Stripe.js first -->
     <script>
         // Function to get query parameters
         function getQueryParams() {
@@ -91,7 +92,6 @@
             await redirectToCheckout(sessionId);
         });
     </script>
-    <script src="script.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js"></script> 
 </body>
 </html>
