@@ -156,7 +156,7 @@ async function redirectToCheckout(sessionId) {
 }
 
 // Example usage
-document.getElementById('buyButton').addEventListener('click', async () => {
+buyButton.addEventListener('click', async () => {
     const sessionId = await createCheckoutSession(product.name, product.price, product.image_url);
     await redirectToCheckout(sessionId);
 });
