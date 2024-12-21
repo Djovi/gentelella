@@ -126,14 +126,48 @@
             const data = await response.json();
             return data.paymentLink;
         }
+        const stripe = Stripe('your-publishable-key'); // Replace with your Stripe publishable key
+
+async function createCheckoutSession(name, price, image) {
+    const response = await fetch('/.netlify/functions/createCheckoutSession', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            price: parseFloat(price.replace('$', '')) * 100, // Convert price to cents
+            image: image
+        })
+    });
+
+    const session = await response.json();
+    return session.id;
+}
+
+async function redirectToCheckout(sessionId) {
+    const result = await stripe.redirectToCheckout({
+        sessionId: sessionId
+    });
+
+    if (result.error) {
+        console.error(result.error.message);
+    }
+}
+
 // Example usage
-(async () => {
+document.getElementById('buyButton').addEventListener('click', async () => {
+    const sessionId = await createCheckoutSession(product.name, product.price, product.image_url);
+    await redirectToCheckout(sessionId);
+});
+// Example usage
+/**(async () => {
     const productId = await createProduct(product.name, product.name, product.image_url);
     const priceId = await createPrice(productId, parseFloat(product.price.replace('$', '')) * 180); // Amount in cents
     const paymentLink = await createPaymentLink(priceId);
     buyButton.href=paymentLink;
     console.log('Payment Link:', paymentLink);
-})();
+})();**/
         // Update the buy button with the Stripe payment link
         createStripePaymentLink(product.name, product.price)
             .then(paymentLink => {
