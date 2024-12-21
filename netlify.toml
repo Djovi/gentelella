@@ -2,4 +2,4 @@
   functions = "netlify/functions"
 
 [context.production.environment]
-  STRIPE_SECRET_KEY = "pk_live_fgMxvyvoSrhEGCMCNixTpD7R" # Set this in your Netlify environment variables
+  STRIPE_SECRET_KEY = "psk_live_51CoUdVEun1d1jmtnOA2Pzot8UfmdHQPzncM0XpGFqYproDLt8wK8FtMGSihqf1zBkk5GjBHvmzyNIwwZmD4yqlhb003uG8QMgU" # Set this in your Netlify environment variables
