@@ -90,6 +90,19 @@ header {
             ]
         };
 
+        fetch('https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataFromFirstFetch)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            document.getElementById('responseContainer').innerText = 'Data sent to Google Sheets';
+        })
+        .catch(error => console.error('Error:', error));
         
     </script>
 </body>
