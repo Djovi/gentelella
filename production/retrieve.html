@@ -70,7 +70,7 @@ header {
  
  
     <div id="productContainer" class="product-listing"></div>
-
+ <button id="sendDataButton">Save List</button>
     <script>
         const dataFromFirstFetch = {
             "Items": [
@@ -89,7 +89,10 @@ header {
                 // Add more product items as needed
             ]
         };
-
+  document.getElementById('sendDataButton').addEventListener('click', function() {
+            localStorage.setItem('dataFromFirstFetch', JSON.stringify(dataFromFirstFetch));
+            window.location.href = 'savetobase.html'; // Change this to the actual path of your target page
+        });
         
     </script>
 </body>
