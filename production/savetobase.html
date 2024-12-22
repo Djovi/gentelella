@@ -5,8 +5,7 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-kPx0AsF0oz2kKiZ875xSvv693TBHkQ/0SkMJZnnNpnQ=';">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Rechain | </title>
 
     <!-- Bootstrap -->
@@ -58,7 +57,7 @@
     <h1>Received Data</h1>
     <div id="productContainer" class="product-listing"></div>
 
-    <script nonce="sha256-kPx0AsF0oz2kKiZ875xSvv693TBHkQ/0SkMJZnnNpnQ=">
+    <script  >
         
  const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec'
         document.addEventListener('DOMContentLoaded', function() {
@@ -92,6 +91,7 @@
                 });
             }
        fetch(scriptURL, { 
+              redirect:'follow'
     method: 'POST',
     
      body:  JSON.stringify(dataFromFirstFetch)
