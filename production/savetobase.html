@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Page</title>
+    <style>
+        .product-listing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-item .name {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-item .price {
+            color: #f00;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Received Data</h1>
+    <div id="productContainer" class="product-listing"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataFromFirstFetch = JSON.parse(localStorage.getItem('dataFromFirstFetch'));
+
+            if (dataFromFirstFetch && dataFromFirstFetch.Items) {
+                const productContainer = document.getElementById('productContainer');
+                dataFromFirstFetch.Items.forEach(item => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+
+                    const productImage = document.createElement('img');
+                    productImage.src = item.image_url;
+                    productItem.appendChild(productImage);
+
+                    const productName = document.createElement('div');
+                    productName.className = 'name';
+                    productName.textContent = item.name;
+                    productItem.appendChild(productName);
+
+                    const productPrice = document.createElement('div');
+                    productPrice.className = 'price';
+                    productPrice.textContent = item.price;
+                    productItem.appendChild(productPrice);
+
+                    productContainer.appendChild(productItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
