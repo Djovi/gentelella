@@ -74,9 +74,7 @@
  
                 });
             }
-        });
-
-        fetch(scriptURL, { 
+       fetch(scriptURL, { 
     method: 'POST',
     
      body:  JSON.stringify(dataFromFirstFetch)
@@ -97,6 +95,9 @@
     console.error('Error:', error);
   //  document.getElementById("responseContainer").textContent = `Error: ${error.message}`;
 });
+        });
+
+       
     </script>
 </body>
 </html>
