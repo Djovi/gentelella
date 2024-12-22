@@ -61,8 +61,14 @@
         
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec';
 document.addEventListener('DOMContentLoaded', function() {
-    const dataFromFirstFetch = JSON.parse(localStorage.getItem('dataFromFirstFetch'));
-
+    //const dataFromFirstFetch = JSON.parse(localStorage.getItem('dataFromFirstFetch'));
+ const  dataFromFirstFetch = {
+        title: "Location boutique - Kodjoviakope",
+      price: "420 000",
+      author: "DJO",
+        product_url: "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416", 
+      item_image: "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
+ };
     if (dataFromFirstFetch && dataFromFirstFetch.Items) {
         const productContainer = document.getElementById('productContainer');
         dataFromFirstFetch.Items.forEach(item => {
