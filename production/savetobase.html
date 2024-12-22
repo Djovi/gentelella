@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (dataFromFirstFetch) {
-        fetch(scriptURL, { 
-            redirect: 'follow',
+        fetch(scriptURL, {  
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
