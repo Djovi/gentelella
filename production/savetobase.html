@@ -61,7 +61,7 @@
             if (dataFromFirstFetch) {
                 fetch(scriptURL, {  
                     method: 'POST',
-                    mode: 'cors', // Add CORS mode
+                     mode: 'no-cors', // Add CORS mode
                     headers: {
                         'Content-Type': 'application/json'
                     },
