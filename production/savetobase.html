@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Rechain | </title>
 
-  
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <title>Another Page</title>
@@ -49,71 +47,44 @@
     <h1>Received Data</h1>
     <div id="productContainer" class="product-listing"></div>
 
-    <script  >
-        
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec';
-document.addEventListener('DOMContentLoaded', function() {
-    //const dataFromFirstFetch = JSON.parse(localStorage.getItem('dataFromFirstFetch'));
- const  dataFromFirstFetch = {
-        title: "Location boutique - Kodjoviakope",
-      price: "420 000",
-      author: "DJO",
-        product_url: "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416", 
-      item_image: "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
- };
-    if (dataFromFirstFetch && dataFromFirstFetch.Items) {
-        const productContainer = document.getElementById('productContainer');
-        dataFromFirstFetch.Items.forEach(item => {
-            const productItem = document.createElement('div');
-            productItem.className = 'product-item';
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec';
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataFromFirstFetch = {
+                title: "Location boutique - Kodjoviakope",
+                price: "420 000",
+                author: "DJO",
+                product_url: "https://tg.coinafrique.com/annonce/bureaux-et-commerces/location-boutique-kodjoviakope-4924416", 
+                item_image: "https://images.coinafrique.com/thumb_4924416_uploaded_image1_1725345786.jpg"
+            };
 
-            const productImage = document.createElement('img');
-            productImage.src = item.image_url;
-            productItem.appendChild(productImage);
-
-            const productName = document.createElement('div');
-            productName.className = 'name';
-            productName.textContent = item.name;
-            productItem.appendChild(productName);
-
-            const productPrice = document.createElement('div');
-            productPrice.className = 'price';
-            productPrice.textContent = item.price;
-            productItem.appendChild(productPrice);
-
-            productContainer.appendChild(productItem);
-        });
-    }
-
-    if (dataFromFirstFetch) {
-        fetch(scriptURL, {  
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataFromFirstFetch)
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
+            if (dataFromFirstFetch) {
+                fetch(scriptURL, {  
+                    method: 'POST',
+                    mode: 'cors', // Add CORS mode
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataFromFirstFetch)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             } else {
-                throw new Error(`Error: ${response.statusText}`);
+                console.error('Error: No data to send.');
             }
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
         });
-    } else {
-        console.error('Error: No data to send.');
-    }
-});
-
-       
     </script>
-      <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
- 
+    <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
 </body>
 </html>
