@@ -38,7 +38,19 @@ async function createPaymentLink(priceId) {
     const paymentLink = await createPaymentLink(priceId);
     console.log('Payment Link:', paymentLink);
 })();**/
-     
+  // Using Fetch API to get exchange rates from Open Exchange Rates
+const apiKey2 = '605875e6fbb004b383463ec4a49ee011';
+const url = `https://openexchangerates.org/api/latest.json?app_id=${apiKey2}`;
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const rates = data.rates;
+    const usdRate = rates['USD'];
+    const eurToUsd = rates['EUR'] * usdRate;
+    console.log(`1 EUR = ${eurToUsd} USD`);
+  })
+  .catch(error => console.error('Error fetching exchange rates:', error));   
      
    
  const mdata = {
