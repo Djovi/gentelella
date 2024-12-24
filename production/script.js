@@ -39,7 +39,7 @@ async function createPaymentLink(priceId) {
     console.log('Payment Link:', paymentLink);
 })();**/
   // Using Fetch API to get exchange rates from Open Exchange Rates
-const apiKey2 = '605875e6fbb004b383463ec4a49ee011';
+/*const apiKey2 = '605875e6fbb004b383463ec4a49ee011';
 const url = `https://openexchangerates.org/api/latest.json?app_id=${apiKey2}`;
 function seeIndollars(){
 fetch(url)
@@ -53,7 +53,7 @@ fetch(url)
     return eu
   })
   .catch(error => console.error('Error fetching exchange rates:', error));   
-}
+}*/
    
  const mdata = {
  // "webpage_url": "https://tg.coinafrique.com/profil/c4c18891-6b02-4cf2-881c-6de09703ec3f?page=2",
