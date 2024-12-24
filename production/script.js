@@ -1,7 +1,7 @@
   const url = "https://instantapi.ai/api/retrieve/";
  const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec'
                      
-/*const stripe1 = require('stripe')('pk_live_fgMxvyvoSrhEGCMCNixTpD7R');
+/*const stripe1 = require('stripe')('pk_live_fgMxvyvoSrhEGCMCNixTpD7R');605875e6fbb004b383463ec4a49ee011;
 
 // Function to create a product in Stripe
 async function createProduct(name, description, image) {
