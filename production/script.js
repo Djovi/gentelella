@@ -41,17 +41,19 @@ async function createPaymentLink(priceId) {
   // Using Fetch API to get exchange rates from Open Exchange Rates
 const apiKey2 = '605875e6fbb004b383463ec4a49ee011';
 const url = `https://openexchangerates.org/api/latest.json?app_id=${apiKey2}`;
-
+function seeIndollars(){
 fetch(url)
   .then(response => response.json())
   .then(data => {
     const rates = data.rates;
     const usdRate = rates['USD'];
     const eurToUsd = rates['EUR'] * usdRate;
+    const nairaToUsd=rates['EUR'] * usdRate;
     console.log(`1 EUR = ${eurToUsd} USD`);
+    return eu
   })
   .catch(error => console.error('Error fetching exchange rates:', error));   
-     
+}
    
  const mdata = {
  // "webpage_url": "https://tg.coinafrique.com/profil/c4c18891-6b02-4cf2-881c-6de09703ec3f?page=2",
@@ -112,7 +114,7 @@ fetch(url, {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
                  const link = document.createElement('a');
-        link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price)}&image_url=${encodeURIComponent(product.item_image)}`;
+        link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price.replace('₦','')}&image_url=${encodeURIComponent(product.item_image)}`;
         link.appendChild(productItem);
                 const img = document.createElement('img');
                 img.src = product.item_image;
