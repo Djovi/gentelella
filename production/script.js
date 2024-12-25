@@ -114,7 +114,7 @@ fetch(url, {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
                  const link = document.createElement('a');
-        link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price)}&image_url=${encodeURIComponent(product.item_image)}`;
+        link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('$', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;
         link.appendChild(productItem);
                 const img = document.createElement('img');
                 img.src = product.item_image;
