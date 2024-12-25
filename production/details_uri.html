@@ -97,7 +97,7 @@ header {
             
             const price = document.createElement('div');
             price.className = 'price';
-            price.textContent = '$'+ parseFloat(product.price.replace('$', '')) * 1.8;
+            price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*4.1;
             container.appendChild(price);
             
             const buyButton = document.createElement('a');
