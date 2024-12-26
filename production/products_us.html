@@ -96,6 +96,8 @@ header {
          const productPrices = document.querySelectorAll('.price');
         productPrices.forEach(price => {
             price.className = 'new-price-class'; // Update the class name
+             price.textContent ='$ '+((parseFloat(product.price.replace('$', ''))*100))+(((parseFloat(product.price.replace('$', ''))*100))*0.40)  //product.price;
+                
         });
     </script>
        <!-- Adding 4 iframes to load the same address of this page -->
