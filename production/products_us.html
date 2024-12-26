@@ -23,7 +23,7 @@ header {
 .content {
   margin-top: 60px; /* Adjust margin to account for header height */
 }</style>
-     <title>Fetch API Example</title>
+     <title>Products US</title>
     <!--Updated CSP to allow external script and style files-->
 <!--<meta http-equiv="Content-Security-Policy" content="default-src *; connect-src * https://instantapi.ai; img-src *;  style-src *; script-src *;">
     
@@ -61,8 +61,7 @@ header {
 <body>
      <header>
    <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
-  </header>
-    <h1>API Response</h1>
+  </header> 
     <!-- Container to display the loading status and JSON response -->
     <div id="responseContainer">Loading<span class="cursor">|</span></div>
 
@@ -72,6 +71,7 @@ header {
     <div id="productContainer" class="product-listing"></div>
  <button id="sendDataButton">Save List</button>
     <script>
+        
         const dataFromFirstFetch = {
             "Items": [
                 {
@@ -93,7 +93,10 @@ header {
             localStorage.setItem('dataFromFirstFetch', JSON.stringify(dataFromFirstFetch));
             window.location.href = 'savetobase.html'; // Change this to the actual path of your target page
         });
-        
+         const productPrices = document.querySelectorAll('.price');
+        productPrices.forEach(price => {
+            price.className = 'new-price-class'; // Update the class name
+        });
     </script>
        <!-- Adding 4 iframes to load the same address of this page -->
     <iframe src="retrieve.html?listings=" width="300" height="200" title="Iframe 1"></iframe>
