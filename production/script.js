@@ -130,6 +130,7 @@ fetch(url, {
                 
                 const price = document.createElement('div');
                 price.className = 'price';
+         
                 price.textContent ='CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*4.1 //product.price;
                 
                 productItem.appendChild(img);
