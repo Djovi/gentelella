@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+    /* style.css */
+<style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* Adjust background color as needed */
+  z-index: 1000; /* Ensure logo stays on top */
+}
+
+.logo {
+  height: 50px; /* Adjust logo height as needed */
+  margin: 10px;
+}
+
+.content {
+  margin-top: 60px; /* Adjust margin to account for header height */
+}</style>
+     <title>Fetch API Example</title>
+    <!--Updated CSP to allow external script and style files-->
+<!--<meta http-equiv="Content-Security-Policy" content="default-src *; connect-src * https://instantapi.ai; img-src *;  style-src *; script-src *;">
+    
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://instantapi.ai; img-src *; style-src 'self'; script-src 'self';"> --> 
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-listing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-item .name {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-item .price {
+            color: #f00;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+     <header>
+   <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
+  </header>
+    <h1>API Response</h1>
+    <!-- Container to display the loading status and JSON response -->
+    <div id="responseContainer">Loading<span class="cursor">|</span></div>
+
+    <script src="script.js"></script>
+ 
+ 
+    <div id="productContainer" class="product-listing"></div>
+ <button id="sendDataButton">Save List</button>
+    <script>
+        const dataFromFirstFetch = {
+            "Items": [
+                {
+                    "name": "Product 1",
+                    "price": "$100",
+                    "author": "Author 1",
+                    "image_url": "https://via.placeholder.com/150"
+                },
+                {
+                    "name": "Product 2",
+                    "price": "$200",
+                    "author": "Author 2",
+                    "image_url": "https://via.placeholder.com/150"
+                }
+                // Add more product items as needed
+            ]
+        };
+  document.getElementById('sendDataButton').addEventListener('click', function() {
+            localStorage.setItem('dataFromFirstFetch', JSON.stringify(dataFromFirstFetch));
+            window.location.href = 'savetobase.html'; // Change this to the actual path of your target page
+        });
+        
+    </script>
+       <!-- Adding 4 iframes to load the same address of this page -->
+    <iframe src="retrieve.html?listings=" width="300" height="200" title="Iframe 1"></iframe>
+    <iframe src="retrieve.html?listings=" width="300" height="200" title="Iframe 2"></iframe>
+    <iframe src="retrieve.html?listings=" width="300" height="200" title="Iframe 3"></iframe>
+    <iframe src="retrieve.html?listings=" width="300" height="200" title="Iframe 4"></iframe>
+
+</body>
+</html>
