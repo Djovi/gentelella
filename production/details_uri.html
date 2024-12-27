@@ -97,6 +97,7 @@ header {
             
             const price = document.createElement('div');
             price.className = 'price';
+             const zparams = new URLSearchParams(window.location.search);
             price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.041;
             container.appendChild(price);
             
