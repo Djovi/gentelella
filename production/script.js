@@ -114,6 +114,7 @@ fetch(url, {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
                  const link = document.createElement('a');
+            
         link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('₦', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;
         link.appendChild(productItem);
                 const img = document.createElement('img');
@@ -131,6 +132,9 @@ fetch(url, {
                 const price = document.createElement('div');
                 price.className = 'price';
                 price.id = `price_${product.name}`; 
+                   const zparams = new URLSearchParams(window.location.search);
+             if(    zparams.get('origin')=="usd");
+             
                 price.textContent ='CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*4.1 //product.price;
                 
                 productItem.appendChild(img);
