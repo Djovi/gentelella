@@ -134,9 +134,9 @@ fetch(url, {
                 price.id = `price_${product.name}`; 
                    const zparams = new URLSearchParams(window.location.search);
              if(    zparams.get('origin')=="usd");
-              price.textContent ='$ '+((parseFloat(product.price.replace('$', ''))*100))+(((parseFloat(product.price.replace('$', ''))*100))*0.30)
+              price.textContent ='$ '+((parseFloat(product.price.replace('$', ''))*100))+(((parseFloat(product.price.replace('$', ''))*100))*0.30);
               else
-                price.textContent ='CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*4.1 //product.price;
+                price.textContent ='CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*4.1; //product.price;
                 
                 productItem.appendChild(img);
                 productItem.appendChild(name);
