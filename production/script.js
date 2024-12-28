@@ -139,7 +139,7 @@ fetch(url, {
                 price.className = 'price';
                 price.id = `price_${product.name}`; 
              if (zparams.get('origin') == "usd") {
-    price.textContent = '$ ' + ((parseFloat(product.price.replace('$', '')) * 100)) + (((parseFloat(product.price.replace('$', '')) * 100)) * 0.30);
+    price.textContent = '$ ' + ((parseFloat(product.price.replace('$', '')) * 100)) + (((parseFloat(product.price.replace('$', '')) * 100)) * 0.30).toFixed(2);
 } else {
     price.textContent = 'CFA ' +( (((parseFloat(product.price.replace('₦', '')) * 100)) + (((parseFloat(product.price.replace('₦', '')) * 100)) * 0.40)) * 4.1).toFixed(2);
 }
