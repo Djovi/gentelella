@@ -141,7 +141,7 @@ fetch(url, {
              if (zparams.get('origin') == "usd") {
     price.textContent = '$ ' + ((parseFloat(product.price.replace('$', '')) * 100)) + (((parseFloat(product.price.replace('$', '')) * 100)) * 0.30);
 } else {
-    price.textContent = 'CFA ' + (((parseFloat(product.price.replace('₦', '')) * 100).toFixed(2)) + (((parseFloat(product.price.replace('₦', '')) * 100).toFixed(2)) * 0.40)) * 4.1;
+    price.textContent = 'CFA ' +( (((parseFloat(product.price.replace('₦', '')) * 100)) + (((parseFloat(product.price.replace('₦', '')) * 100)) * 0.40)) * 4.1).toFixed(2);
 }
                 productItem.appendChild(img);
                 productItem.appendChild(name);
