@@ -130,7 +130,7 @@ const usPrice=0;
                 },
                 body: JSON.stringify({
                     name: name,
-                    price:usPrice,// (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067, // Convert price to cents
+                    price: (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067, // Convert price to cents
                     image: image
                 })
             });
