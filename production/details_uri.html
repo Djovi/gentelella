@@ -81,7 +81,7 @@ header {
                 image_url: params.get('image_url')
             };
         }
-
+const usPrice=0;
         // Function to render product details
         function renderProductDetails(product) {
             const container = document.getElementById('productDetails');
@@ -100,8 +100,9 @@ header {
              const zparams = new URLSearchParams(window.location.search);
                                if (zparams.get('origin') == "usd") {
   price.textContent = '$ '+(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40));
+                                  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
                                } else { 
-                       
+                   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067
        price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.041;                  
 }
           
