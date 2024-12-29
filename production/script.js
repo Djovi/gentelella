@@ -115,6 +115,16 @@ fetch(url, {
                 productItem.className = 'product-item';
                  const link = document.createElement('a'); 
               const zparams = new URLSearchParams(window.location.search);
+               let parsedPrice;
+        try {
+            parsedPrice = parseFloat(product.price.replace('$', '').replace('₦', '').trim()) * 100;
+            if (isNaN(parsedPrice)) {product.price=  250;
+                throw new Error('Price is not a valid number');
+            }
+        } catch (error) {
+            console.error(`Failed to parse price for product ${product.name}:`, error);
+           product.price=  250; // Default to 0 or any other fallback value
+        }
                      if (zparams.get('origin') == "usd") {
   link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('$', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;      
 } else { 
