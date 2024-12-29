@@ -130,7 +130,7 @@ const usPrice=0;
                 },
                 body: JSON.stringify({
                     name: name,
-                    price: (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067, // Convert price to cents
+                    price:usPrice;// (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067, // Convert price to cents
                     image: image
                 })
             });
@@ -151,7 +151,7 @@ const usPrice=0;
 
         // Event listener for Buy Now button
         buyButton.addEventListener('click', async () => {
-            const sessionId = await createCheckoutSession(product.name,  (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067, product.image_url);
+            const sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
             await redirectToCheckout(sessionId);
         });
     </script>
