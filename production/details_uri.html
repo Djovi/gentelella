@@ -105,7 +105,8 @@ let usPrice;
                 //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
        price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.041;                  
 }
-          
+          price.textContent=(((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))+(((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))*0.40))*0.0067, // Convert price to cents
+                 
             container.appendChild(price);
             
             const buyButton = document.createElement('a');
