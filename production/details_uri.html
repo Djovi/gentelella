@@ -151,7 +151,25 @@ let usPrice;
 
         // Event listener for Buy Now button
         buyButton.addEventListener('click', async () => {
-            const sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
+            let sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
+              const zparams = new URLSearchParams(window.location.search);
+                               if (zparams.get('origin') == "usd") {
+ sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))+(((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))*0.40))
+                 , product.image_url);
+                                //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
+                               } else if(zparams.get('origin') == "euro"){ 
+                //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
+                                    sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))+(((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))*0.40))*1.04
+                 , product.image_url);
+                         
+}else {
+                                    { 
+            sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))+(((parseFloat(product.price.replace('€', '').replace('₦', '').replace('$', ''))*100))*0.40))*0.041
+                 , product.image_url);                                                 
+}
+}
+       
+          
             await redirectToCheckout(sessionId);
         });
     </script>
