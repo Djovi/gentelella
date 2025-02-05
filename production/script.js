@@ -1,5 +1,5 @@
   const url = "https://instantapi.ai/api/retrieve/";
- const scriptURL = 'https://script.google.com/macros/s/AKfycbwfm-_YYzfVko4RZjmEQuXgxQrRv1TtadgRihnNrZX0dnTJimNZtaPZVQf2Adl3T4ZF/exec'
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbwF1-gT8u9TWWBtjgs-xiWpbEOACfKyB8v3C16GZkhymD6JsBu5OZq3kcS2ES9asmhD/exec'
                      
 /*const stripe1 = require('stripe')('pk_live_fgMxvyvoSrhEGCMCNixTpD7R');605875e6fbb004b383463ec4a49ee011;
 
