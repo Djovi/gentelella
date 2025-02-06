@@ -191,7 +191,7 @@ const successMessage = document.querySelector('.js-success-message')
 
   //message error signup!
       function showSuccessMessage (response) {
-     // console.log('Success!', response)
+      console.log('Success!', response);
       setTimeout(() => {
         successMessage.textContent =response.result;
         successMessage.classList.remove('is-hidden')
@@ -201,7 +201,7 @@ const successMessage = document.querySelector('.js-success-message')
       }
 
     function showErrorMessage (error) {
-      console.error('Error!', error.message)
+      console.error('Error!', error.message);
       setTimeout(() => {
         errorMessage.textContent =error//'There is already an account associated with your email or username</b>Login instead.'
         errorMessage.classList.remove('is-hidden')
