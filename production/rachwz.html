@@ -36,26 +36,100 @@
       background-color: #45a049;
     }
   </style>
+  <script>
+    function initiatePayment(duration, amount, customer) {
+      const requestBody = {
+        "commande": {
+          "invoice": {
+            "items": [
+              {
+                "name": "Subscription",
+                "description": duration + " - " + amount + "Fcfa",
+                "quantity": 1,
+                "unit_price": amount,
+                "total_price": amount
+              }
+            ],
+            "total_amount": amount,
+            "devise": "XOF",
+            "description": "Subscription Payment",
+            "customer": customer,
+            "customer_firstname": "John",
+            "customer_lastname": "Doe",
+            "customer_email": "john.doe@example.com",
+            "external_id": "202502101551",
+            "otp": "123456"
+          },
+          "actions": {
+            "cancel_url": "https://your_website_url.com/cancel",
+            "return_url": "https://your_website_url.com/return",
+            "callback_url": "https://your_website_url.com/callback",
+            "callback_url_method": "post_urlencoded"
+          },
+          "custom_data": {
+            "transaction_id": "202502101551"
+          }
+        }
+      };
+
+      fetch('https://payplus.africa/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        window.location.href = data.actions.return_url;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
+    function handleSubmit(event, duration, amount) {
+      event.preventDefault();
+      const customer = document.getElementById('customer').value;
+      initiatePayment(duration, amount, customer);
+    }
+  </script>
 </head>
 <body>
   <header>
     <a href="https://www.rechainglobal.com"><img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
   </header>
   <div class="content">
-    <!-- Calendly inline widget begin -->
-   <!--  <div class="calendly-inline-widget" data-url="https://payplus.africa" style="min-width:320px;height:700px;"></div>
-    Calendly inline widget end -->
+    <!-- Customer Field -->
+    <label for="customer">Customer:</label>
+    <input type="text" id="customer" name="customer" required>
 
-    <!-- Payment Buttons Begin -->
-    <div class="payment-buttons">
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=1h&amount=100'">01h - 100Fcfa (1 Heure)</button>
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=8h&amount=200'">08h - 200Fcfa (08 Heures)</button>
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=16h&amount=300'">16h - 300Fcfa (16 Heures)</button>
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=48h&amount=500'">48h - 500Fcfa (48 Heures)</button>
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=1semaine&amount=150'">1semaine - 150Fcfa (07 Jours)</button>
-      <button onclick="window.location.href='https://payplus.africa/payment?duration=1mois&amount=5000'">1mois - 5000Fcfa (30 jours)</button>
-    </div>
-    <!-- Payment Buttons End -->
+    <!-- Payment Forms Begin -->
+    <form onsubmit="handleSubmit(event, '01h', 100)">
+      <button type="submit">Pay 01h - 100Fcfa (1 Heure)</button>
+    </form>
+
+    <form onsubmit="handleSubmit(event, '08h', 200)">
+      <button type="submit">Pay 08h - 200Fcfa (08 Heures)</button>
+    </form>
+
+    <form onsubmit="handleSubmit(event, '16h', 300)">
+      <button type="submit">Pay 16h - 300Fcfa (16 Heures)</button>
+    </form>
+
+    <form onsubmit="handleSubmit(event, '48h', 500)">
+      <button type="submit">Pay 48h - 500Fcfa (48 Heures)</button>
+    </form>
+
+    <form onsubmit="handleSubmit(event, '1semaine', 150)">
+      <button type="submit">Pay 1semaine - 150Fcfa (07 Jours)</button>
+    </form>
+
+    <form onsubmit="handleSubmit(event, '1mois', 5000)">
+      <button type="submit">Pay 1mois - 5000Fcfa (30 jours)</button>
+    </form>
+    <!-- Payment Forms End -->
   </div>
 </body>
 </html>
