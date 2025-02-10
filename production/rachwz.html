@@ -1,68 +1,61 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Fixed Logo Example</title>
   <link rel="stylesheet" href="style.css">
-    /* style.css */
-<style>
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff; /* Adjust background color as needed */
-  z-index: 1000; /* Ensure logo stays on top */
-}
-
-.logo {
-  height: 50px; /* Adjust logo height as needed */
-  margin: 10px;
-}
-
-.content {
-  margin-top: 60px; /* Adjust margin to account for header height */
-}
- 
-.payment-buttons {
-  margin-top: 20px;
-}
-.payment-buttons button {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #4CAF50; /* Green */
-  color: white;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-.payment-buttons button:hover {
-  background-color: #45a049;
-}
- 
-
-</style>
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff; /* Adjust background color as needed */
+      z-index: 1000; /* Ensure logo stays on top */
+    }
+    .logo {
+      height: 50px; /* Adjust logo height as needed */
+      margin: 10px;
+    }
+    .content {
+      margin-top: 60px; /* Adjust margin to account for header height */
+    }
+    .payment-buttons {
+      margin-top: 20px;
+    }
+    .payment-buttons button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #4CAF50; /* Green */
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .payment-buttons button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
   <header>
-   <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
+    <a href="https://www.rechainglobal.com"><img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
   </header>
-<body>
-<!-- Calendly inline widget begin -->
-  <!-- Payment Buttons Begin -->
-<div class="payment-buttons">
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=1h&amount=100'">01h - 100Fcfa (1 Heure)</button>
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=8h&amount=200'">08h - 200Fcfa (08 Heures)</button>
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=16h&amount=300'">16h - 300Fcfa (16 Heures)</button>
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=48h&amount=500'">48h - 500Fcfa (48 Heures)</button>
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=1semaine&amount=150'">1semaine - 150Fcfa (07 Jours)</button>
-  <button onclick="window.location.href='https://payplus.africa/payment?duration=1mois&amount=5000'">1mois - 5000Fcfa (30 jours)</button>
-</div>
-<!-- Payment Buttons End -->
-<!--
+  <div class="content">
+    <!-- Calendly inline widget begin -->
+   <!--  <div class="calendly-inline-widget" data-url="https://payplus.africa" style="min-width:320px;height:700px;"></div>
+    Calendly inline widget end -->
 
-<div class="calendly-inline-widget" data-url="https://payplus.africa" style="min-width:320px;height:700px;"></div>
- 
- Calendly inline widget end -->
-
+    <!-- Payment Buttons Begin -->
+    <div class="payment-buttons">
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=1h&amount=100'">01h - 100Fcfa (1 Heure)</button>
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=8h&amount=200'">08h - 200Fcfa (08 Heures)</button>
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=16h&amount=300'">16h - 300Fcfa (16 Heures)</button>
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=48h&amount=500'">48h - 500Fcfa (48 Heures)</button>
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=1semaine&amount=150'">1semaine - 150Fcfa (07 Jours)</button>
+      <button onclick="window.location.href='https://payplus.africa/payment?duration=1mois&amount=5000'">1mois - 5000Fcfa (30 jours)</button>
+    </div>
+    <!-- Payment Buttons End -->
+  </div>
 </body>
 </html>
