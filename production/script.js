@@ -162,6 +162,9 @@ fetch(url, {
         }
 
 // 1. Place your static JSON data in a variable
+// script.js
+
+// 1. Place your static JSON in a variable
 const staticProductData = {
     "service_motd": "**** This test provides a limited example data extraction only. You can sign up to completely customize what data it extracts: https://web.instantapi.ai/ ****",
     "@context": "https://schema.org",
@@ -387,10 +390,26 @@ const staticProductData = {
     "mainEntityOfPage": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ"
 };
 
-// 2. Replace dynamic fetch or API response with the static data
-// Example: Instead of fetch(...).then(data => renderProducts(data));
-// Just call:
-renderProducts(staticProductData);
+// 2. Call renderProducts with the static data
+renderProducts1(staticProductData);
+
+// 3. Your renderProducts function
+function renderProducts1(productData) {
+    // Assign variables as you would with dynamic API data
+    const name = productData.name;
+    const price = productData.offers && productData.offers.price ? productData.offers.price : "N/A";
+    const item_image = productData.image && productData.image.length ? productData.image[0] : "";
+
+    // Example: Render product info to console or page (customize as needed)
+    console.log("Product Name:", name);
+    console.log("Price: $", price);
+    console.log("Image URL:", item_image);
+
+    // You can extend this to actually render HTML if desired, for example:
+    // document.getElementById('productName').textContent = name;
+    // document.getElementById('productPrice').textContent = '$' + price;
+    // document.getElementById('productImage').src = item_image;
+}
 
 // 3. Make sure your renderProducts function can accept this data structure
  /**fetch(url, {
