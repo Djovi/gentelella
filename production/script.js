@@ -161,7 +161,238 @@ fetch(url, {
             });
         }
 
-    
+// 1. Place your static JSON data in a variable
+const staticProductData = {
+    "service_motd": "**** This test provides a limited example data extraction only. You can sign up to completely customize what data it extracts: https://web.instantapi.ai/ ****",
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square D by Schneider Electric HOM120PDFC Homeline Plug-On Neutral 20 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker, (Pack of 4)",
+    "image": [
+        "https://m.media-amazon.com/images/I/41u2CjtkyOL.jpg"
+    ],
+    "description": "Square D by Schneider Electric HOM120PDFC Homeline Plug-On Neutral 20 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker, (Pack of 4). This circuit breaker combines both CAFCI and GFCI protection in a single device, designed for use in Homeline load centers and CSED devices. Plug-On Neutral design for easier installation.",
+    "sku": "HOM120PDFC",
+    "mpn": "HOM120PDFC",
+    "brand": {
+        "@type": "Brand",
+        "name": "Square D",
+        "url": "https://www.amazon.com/Square-D/b/ref=bl_dp_s_web_121871334011?ie=UTF8&node=121871334011&field-lbr_brands_browse-bin=Square+D"
+    },
+    "manufacturer": {
+        "@type": "Organization",
+        "name": "Schneider Electric"
+    },
+    "gtin12": "880765242187",
+    "offers": {
+        "@type": "Offer",
+        "url": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ",
+        "priceCurrency": "USD",
+        "price": "220.00",
+        "priceValidUntil": "2025-05-27",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+            "@type": "Organization",
+            "name": "Automation Controller"
+        },
+        "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0.03",
+                "currency": "USD"
+            },
+            "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "US",
+                "postalCode": "10001"
+            },
+            "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 2,
+                    "unitCode": "d"
+                },
+                "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 6,
+                    "maxValue": 10,
+                    "unitCode": "d"
+                }
+            }
+        },
+        "returnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+        }
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.4",
+        "reviewCount": 94,
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "review": [
+        {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "James G"
+            },
+            "datePublished": "2024-12-25",
+            "reviewBody": "Perfect for my home line panel and application. Great quality square d breaker!"
+        },
+        {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Dennis"
+            },
+            "datePublished": "2024-10-29",
+            "reviewBody": "Used on home panel. Easy Install. Used 20 of them so I saved about $150.00"
+        },
+        {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Amazon Customer"
+            },
+            "datePublished": "2024-08-15",
+            "reviewBody": "homeline breakers work well"
+        },
+        {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "1",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "RScott Hart"
+            },
+            "datePublished": "2024-11-04",
+            "reviewBody": "No where in the product details does it say the breakers would be used. Well 2 of the 4 breakers were used and removed more than once. Completely unacceptable for the high price that was charged.",
+            "image": [
+                "https://m.media-amazon.com/images/I/71bfQdJKQeL._SY88.jpg",
+                "https://m.media-amazon.com/images/I/71c4D0Lc9bL._SY88.jpg"
+            ]
+        }
+    ],
+    "category": [
+        "Tools & Home Improvement",
+        "Electrical",
+        "Breakers, Load Centers & Fuses",
+        "Circuit Breakers",
+        "Ground Fault Circuit Interrupters"
+    ],
+    "isAccessoryOrSparePartFor": [
+        {
+            "@type": "Product",
+            "name": "Square D Homeline Load Centers"
+        }
+    ],
+    "productID": "B07TW6LKJZ",
+    "itemCondition": "https://schema.org/NewCondition",
+    "releaseDate": "2019-07-01",
+    "dateFirstAvailable": "2019-07-01",
+    "model": "HOM120PDFC",
+    "color": "As shown in image",
+    "weight": {
+        "@type": "QuantitativeValue",
+        "value": 2.8,
+        "unitCode": "LBR"
+    },
+    "size": "Pack of 4",
+    "additionalProperty": [
+        {
+            "@type": "PropertyValue",
+            "name": "Current Rating",
+            "value": "20 Amps"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Circuit Breaker Type",
+            "value": "GFCI"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Number Of Poles",
+            "value": "1"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "UPC",
+            "value": "880765242187"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Package Dimensions",
+            "value": "8.46 x 5.59 x 5.39 inches"
+        }
+    ],
+    "isSimilarTo": [
+        {
+            "@type": "Product",
+            "name": "Square D - HOM115PDFC Homeline Plug-On Neutral 15 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker",
+            "url": "https://www.amazon.com/Square-Schneider-Electric-HOM115PDFC-Single-Pole/dp/B00NOHVCQM"
+        },
+        {
+            "@type": "Product",
+            "name": "Square D by Schneider Electric HOM120PCAFIC Homeline Plug-On Neutral 20 Amp Single-Pole CAFCI Circuit Breaker",
+            "url": "https://www.amazon.com/Square-Schneider-Electric-HOM120PCAFIC-Single-Pole/dp/B07GL2QFHH"
+        }
+    ],
+    "audience": {
+        "@type": "Audience",
+        "audienceType": "Homeowners, Electricians, Contractors"
+    },
+    "award": [
+        "#38 in Ground Fault Circuit Interrupters (Amazon Best Sellers Rank)"
+    ],
+    "isConsumableFor": [],
+    "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+    },
+    "sustainability": {
+        "@type": "PropertyValue",
+        "name": "ClimatePartner certified",
+        "value": "Carbon emissions from the lifecycle of this product were measured, reduced and offset. Certification Number 97MDRL"
+    },
+    "mainEntityOfPage": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ"
+};
+
+// 2. Replace dynamic fetch or API response with the static data
+// Example: Instead of fetch(...).then(data => renderProducts(data));
+// Just call:
+renderProducts(staticProductData);
+
+// 3. Make sure your renderProducts function can accept this data structure
  /**fetch(url, {
     method: 'POST',
     headers: {
