@@ -606,6 +606,7 @@ console.log(summary);
 //   product_url: "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ"
 // }
 // 3. Your renderProducts function
+renderProducts(staticProductData);
 function renderProducts1(productData) {
     // Assign variables as you would with dynamic API data
     const name = productData.name;
