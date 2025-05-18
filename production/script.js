@@ -87,7 +87,7 @@ mdata.webpage_url=mproducts.name;
 // Function to fetch data and display it in the responseContainer div
 const responseContainer = document.getElementById("responseContainer"); // Get the element once
 
-fetch(url, {
+/*fetch(url, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ fetch(url, {
      // Call the render function with data
       //  renderProducts(dataFromFirstFetch);
  
-}); 
+}); */
  function renderProducts(products) {
             const container = document.getElementById('productContainer');
             products.Items.forEach(product => {
@@ -126,10 +126,10 @@ fetch(url, {
            product.price=  250; // Default to 0 or any other fallback value
         }
                      if (zparams.get('origin') == "usd") {
- // link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('$', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;      
+  link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('$', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;      
 } else { 
                        
-    //   link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('₦', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;
+       link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.price.replace('₦', '')) * 100)}&image_url=${encodeURIComponent(product.item_image)}`;
                         
 }
        link.appendChild(productItem);
