@@ -165,7 +165,7 @@ fetch(url, {
 // script.js
 
 // 1. Place your static JSON in a variable
-const staticProductData = const staticProductData = [
+const staticProductData ={ "Items":[
     {
         "@type": "Product",
         "name": "Square D HomeLine 30 amps Surge 2-Pole Circuit Breaker",
@@ -580,7 +580,7 @@ const staticProductData = const staticProductData = [
             "itemCondition": "https://schema.org/NewCondition"
         }
     }
-];
+]};
 
       
 
