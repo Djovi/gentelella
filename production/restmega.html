@@ -75,6 +75,12 @@
             .product-listing { flex-direction: column; align-items: center; }
             .product-item { width: 90%; }
         }
+        .delivery-label {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #1976d2;
+    font-weight: 500;
+}
     </style>
 </head>
 <body>
@@ -525,6 +531,9 @@
                 const priceDiv = document.createElement('div');
                 priceDiv.className = 'price';
                 priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
+const deliveryDiv = document.createElement('div');
+        deliveryDiv.className = 'delivery-label';
+        deliveryDiv.textContent = 'Delivery: 3-11 days';
 
                 const link = document.createElement('a');
                 link.href = product.offers && product.offers.url ? product.offers.url : "#";
@@ -570,8 +579,9 @@ img.onerror = () => {
                 productItem.appendChild(img);
                 productItem.appendChild(nameDiv);
                 productItem.appendChild(priceDiv);
+                productItem.appendChild(deliveryDiv); // Add delivery label here
                 productItem.appendChild(link);
-
+               
                 container.appendChild(productItem);
             });
         }
