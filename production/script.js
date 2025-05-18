@@ -105,7 +105,7 @@ fetch(url, {
      // responseContainer.textContent = JSON.stringify(dataFromFirstFetch, null, 2);
    
      // Call the render function with data
-        renderProducts(dataFromFirstFetch);
+      //  renderProducts(dataFromFirstFetch);
  
 }); 
  function renderProducts(products) {
