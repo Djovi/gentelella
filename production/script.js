@@ -392,7 +392,28 @@ const staticProductData = {
 
 // 2. Call renderProducts with the static data
 renderProducts1(staticProductData);
+const staticProductData = { 
+    /* ... (your full JSON from above) ... */
+};
 
+// Extracting the required fields
+function getProductSummary(productData) {
+    return {
+        product_name: productData.name || "",
+        product_price: productData.offers && productData.offers.price ? productData.offers.price : "",
+        product_url: productData.offers && productData.offers.url ? productData.offers.url : ""
+    };
+}
+
+// Usage example:
+const summary = getProductSummary(staticProductData);
+console.log(summary);
+// Output example:
+// {
+//   product_name: "Square D by Schneider Electric HOM120PDFC Homeline Plug-On Neutral 20 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker, (Pack of 4)",
+//   product_price: "220.00",
+//   product_url: "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ"
+// }
 // 3. Your renderProducts function
 function renderProducts1(productData) {
     // Assign variables as you would with dynamic API data
