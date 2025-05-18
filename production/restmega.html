@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resMega - Product Showcase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            height: 50px;
+            margin: 10px;
+        }
+        .content { margin-top: 80px; }
+        h1 { text-align: center; margin-top: 90px; }
+        .product-listing {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 16px;
+            border-radius: 8px;
+            width: 220px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        }
+        .product-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .product-item .name {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 10px 0 6px 0;
+            color: #222;
+        }
+        .product-item .price {
+            color: #e53935;
+            font-size: 16px;
+            margin: 4px 0 10px 0;
+        }
+        .product-item .link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.18s;
+        }
+        .product-item .link:hover { background: #024284; }
+        @media (max-width: 700px) {
+            .product-listing { flex-direction: column; align-items: center; }
+            .product-item { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://www.rechainglobal.com">
+            <img src="images/rechain.jpg" alt="Your Company Logo" class="logo">
+        </a>
+    </header>
+    <h1>Product List</h1>
+    <div class="content">
+        <div id="productContainer" class="product-listing"></div>
+    </div>
+    <script>
+        // Static product data (TWO ITEMS)
+        const staticProductData = [
+            {
+                "@type": "Product",
+                "name": "Square D HomeLine 30 amps Surge 2-Pole Circuit Breaker",
+                "image": "https://m.media-amazon.com/images/I/6165a5MmYTL._AC_UL320_.jpg",
+                "brand": {"@type": "Brand","name": "Square D"},
+                "offers": {
+                    "@type": "Offer",
+                    "price": "20.00",
+                    "url": "https://www.amazon.com/Square-HomeLine-2-Pole-Circuit-Breaker/dp/B002YEJITO/"
+                }
+            },
+            {
+                "@type": "Product",
+                "name": "Plug In Circuit Breaker, HOM, Number of Poles 2, 60 Amps, 120/240VAC, Standard",
+                "image": "https://m.media-amazon.com/images/I/61VQA8+FMeL._AC_UL320_.jpg",
+                "brand": {"@type": "Brand", "name": "Square D"},
+                "offers": {
+                    "@type": "Offer",
+                    "price": "20.99",
+                    "url": "https://www.amazon.com/Circuit-Breaker-Number-240VAC-Standard/dp/B07GTDR152/"
+                }
+            }
+        ];
+
+        function renderProducts(products) {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = ""; // Clear previous content
+
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                img.alt = product.name;
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = product.name;
+
+                const priceDiv = document.createElement('div');
+                priceDiv.className = 'price';
+                priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
+
+                const link = document.createElement('a');
+                link.href = product.offers && product.offers.url ? product.offers.url : "#";
+                link.textContent = "View Product";
+                link.target = "_blank";
+                link.className = "link";
+
+                productItem.appendChild(img);
+                productItem.appendChild(nameDiv);
+                productItem.appendChild(priceDiv);
+                productItem.appendChild(link);
+
+                container.appendChild(productItem);
+            });
+        }
+
+        // Render products on page load
+        renderProducts(staticProductData);
+    </script>
+</body>
+</html>
