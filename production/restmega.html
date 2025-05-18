@@ -567,7 +567,7 @@ const deliveryDiv = document.createElement('div');
 /* ASSSSIGNNGPEMT - REWRITTEN & CLEANED UP ****************************/
 
 // Price parsing and fallback handling
-let parsedPrice = 250; // default fallback
+let parsedPrice = 25; // default fallback
 try {
     // Try to extract the numeric price (handle both $ and ₦)
     let priceStr = product.offers.price ? product.offers.price.toString().replace(/[$₦]/g, '').trim() : '';
@@ -578,7 +578,7 @@ try {
     }
 } catch (error) {
     console.error(`Failed to parse price for product ${product.name}:`, error);
-    parsedPrice = 250;
+   // parsedPrice = 250;
 }
 
 // Currency handling (replace zparams with a default/fallback if not present)
