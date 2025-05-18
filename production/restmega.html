@@ -531,47 +531,40 @@
                 link.textContent = "View Product";
                 link.target = "_blank";
                 link.className = "link";
-/*HERE START ASSSSIGNNGPEMT*************************************
-***************************************************************/
-   try {
-            parsedPrice = parseFloat(product.offers.price.replace('$', '').replace('₦', '').trim()) * 100;
-            if (isNaN(parsedPrice)) {product.offers.price=  250;
-                throw new Error('Price is not a valid number');
-            }
-        } catch (error) {
-            console.error(`Failed to parse price for product ${product.name}:`, error);
-           product.price=  250; // Default to 0 or any other fallback value
-        }
-                     if (zparams.get('origin') == "usd") {
-  link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.offers.price.replace('$', '')) * 100)}&image_url=${encodeURIComponent(product.image)}`;      
-} else { 
-                       
-       link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent( parseFloat(product.offers.price.replace('₦', '')) * 100)}&image_url=${encodeURIComponent(product.image)}`;
-                        
+/* ASSSSIGNNGPEMT - REWRITTEN & CLEANED UP ****************************/
+
+// Price parsing and fallback handling
+let parsedPrice = 250; // default fallback
+try {
+    // Try to extract the numeric price (handle both $ and ₦)
+    let priceStr = product.offers.price ? product.offers.price.toString().replace(/[$₦]/g, '').trim() : '';
+    parsedPrice = parseFloat(priceStr);
+    if (isNaN(parsedPrice)) {
+        parsedPrice = 250;
+        throw new Error('Price is not a valid number');
+    }
+} catch (error) {
+    console.error(`Failed to parse price for product ${product.name}:`, error);
+    parsedPrice = 250;
 }
-       link.appendChild(productItem);
-                const img = document.createElement('img');
-                img.src = product.image;
-                
-        // Add error handling for image loading
-        img.onerror = () => {
-            img.src = product.item_image; // Fallback image URL
-            console.error(`Failed to load image: ${product.image}`);
-        };
-                const name = document.createElement('div');
-                name.className = 'name';
-                name.textContent = product.name;
-                
-                const price = document.createElement('div');
-                price.className = 'price';
-                price.id = `price_${product.name}`; 
-             if (zparams.get('origin') == "usd") {
-    price.textContent = '$ ' + ((parseFloat(product.offers.price.replace('$', '')) * 100)) + (((parseFloat(product.offers.price.replace('$', '')) * 100)) * 0.30).toFixed(2);
+
+// Currency handling (replace zparams with a default/fallback if not present)
+let origin = (typeof zparams !== 'undefined' && zparams.get) ? zparams.get('origin') : null;
+
+if (origin === "usd") {
+    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(parsedPrice * 100)}&image_url=${encodeURIComponent(product.image)}`;
+    priceDiv.textContent = '$' + ((parsedPrice * 100) + (parsedPrice * 100 * 0.30)).toFixed(2);
 } else {
-    price.textContent = 'CFA ' +( (((parseFloat(product.offers.price.replace('₦', '')) * 100)) + (((parseFloat(product.offers.price.replace('₦', '')) * 100)) * 0.40)) * 4.1).toFixed(2);
+    link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(parsedPrice * 100)}&image_url=${encodeURIComponent(product.image)}`;
+    priceDiv.textContent = 'CFA ' + ((((parsedPrice * 100) + (parsedPrice * 100 * 0.40)) * 4.1).toFixed(2));
 }
-/*END STORY*****************************************************************
-*****************************************************************/
+
+// Image error fallback handler (optional default fallback img)
+img.onerror = () => {
+    img.src = "images/fallback.jpg";
+    console.error(`Failed to load image: ${product.image}`);
+};
+/* END ASSSSIGNNGPEMT ************************************************/
                 productItem.appendChild(img);
                 productItem.appendChild(nameDiv);
                 productItem.appendChild(priceDiv);
