@@ -585,10 +585,7 @@ const staticProductData ={ "Items":[
       
 
 // 2. Call renderProducts with the static data
-renderProducts(staticProductData);
-const staticProductData = { 
-    /* ... (your full JSON from above) ... */
-};
+
 
 // Extracting the required fields
 function getProductSummary(productData) {
