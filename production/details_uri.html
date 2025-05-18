@@ -141,7 +141,7 @@ const deliveryDiv = document.createElement('div');
             price.className = 'price';
              const zparams = new URLSearchParams(window.location.search);
                                if (zparams.get('origin') == "usd") {
-  price.textContent = '$ '+product.price.replace;//(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*1.40));
+  price.textContent = '$ '+product.price;//(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*1.40));
                                 //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
                                } else { 
                 //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
