@@ -166,228 +166,416 @@ fetch(url, {
 
 // 1. Place your static JSON in a variable
 const staticProductData = {
-    "service_motd": "**** This test provides a limited example data extraction only. You can sign up to completely customize what data it extracts: https://web.instantapi.ai/ ****",
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Square D by Schneider Electric HOM120PDFC Homeline Plug-On Neutral 20 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker, (Pack of 4)",
-    "image": [
-        "https://m.media-amazon.com/images/I/41u2CjtkyOL.jpg"
-    ],
-    "description": "Square D by Schneider Electric HOM120PDFC Homeline Plug-On Neutral 20 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker, (Pack of 4). This circuit breaker combines both CAFCI and GFCI protection in a single device, designed for use in Homeline load centers and CSED devices. Plug-On Neutral design for easier installation.",
-    "sku": "HOM120PDFC",
-    "mpn": "HOM120PDFC",
-    "brand": {
-        "@type": "Brand",
-        "name": "Square D",
-        "url": "https://www.amazon.com/Square-D/b/ref=bl_dp_s_web_121871334011?ie=UTF8&node=121871334011&field-lbr_brands_browse-bin=Square+D"
-    },
-    "manufacturer": {
-        "@type": "Organization",
-        "name": "Schneider Electric"
-    },
-    "gtin12": "880765242187",
-    "offers": {
-        "@type": "Offer",
-        "url": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ",
-        "priceCurrency": "USD",
-        "price": "220.00",
-        "priceValidUntil": "2025-05-27",
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition",
-        "seller": {
-            "@type": "Organization",
-            "name": "Automation Controller"
-        },
-        "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": {
-                "@type": "MonetaryAmount",
-                "value": "0.03",
-                "currency": "USD"
+  {
+            "@type": "Product",
+            "name": "Square D HomeLine 30 amps Surge 2-Pole Circuit Breaker",
+            "image": "https://m.media-amazon.com/images/I/6165a5MmYTL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-HomeLine-2-Pole-Circuit-Breaker/dp/B002YEJITO/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
             },
-            "shippingDestination": {
-                "@type": "DefinedRegion",
-                "addressCountry": "US",
-                "postalCode": "10001"
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "492"
             },
-            "deliveryTime": {
-                "@type": "ShippingDeliveryTime",
-                "handlingTime": {
-                    "@type": "QuantitativeValue",
-                    "minValue": 0,
-                    "maxValue": 2,
-                    "unitCode": "d"
-                },
-                "transitTime": {
-                    "@type": "QuantitativeValue",
-                    "minValue": 6,
-                    "maxValue": 10,
-                    "unitCode": "d"
-                }
+            "offers": -{
+                "@type": "Offer",
+                "price": "20.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-HomeLine-2-Pole-Circuit-Breaker/dp/B002YEJITO/",
+                "itemCondition": "https://schema.org/NewCondition"
             }
         },
-        "returnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays": 30,
-            "returnMethod": "https://schema.org/ReturnByMail",
-            "returnFees": "https://schema.org/FreeReturn"
-        }
-    },
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.4",
-        "reviewCount": 94,
-        "bestRating": "5",
-        "worstRating": "1"
-    },
-    "review": [
-        {
-            "@type": "Review",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "James G"
-            },
-            "datePublished": "2024-12-25",
-            "reviewBody": "Perfect for my home line panel and application. Great quality square d breaker!"
-        },
-        {
-            "@type": "Review",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Dennis"
-            },
-            "datePublished": "2024-10-29",
-            "reviewBody": "Used on home panel. Easy Install. Used 20 of them so I saved about $150.00"
-        },
-        {
-            "@type": "Review",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Amazon Customer"
-            },
-            "datePublished": "2024-08-15",
-            "reviewBody": "homeline breakers work well"
-        },
-        {
-            "@type": "Review",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "1",
-                "bestRating": "5"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "RScott Hart"
-            },
-            "datePublished": "2024-11-04",
-            "reviewBody": "No where in the product details does it say the breakers would be used. Well 2 of the 4 breakers were used and removed more than once. Completely unacceptable for the high price that was charged.",
-            "image": [
-                "https://m.media-amazon.com/images/I/71bfQdJKQeL._SY88.jpg",
-                "https://m.media-amazon.com/images/I/71c4D0Lc9bL._SY88.jpg"
-            ]
-        }
-    ],
-    "category": [
-        "Tools & Home Improvement",
-        "Electrical",
-        "Breakers, Load Centers & Fuses",
-        "Circuit Breakers",
-        "Ground Fault Circuit Interrupters"
-    ],
-    "isAccessoryOrSparePartFor": [
-        {
+       -{
             "@type": "Product",
-            "name": "Square D Homeline Load Centers"
-        }
-    ],
-    "productID": "B07TW6LKJZ",
-    "itemCondition": "https://schema.org/NewCondition",
-    "releaseDate": "2019-07-01",
-    "dateFirstAvailable": "2019-07-01",
-    "model": "HOM120PDFC",
-    "color": "As shown in image",
-    "weight": {
-        "@type": "QuantitativeValue",
-        "value": 2.8,
-        "unitCode": "LBR"
-    },
-    "size": "Pack of 4",
-    "additionalProperty": [
-        {
-            "@type": "PropertyValue",
-            "name": "Current Rating",
-            "value": "20 Amps"
+            "name": "Plug In Circuit Breaker, HOM, Number of Poles 2, 60 Amps, 120/240VAC, Standard",
+            "image": "https://m.media-amazon.com/images/I/61VQA8+FMeL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Circuit-Breaker-Number-240VAC-Standard/dp/B07GTDR152/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "146"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "20.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Circuit-Breaker-Number-240VAC-Standard/dp/B07GTDR152/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
         },
-        {
-            "@type": "PropertyValue",
-            "name": "Circuit Breaker Type",
-            "value": "GFCI"
-        },
-        {
-            "@type": "PropertyValue",
-            "name": "Number Of Poles",
-            "value": "1"
-        },
-        {
-            "@type": "PropertyValue",
-            "name": "UPC",
-            "value": "880765242187"
-        },
-        {
-            "@type": "PropertyValue",
-            "name": "Package Dimensions",
-            "value": "8.46 x 5.59 x 5.39 inches"
-        }
-    ],
-    "isSimilarTo": [
-        {
+       -{
             "@type": "Product",
-            "name": "Square D - HOM115PDFC Homeline Plug-On Neutral 15 Amp Single-Pole Dual Function (CAFCI and GFCI) Circuit Breaker",
-            "url": "https://www.amazon.com/Square-Schneider-Electric-HOM115PDFC-Single-Pole/dp/B00NOHVCQM"
+            "name": "Square D 9013 FSG2 30/50 Schneider Electric FSG2J21CP 30-50 PSI Pumptrol Water Pressure Switch",
+            "image": "https://m.media-amazon.com/images/I/81Wl60UgNQL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-9013-FSG2-30-50/dp/B00CONESDG/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "1060"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "25.07",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-9013-FSG2-30-50/dp/B00CONESDG/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
         },
-        {
+       -{
             "@type": "Product",
-            "name": "Square D by Schneider Electric HOM120PCAFIC Homeline Plug-On Neutral 20 Amp Single-Pole CAFCI Circuit Breaker",
-            "url": "https://www.amazon.com/Square-Schneider-Electric-HOM120PCAFIC-Single-Pole/dp/B07GL2QFHH"
+            "name": "Square D QO230 Miniature Circuit Breaker, 120/240 VAC, 30 A, 10 kA Interrupt, 2 Poles, Thermal Magnetic Trip, Black",
+            "image": "https://m.media-amazon.com/images/I/61aqnskTHdL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-QO230-Miniature-Interrupt-Magnetic/dp/B0195UPQA4/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "109"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "24.20",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-QO230-Miniature-Interrupt-Magnetic/dp/B0195UPQA4/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D by Schneider Electric Square D X Series Standard Size Screwless Wall Plate for Outlet and Light Switch, 1 Gang, Matte Black",
+            "image": "https://m.media-amazon.com/images/I/31kD+vvKnML._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Standard-Screwless-Outlet-Switch/dp/B0B459T4M1/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "reviewCount": "37"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "3.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Standard-Screwless-Outlet-Switch/dp/B0B459T4M1/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D Hom2100 2P-120/240V-100A Cb",
+            "image": "https://m.media-amazon.com/images/I/71-q8IUgcRL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Hom2100-2P-120-240V-100A-Cb/dp/B00R8MSANC/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "860"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "54.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Hom2100-2P-120-240V-100A-Cb/dp/B00R8MSANC/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D by Schneider Electric HEPD50 Universal Whole House Surge Protection Device, 1-Phase, 3-Wire + Ground for 120/240V, 50kA, Black",
+            "image": "https://m.media-amazon.com/images/I/51W9RtfZtzL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Schneider-Electric-HEPD50-Electronics/dp/B01MYD45U1/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "173"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "76.89",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Schneider-Electric-HEPD50-Electronics/dp/B01MYD45U1/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "1- SQUARE D QO230GFI 30 AMP 2 POLE Plug-on Qwik-Gard GFI",
+            "image": "https://m.media-amazon.com/images/I/71bXqeaDOmL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/SQUARE-QO230GFI-POLE-Plug-Qwik-Gard/dp/B00A2V1RZO/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "50"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "51.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/SQUARE-QO230GFI-POLE-Plug-Qwik-Gard/dp/B00A2V1RZO/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D by Schneider Electric QO2175SB QO SurgeBreaker, Surge Protection Device, 25kA, 120/240V, 1-Phase, 3-Wire",
+            "image": "https://m.media-amazon.com/images/I/61ycyHFKaaL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Schneider-Electric-QO2175SB-SurgeBreaker/dp/B000CG80KY/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "828"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "70.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Schneider-Electric-QO2175SB-SurgeBreaker/dp/B000CG80KY/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Telemecanique Sensors RF30 Photoelectric Sensor Reflector, 3\", Silver",
+            "image": "https://m.media-amazon.com/images/I/71+6gYyJkNL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Telemecanique-Sensors-Photoelectric-Sensor-Reflector/dp/B00CON76GM/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Telemecanique Sensors"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "267"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "8.87",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Telemecanique-Sensors-Photoelectric-Sensor-Reflector/dp/B00CON76GM/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "SQUARE D BY SCHNEIDER ELECTRIC QO2020 MINIATURE CB 120/240V 20A/20A by Square D",
+            "image": "https://m.media-amazon.com/images/I/319BcAmF1tL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/SCHNEIDER-ELECTRIC-QO2020-MINIATURE-Square/dp/B01MXZG69I/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "reviewCount": "26"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "39.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/SCHNEIDER-ELECTRIC-QO2020-MINIATURE-Square/dp/B01MXZG69I/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D Type QO 2-Pole Molded Case Circuit Breaker 100A QO2100",
+            "image": "https://m.media-amazon.com/images/I/81K1QShTG6L._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-2-Pole-Molded-Circuit-Breaker/dp/B00AT090O8/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "445"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "59.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-2-Pole-Molded-Circuit-Breaker/dp/B00AT090O8/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D 200 amps 120/240 volt 1 space 1 circuits Load Center Screws",
+            "image": "https://m.media-amazon.com/images/I/41o7MAWbw+L._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-D-Load-Center-Clmshl/dp/B01N8S4T4Z/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "2.0",
+                "reviewCount": "1"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "10.25",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-D-Load-Center-Clmshl/dp/B01N8S4T4Z/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D 4020284450K Scr Dr Latch Kt",
+            "image": "https://m.media-amazon.com/images/I/31a6RnFPNOL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-D-Door-Latch-Kit/dp/B00PSMP72Q/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.3",
+                "reviewCount": "65"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "20.49",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-D-Door-Latch-Kit/dp/B00PSMP72Q/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D by Schneider Electric Square D X Series Dual Humidity & PIR Motion Occupancy/Vacancy Sensor Light & Fan Control, 3 Amp Single-Pole/1-way, Matte White",
+            "image": "https://m.media-amazon.com/images/I/51YTtBZIzCL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Humidity-Occupancy-Vacancy-Single-Pole/dp/B0B4QQ7HFF/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "3.9",
+                "reviewCount": "26"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "33.76",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Humidity-Occupancy-Vacancy-Single-Pole/dp/B0B4QQ7HFF/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D QO120 Circuit Breaker, 10 Pack, QO, 20 Amps, 120 Volts, UL Listed, 1 Pole, 10kA AIR, Standard Type, Plug in, Qty 10",
+            "image": "https://m.media-amazon.com/images/I/91CrnW-sgEL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-Circuit-Breaker-Listed-Standard/dp/B07RN8ZCS3/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "112.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-Circuit-Breaker-Listed-Standard/dp/B07RN8ZCS3/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D HOM1RK Retaining Kit",
+            "image": "https://m.media-amazon.com/images/I/31i4Gr9S0jL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-D-HOM1RK-Retaining-Kit/dp/B000LDJRZU/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.0",
+                "reviewCount": "15"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "9.99",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-D-HOM1RK-Retaining-Kit/dp/B000LDJRZU/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
+        },
+       -{
+            "@type": "Product",
+            "name": "Square D by Schneider Electric Square D X Series 125-Volt Tamper Resistant GFCI Duplex Decorator Receptacle Back Wire Clamps, 15 Amps, Matte Black",
+            "image": "https://m.media-amazon.com/images/I/41tznT4zGZL._AC_UL320_.jpg",
+            "url": "https://www.amazon.com/Square-125-Volt-Resistant-Decorator-Receptacle/dp/B0B3NJ522D/",
+            "brand": -{
+                "@type": "Brand",
+                "name": "Square D"
+            },
+            "aggregateRating": -{
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "31"
+            },
+            "offers": -{
+                "@type": "Offer",
+                "price": "20.78",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.amazon.com/Square-125-Volt-Resistant-Decorator-Receptacle/dp/B0B3NJ522D/",
+                "itemCondition": "https://schema.org/NewCondition"
+            }
         }
-    ],
-    "audience": {
-        "@type": "Audience",
-        "audienceType": "Homeowners, Electricians, Contractors"
-    },
-    "award": [
-        "#38 in Ground Fault Circuit Interrupters (Amazon Best Sellers Rank)"
-    ],
-    "isConsumableFor": [],
-    "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-        "merchantReturnDays": 30,
-        "returnMethod": "https://schema.org/ReturnByMail",
-        "returnFees": "https://schema.org/FreeReturn"
-    },
-    "sustainability": {
-        "@type": "PropertyValue",
-        "name": "ClimatePartner certified",
-        "value": "Carbon emissions from the lifecycle of this product were measured, reduced and offset. Certification Number 97MDRL"
-    },
-    "mainEntityOfPage": "https://www.amazon.com/Schneider-Electric-HOM120PDFC-Homeline-Single-Pole/dp/B07TW6LKJZ"
+    
 };
 
 // 2. Call renderProducts with the static data
