@@ -391,7 +391,7 @@ const staticProductData = {
 };
 
 // 2. Call renderProducts with the static data
-renderProducts1(staticProductData);
+renderProducts(staticProductData);
 const staticProductData = { 
     /* ... (your full JSON from above) ... */
 };
