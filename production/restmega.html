@@ -555,9 +555,18 @@
                 const priceDiv = document.createElement('div');
                 priceDiv.className = 'price';
                 priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
+                const today = new Date();
+const minDeliveryDate = new Date(today);
+minDeliveryDate.setDate(today.getDate() + 3);
+const maxDeliveryDate = new Date(today);
+maxDeliveryDate.setDate(today.getDate() + 11);
+
+function formatDate(date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
 const deliveryDiv = document.createElement('div');
         deliveryDiv.className = 'delivery-label';
-        deliveryDiv.textContent = 'Delivery: 3-11 days';
+        deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
 
                 const link = document.createElement('a');
                 link.href = product.offers && product.offers.url ? product.offers.url : "#";
