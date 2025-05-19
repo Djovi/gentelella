@@ -7,7 +7,7 @@
 
 <div align="center" style="background:#2A3F54; color:#fff; padding:2rem 0; border-radius:6px 6px 0 0;">
   <h1 style="margin-bottom:0.2em;font-family:sans-serif;">API INTEGRATION Insights</h1>
-  <p style="margin-top:0; font-size:1.2em;">Free Bootstrap 4 Admin Dashboard Template</p>
+  <p style="margin-top:0; font-size:1.2em;">THE ONE TRILLION DOLLARS INDUSTRY</p>
 </div>
 
 <br />
