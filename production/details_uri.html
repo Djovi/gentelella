@@ -172,7 +172,7 @@ const deliveryDiv = document.createElement('div');
                 },
                 body: JSON.stringify({
                     name: name,
-                    price: (((parseFloat(product.price)*100))+(((parseFloat(product.price)*100))*0.40))*0.0067, // Convert price to cents
+                    price: product.price*100, // Convert price to cents
                     image: image
                 })
             });
