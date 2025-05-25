@@ -196,7 +196,7 @@ const deliveryDiv = document.createElement('div');
           try{  let sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
               const zparams = new URLSearchParams(window.location.search);
                                if (zparams.get('origin') == "usd") {
- sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price)*100))+(((parseFloat(product.price)*100))*0.40))
+ sessionId = await createCheckoutSession(product.name,  product.price*100
                  , product.image_url);
                                 //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
                                } else if(zparams.get('origin') == "euro"){ 
