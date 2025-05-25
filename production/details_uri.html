@@ -201,12 +201,12 @@ const deliveryDiv = document.createElement('div');
                                 //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
                                } else if(zparams.get('origin') == "euro"){ 
                 //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
-                                    sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price)*100))+(((parseFloat(product.price)*100))*0.40))*1.04
+                                    sessionId = await createCheckoutSession(product.name,  product.price*100
                  , product.image_url);
                          
 }else {
                                     { 
-            sessionId = await createCheckoutSession(product.name,   (((parseFloat(product.price)*100))+(((parseFloat(product.price)*100))*0.40))*0.041
+            sessionId = await createCheckoutSession(product.name,   product.price*100
                  , product.image_url);                                                 
 }
 }
