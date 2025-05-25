@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
                         name: name,
                         images: [image]
                     },
-                    unit_amount: price
+                    unit_amount: Math.round(price)
                 },
                 quantity: 1
             }],
