@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
                 quantity: 1
             }],
             mode: 'payment',
-            success_url: 'https://yourdomain.com/success',
-            cancel_url: 'https://yourdomain.com/cancel'
+            success_url: 'https://app.rechainglobal.com/success',
+            cancel_url: 'https://app.rechainglobal.com/cancel'
         });
 
         return {
