@@ -1,405 +1,431 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Rechain : About us</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-    /* style.css */
-<style>
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff; /* Adjust background color as needed */
-  z-index: 1000; /* Ensure logo stays on top */
-}
-
-.logo {
-  height: 50px; /* Adjust logo height as needed */
-  margin: 10px;
-}
-
-.content {
-  margin-top: 60px; /* Adjust margin to account for header height */
-}</style>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      background: #f6f8fa;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .logo {
+      height: 50px;
+      margin: 10px;
+    }
+    main {
+      flex: 1 0 auto;
+      margin-top: 80px;
+    }
+    .mission-section {
+      max-width: 800px;
+      margin: 40px auto 20px auto;
+      padding: 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid #eee;
+    }
+    .team-section {
+      max-width: 900px;
+      margin: 30px auto 30px auto;
+    }
+    .team-section h2 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 24px;
+    }
+    .team-listing {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    .product-item {
+      width: 220px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 16px 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0;
+      transition: transform 0.2s;
+    }
+    .product-item:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(25, 118, 210, 0.15);
+    }
+    .product-item img {
+      height: 120px;
+      width: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 3px solid #e3e3e3;
+    }
+    .product-item .name {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #1976d2;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+    .product-item .role {
+      font-size: 15px;
+      color: #666;
+      text-align: center;
+    }
+    .product-item .info {
+      font-size: 13px;
+      color: #888;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .product-item .skills {
+      font-size: 13px;
+      color: #1976d2;
+      margin-top: 8px;
+      text-align: center;
+      word-break: break-word;
+    }
+    .product-item a {
+      text-decoration: none;
+      color: inherit;
+      display: contents;
+    }
+    /* Profile Card Styles (unchanged) */
+    .profile-card {
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-family: sans-serif;
+      margin: 40px auto;
+      background: #fff;
+    }
+    .profile-header {
+      background-color: #f7f7f7;
+      padding: 15px;
+      text-align: center;
+    }
+    .profile-image-container {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 10px;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .username {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #222;
+    }
+    .tagline {
+      color: #777;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+    .profile-info {
+      padding: 15px;
+    }
+    .info-item {
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      color: #555;
+    }
+    .info-item strong {
+      font-weight: bold;
+      color: #333;
+    }
+    .skills-section {
+      padding: 15px;
+      background-color: #fff;
+      border-top: 1px solid #eee;
+    }
+    .skills-title {
+      font-size: 1em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .skill-item {
+      background-color: #e0f2f7;
+      color: #039be5;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.85em;
+    }
+    .button-container {
+      padding: 15px;
+      text-align: center;
+      background-color: #f7f7f7;
+      border-top: 1px solid #eee;
+    }
+    .contact-button {
+      background-color: #1dbf73;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      text-decoration: none;
+    }
+    .contact-button:hover {
+      background-color: #17a866;
+    }
+    footer {
+      flex-shrink: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0 10px 0;
+      font-size: 15px;
+      margin-top: 40px;
+      letter-spacing: 1px;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .team-listing {gap:14px;}
+      .product-item {width: 95vw;}
+      .profile-card {width: 97vw;}
+    }
+  </style>
 </head>
 <body>
   <header>
-   <a href="https://www.rechainglobal.com"> <img src="images/rechain.jpg" alt="Your Company Logo" class="logo"></a>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Fiverr-Style Profile Card</title>
-    <style>
-        .profile-card {
-            width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: sans-serif;
-            margin: 20px;
-        }
-
-        .profile-header {
-            background-color: #f7f7f7;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .profile-image-container {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 10px;
-            border: 2px solid #fff;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .username {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #222;
-        }
-
-        .tagline {
-            color: #777;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-
-        .profile-info {
-            padding: 15px;
-        }
-
-        .info-item {
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            color: #555;
-        }
-
-        .info-item strong {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .skills-section {
-            padding: 15px;
-            background-color: #fff;
-            border-top: 1px solid #eee;
-        }
-
-        .skills-title {
-            font-size: 1em;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .skill-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-
-        .skill-item {
-            background-color: #e0f2f7;
-            color: #039be5;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.85em;
-        }
-
-        .button-container {
-            padding: 15px;
-            text-align: center;
-            background-color: #f7f7f7;
-            border-top: 1px solid #eee;
-        }
-
-        .contact-button {
-            background-color: #1dbf73;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: none;
-        }
-
-        .contact-button:hover {
-            background-color: #17a866;
-        }
-    </style>
-</head>
-<body>
-<!-- Mission Statement Section 
-  -{
-    "service_motd": "**** This test provides a limited example data extraction only. You can sign up to completely customize what data it extracts: https://web.instantapi.ai/ ****",
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://www.fiverr.com/hire/machine-learning",
-    "url": "https://www.fiverr.com/hire/machine-learning",
-    "name": "12 Best freelance machine learning experts for hire in May 2025",
-    "description": "Looking to hire the best machine learning expert? Work exclusively with vetted freelance machine learning experts who will get your project done just right.",
-    "inLanguage": "en-US",
-    "datePublished": "2025-05-27",
-    "isAccessibleForFree": true,
-    "publisher": -{
-        "@type": "Organization",
-        "name": "Fiverr.com",
-        "url": "https://www.fiverr.com",
-        "logo": -{
-            "@type": "ImageObject",
-            "url": "https://fiverr-res.cloudinary.com/npm-assets/layout-service/fiverr-og-logo.5fd6463.png"
-        },
-        "sameAs": -[
-            "https://www.facebook.com/Fiverr/",
-            "https://www.instagram.com/fiverr/",
-            "https://www.linkedin.com/company/fiverr-com",
-            "ht
-                    "address": -{
-                        "@type": "Country",
-                        "name": "India"
-                    },
-                    "aggregateRating": -{
-                        "@type": "AggregateRating",
-                        "ratingValue": "4.9",
-                        "reviewCount": "74"
-                    },
-                    "offers": -{
-                        "@type": "Offer",
-                        "availability": "https://schema.org/InStock",
-                        "itemOffered": -[
-                            "Machine Learning",
-                            "Deep learning",
-                            "Neural network",
-                            "Python"
-                        ]
-                    }
-                }
-            },
-           -{
-                "@type": "ListItem",
-                "position": 2,
-  -->
-<section class="mission-section" style="max-width:800px;margin:40px auto 20px auto;padding:24px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #eee;">
-  <h2 style="text-align:center;color:#1976d2;margin-bottom:12px;">Our Mission</h2>
-  <p style="font-size:16px;text-align:center;color:#444;">
-    <!-- Replace this with your actual mission statement -->
-    To empower businesses worldwide through innovative, reliable, and affordable API solutions, fostering growth and seamless transactions for all.
-  </p>
-</section>
-
-<!-- Team Members Section -->
-<section class="team-section" style="max-width:900px;margin:30px auto 30px auto;">
-  <h2 style="text-align:center;color:#1976d2;margin-bottom:24px;">Meet Our Team</h2>
-  <div class="team-listing" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;">
-    <!-- Team Member 1 -->
-    <div class="product-item" style="width:220px;">
-      <img src="images/mypick-removebg-preview.png" alt="Team Member 1" style="height:120px;object-fit:cover;border-radius:50%;margin-bottom:12px;">
-      <div class="name">JOEL HOUNAKEY</div>
-      <div style="font-size:15px;color:#666;">CEO & Founder</div>
-      <div style="font-size:14px;color:#888;margin-top:8px;">Visionary leader with 10+ years in fintech and retail technology.</div>
-    </div>
-    <!-- Team Member 2 -->
-    <div class="product-item" style="width:220px;">
-      <img src="images/team2.jpg" alt="Team Member 2" style="height:120px;object-fit:cover;border-radius:50%;margin-bottom:12px;">
-      <div class="name">John Smith</div>
-      <div style="font-size:15px;color:#666;">Lead Developer</div>
-      <div style="font-size:14px;color:#888;margin-top:8px;">Expert in full-stack web development and cloud integrations.</div>
-    </div>
-    <!-- Add more team members as needed -->
-    <script>
-      const data=[
-  {
-    "name": "Aswin",
-    "jobTitle": "Vetted Pro Machine Learning Expert",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/633428ee6bb0098d84c5ff0dde33f588-1702017282823/4129e9eb-fe3d-4e2a-98ff-0da44e0db0a8.jpg",
-    "country": "India",
-    "rating": 4.9,
-    "reviews": 74,
-    "url": "https://pro.fiverr.com/freelancers/aswintechguy?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A61a4d8af758d756a25307bcb%252CparentId%253Anull&gigs=id%253A351061108%252Cpckg_id%253A1%257Cid%253A341233891%252Cpckg_id%253A1&imp_id=df90f405-5f99-46ab-8d93-7aa87bbb0f5f&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Deep learning", "Neural network", "Python"]
-  },
-  {
-    "name": "Ryan W",
-    "jobTitle": "Fiverr's Choice Machine Learning Expert",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/fe3b03671dd8175306afacb754c4fd86-1611412459162/232680a6-3384-4c0a-9c26-cebefe45aa1c.jpeg",
-    "country": "Canada",
-    "rating": 5.0,
-    "reviews": 296,
-    "url": "https://pro.fiverr.com/freelancers/ryancanadadev?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6390565f0778900591d%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A65f6b0d9f34ef10001e3805e%252CparentId%253Anull&gigs=id%253A291516522%252Cpckg_id%253A1%257Cid%253A314864376%252Cpckg_id%253A1%257Cid%253A416466174%252Cpckg_id%253A1&imp_id=1bbcc6e6-00a2-4fc5-abcc-0fa65be71267&is_choice=true&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Artificial Intelligence", "Python", "AI development"]
-  },
-  {
-    "name": "Talha Pythoneer",
-    "jobTitle": "Vetted Pro Python Expert, Data Science and ML Enthusiast",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/e774ac66627cdab5112db965041960b2-1747933468116/f3e6550c-4835-4773-a81d-eec9bd6e3341.JPG",
-    "country": "Pakistan",
-    "rating": 4.9,
-    "reviews": 574,
-    "url": "https://pro.fiverr.com/freelancers/talhapythoneer?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2472%252CparentId%253A455%257Ctype%253Askill%252Cid%253A61a4d8af758d756a25307bd1%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d34%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A175040082%252Cpckg_id%253A1&imp_id=e3b30725-ffab-4e32-9c8f-0d48d5a90173&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Computer Vision", "pandas", "Data visualization", "Python", "Python automation"]
-  },
-  {
-    "name": "Alexandros F",
-    "jobTitle": "Vetted Pro Data Scientist and ML Engineer",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/2a3988966b2aa3fabf328c46e5387956-1653169276574/799b3996-2133-445b-b51c-0bff46c3cc45.jpeg",
-    "country": "Cyprus",
-    "rating": 5.0,
-    "reviews": 46,
-    "url": "https://pro.fiverr.com/freelancers/afrangos?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull&gigs=id%253A254761632%252Cpckg_id%253A1&imp_id=cfff6bc7-9632-46dd-af57-d6703922feed&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Deep learning", "Data science", "Data analytics", "Python"]
-  },
-  {
-    "name": "Hamza E.r",
-    "jobTitle": "Vetted Pro Cloud computing, Gen AI and Data Expert",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a59a60dd190affd846100de511fc9f65-1610562516698/919531e6-b3a0-4fa3-81e2-78dfb322a52d.JPG",
-    "country": "France",
-    "rating": 5.0,
-    "reviews": 62,
-    "url": "https://pro.fiverr.com/freelancers/hamzaelrhazi?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A471%252CparentId%253A471%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6380565f077890058b5%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A108729932%252Cpckg_id%253A1&imp_id=751bb0cf-02b9-4714-9e24-37b5b8c0629e&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Data Engineering", "Machine learning", "Apache Spark", "Python", "UML design"]
-  },
-  {
-    "name": "Radoslav H",
-    "jobTitle": "Vetted Pro Automated Trading Systems Developer",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/9b81f8fa13be2db0e23dc7334ea6f5c9-1646300050850/599df493-0039-4836-91e6-dea0b2272a9a.jpg",
-    "country": "Bulgaria",
-    "rating": 4.9,
-    "reviews": 280,
-    "url": "https://pro.fiverr.com/freelancers/rickhardypro?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6760565f07789006b08%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6450565f07789005cb7%252CparentId%253Anull&gigs=id%253A207351018%252Cpckg_id%253A1&imp_id=1a3b6b37-1f39-4fa1-99ef-bcde42b0efe0&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Python", "Trading bot", "Crypto trading", "Quantitative research"]
-  },
-  {
-    "name": "Keith",
-    "jobTitle": "Vetted Pro Machine Learning and Predictive Analytics Expert",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/7d5479bc22201a49da58df68ff69dbd9-1743199508062/2ae80a3f-aa56-4ebb-b0f7-c0ded0c56068.png",
-    "country": "Kenya",
-    "rating": 4.9,
-    "reviews": 27,
-    "url": "https://pro.fiverr.com/freelancers/keithmartins?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66b0565f077890067d7%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa64e0565f07789005f5e%252CparentId%253Anull&gigs=id%253A236664227%252Cpckg_id%253A1%257Cid%253A408278215%252Cpckg_id%253A1&imp_id=f980f5a5-7dda-43fd-970e-0804c23f75b2&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Predictive analytics", "Exploratory data analysis", "Python"]
-  },
-  {
-    "name": "Artech Digital",
-    "jobTitle": "Agency - Machine Learning & NLP",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a70e4bfcb26f3b4b3e4acfceac7ced85-1727997543867/3e765cdd-981c-4087-b8b9-5cb19dbb2743.jpg",
-    "country": "United States",
-    "rating": 5.0,
-    "reviews": 88,
-    "url": "https://pro.fiverr.com/agencies/artech?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2736%252CparentId%253A520%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6660565f07789006654%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6390565f0778900591d%252CparentId%253Anull&gigs=id%253A353665912%252Cpckg_id%253A1&imp_id=71d69104-0152-49c7-8c56-c20c4e9afaad&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine learning", "Natural language processing (NLP)"]
-  },
-  {
-    "name": "Nikola",
-    "jobTitle": "Vetted Pro AI Project Consultant",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/424d7aaa0c1a3aaa1e5859258d13ff27-1658249965343/07490c6c-d97c-4bb7-bfc2-bc8e3479ab09.jpeg",
-    "country": "Switzerland",
-    "rating": 4.9,
-    "reviews": 58,
-    "url": "https://pro.fiverr.com/freelancers/nikolanikolo236?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2650%252CparentId%253A517%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A278235742%252Cpckg_id%253A1%257Cid%253A278546317%252Cpckg_id%253A1%257Cid%253A271110024%252Cpckg_id%253A1&imp_id=3db8cf17-3c83-444a-b049-2778fa028054&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Interview Prep", "Machine learning", "Data science", "Python"]
-  },
-  {
-    "name": "Yassin E",
-    "jobTitle": "Vetted Pro Data Scientist",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/d44a53b923dc8eb4241009470f10efc0-1706092924589/ec884278-ef7a-4f34-a6a8-1858683f7e14.jpg",
-    "country": "Morocco",
-    "rating": 4.7,
-    "reviews": 265,
-    "url": "https://pro.fiverr.com/freelancers/yassinjakani?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa65a0565f077890062de%252CparentId%253Anull&gigs=id%253A235645748%252Cpckg_id%253A1%257Cid%253A235746914%252Cpckg_id%253A1&imp_id=cd11e46d-0df0-4b0e-9be8-21b44443dc54&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Deep learning", "Image processing", "C programming", "Java"]
-  },
-  {
-    "name": "Lars K",
-    "jobTitle": "Vetted Pro Data to Action Consultant",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a6db01fb26dc659de3a77efac5ffb7fc-1736785096090/3c01dfc2-4b6f-43f3-a15e-cb816791f4f8.jpg",
-    "country": "Norway",
-    "rating": 4.9,
-    "reviews": 24,
-    "url": "https://pro.fiverr.com/freelancers/lakris16?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66b0565f077890067d7%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d05%252CparentId%253Anull&gigs=id%253A354969635%252Cpckg_id%253A1%257Cid%253A311259982%252Cpckg_id%253A1%257Cid%253A368017576%252Cpckg_id%253A1&imp_id=fef819d7-dc14-43bd-a7f5-ffdeb18d246f&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Predictive analytics", "Data engineering", "Data visualization"]
-  },
-  {
-    "name": "Ayman Youss",
-    "jobTitle": "Vetted Pro Artificial Intelligence Engineering and DevOps Enthusiast",
-    "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/7e1d59fca12c4a733f4ae25bf81fd417-1653930579764/cd5048b5-1bad-4c3c-bcba-0014bd0d17e7.jpg",
-    "country": "Morocco",
-    "rating": 5.0,
-    "reviews": 23,
-    "url": "https://pro.fiverr.com/freelancers/aymanyouss?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A258224181%252Cpckg_id%253A1%257Cid%253A272010056%252Cpckg_id%253A1&imp_id=1e7be612-5dd1-4e03-9f48-fb929b0d87e1&source=skill_pages&is_experiential=true&context_referrer=skill_page",
-    "skills": ["Machine Learning", "Data science", "Python", "Video editing", "Design"]
-  }
-];
-
-
-const teamContainer = document.querySelector('.team-listing');
-teamContainer.innerHTML = ""; // Optional: Clear static team members
-
-data.forEach(member => {
-  const div = document.createElement('div');
-  div.className = 'product-item';
-  div.style.width = "220px";
-  div.innerHTML = `
-    <a href="${member.url}" target="_blank" style="text-decoration:none;color:inherit;">
-      <img src="${member.image}" alt="${member.name}" style="height:120px;object-fit:cover;border-radius:50%;margin-bottom:12px;width:120px;">
-      <div class="name">${member.name}</div>
-      <div style="font-size:15px;color:#666;">${member.jobTitle}</div>
-      <div style="font-size:13px;color:#888;margin-top:8px;">${member.country} | ⭐ ${member.rating} (${member.reviews} reviews)</div>
-      <div style="font-size:13px;color:#1976d2;margin-top:8px;">${member.skills.join(", ")}</div>
+    <a href="https://www.rechainglobal.com">
+      <img src="images/rechain.jpg" alt="Your Company Logo" class="logo">
     </a>
-  `;
-  teamContainer.appendChild(div);
-});
-</script>
-  </div>
-</section>
+  </header>
+  <main>
+    <section class="mission-section">
+      <h2 style="text-align:center;color:#1976d2;margin-bottom:12px;">Our Mission</h2>
+      <p style="font-size:16px;text-align:center;color:#444;">
+        To empower businesses worldwide through innovative, reliable, and affordable API solutions, fostering growth and seamless transactions for all.
+      </p>
+    </section>
+    <!-- Team Members Section -->
+    <section class="team-section">
+      <h2>Meet Our Team</h2>
+      <div class="team-listing">
+        <!-- JavaScript will inject team members here -->
+      </div>
+    </section>
     <div class="profile-card">
-        <div class="profile-header">
-            <div class="profile-image-container">
-                <img src="your-profile-image.jpg" alt="Your Profile Picture" class="profile-image">
-            </div>
-            <h2 class="username">YourUsername</h2>
-            <p class="tagline">Your Professional Tagline Here</p>
+      <div class="profile-header">
+        <div class="profile-image-container">
+          <img src="your-profile-image.jpg" alt="Your Profile Picture" class="profile-image">
         </div>
-        <div class="profile-info">
-            <div class="info-item"><strong>From:</strong> Your City, Your Country (Togo)</div>
-            <div class="info-item"><strong>Member Since:</strong> Month Year</div>
-            <div class="info-item"><strong>Avg. Response Time:</strong> Usually within X hours</div>
-            </div>
-        <div class="skills-section">
-            <h3 class="skills-title">Skills</h3>
-            <ul class="skill-list">
-                <li class="skill-item">Skill 1</li>
-                <li class="skill-item">Skill 2</li>
-                <li class="skill-item">Skill 3</li>
-                <li class="skill-item">Another Skill</li>
-                </ul>
-        </div>
-        <div class="button-container">
-            <a href="your-fiverr-profile-link" class="contact-button" target="_blank">Contact Me</a>
-        </div>
+        <h2 class="username">YourUsername</h2>
+        <p class="tagline">Your Professional Tagline Here</p>
+      </div>
+      <div class="profile-info">
+        <div class="info-item"><strong>From:</strong> Your City, Your Country (Togo)</div>
+        <div class="info-item"><strong>Member Since:</strong> Month Year</div>
+        <div class="info-item"><strong>Avg. Response Time:</strong> Usually within X hours</div>
+      </div>
+      <div class="skills-section">
+        <h3 class="skills-title">Skills</h3>
+        <ul class="skill-list">
+          <li class="skill-item">Skill 1</li>
+          <li class="skill-item">Skill 2</li>
+          <li class="skill-item">Skill 3</li>
+          <li class="skill-item">Another Skill</li>
+        </ul>
+      </div>
+      <div class="button-container">
+        <a href="your-fiverr-profile-link" class="contact-button" target="_blank">Contact Me</a>
+      </div>
     </div>
+    <!-- Calendly inline widget begin -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/joelhounak/60min" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly inline widget end -->
+  </main>
+  <footer>
+    &copy; 2025 Rechain Global. All Rights Reserved. | Contact: info@rechainglobal.com
+  </footer>
+  <script>
+    const data = [
+      {
+        "name": "Aswin",
+        "jobTitle": "Vetted Pro Machine Learning Expert",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/633428ee6bb0098d84c5ff0dde33f588-1702017282823/4129e9eb-fe3d-4e2a-98ff-0da44e0db0a8.jpg",
+        "country": "India",
+        "rating": 4.9,
+        "reviews": 74,
+        "url": "https://pro.fiverr.com/freelancers/aswintechguy?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A61a4d8af758d756a25307bcb%252CparentId%253Anull&gigs=id%253A351061108%252Cpckg_id%253A1%257Cid%253A341233891%252Cpckg_id%253A1&imp_id=df90f405-5f99-46ab-8d93-7aa87bbb0f5f&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Deep learning", "Neural network", "Python"]
+      },
+      {
+        "name": "Ryan W",
+        "jobTitle": "Fiverr's Choice Machine Learning Expert",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/fe3b03671dd8175306afacb754c4fd86-1611412459162/232680a6-3384-4c0a-9c26-cebefe45aa1c.jpeg",
+        "country": "Canada",
+        "rating": 5.0,
+        "reviews": 296,
+        "url": "https://pro.fiverr.com/freelancers/ryancanadadev?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6390565f0778900591d%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A65f6b0d9f34ef10001e3805e%252CparentId%253Anull&gigs=id%253A291516522%252Cpckg_id%253A1%257Cid%253A314864376%252Cpckg_id%253A1%257Cid%253A416466174%252Cpckg_id%253A1&imp_id=1bbcc6e6-00a2-4fc5-abcc-0fa65be71267&is_choice=true&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Artificial Intelligence", "Python", "AI development"]
+      },
+      {
+        "name": "Talha Pythoneer",
+        "jobTitle": "Vetted Pro Python Expert, Data Science and ML Enthusiast",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/e774ac66627cdab5112db965041960b2-1747933468116/f3e6550c-4835-4773-a81d-eec9bd6e3341.JPG",
+        "country": "Pakistan",
+        "rating": 4.9,
+        "reviews": 574,
+        "url": "https://pro.fiverr.com/freelancers/talhapythoneer?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2472%252CparentId%253A455%257Ctype%253Askill%252Cid%253A61a4d8af758d756a25307bd1%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d34%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A175040082%252Cpckg_id%253A1&imp_id=e3b30725-ffab-4e32-9c8f-0d48d5a90173&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Computer Vision", "pandas", "Data visualization", "Python", "Python automation"]
+      },
+      {
+        "name": "Alexandros F",
+        "jobTitle": "Vetted Pro Data Scientist and ML Engineer",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/2a3988966b2aa3fabf328c46e5387956-1653169276574/799b3996-2133-445b-b51c-0bff46c3cc45.jpeg",
+        "country": "Cyprus",
+        "rating": 5.0,
+        "reviews": 46,
+        "url": "https://pro.fiverr.com/freelancers/afrangos?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull&gigs=id%253A254761632%252Cpckg_id%253A1&imp_id=cfff6bc7-9632-46dd-af57-d6703922feed&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Deep learning", "Data science", "Data analytics", "Python"]
+      },
+      {
+        "name": "Hamza E.r",
+        "jobTitle": "Vetted Pro Cloud computing, Gen AI and Data Expert",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a59a60dd190affd846100de511fc9f65-1610562516698/919531e6-b3a0-4fa3-81e2-78dfb322a52d.JPG",
+        "country": "France",
+        "rating": 5.0,
+        "reviews": 62,
+        "url": "https://pro.fiverr.com/freelancers/hamzaelrhazi?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A471%252CparentId%253A471%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6380565f077890058b5%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A108729932%252Cpckg_id%253A1&imp_id=751bb0cf-02b9-4714-9e24-37b5b8c0629e&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Data Engineering", "Machine learning", "Apache Spark", "Python", "UML design"]
+      },
+      {
+        "name": "Radoslav H",
+        "jobTitle": "Vetted Pro Automated Trading Systems Developer",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/9b81f8fa13be2db0e23dc7334ea6f5c9-1646300050850/599df493-0039-4836-91e6-dea0b2272a9a.jpg",
+        "country": "Bulgaria",
+        "rating": 4.9,
+        "reviews": 280,
+        "url": "https://pro.fiverr.com/freelancers/rickhardypro?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6760565f07789006b08%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6450565f07789005cb7%252CparentId%253Anull&gigs=id%253A207351018%252Cpckg_id%253A1&imp_id=1a3b6b37-1f39-4fa1-99ef-bcde42b0efe0&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Python", "Trading bot", "Crypto trading", "Quantitative research"]
+      },
+      {
+        "name": "Keith",
+        "jobTitle": "Vetted Pro Machine Learning and Predictive Analytics Expert",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/7d5479bc22201a49da58df68ff69dbd9-1743199508062/2ae80a3f-aa56-4ebb-b0f7-c0ded0c56068.png",
+        "country": "Kenya",
+        "rating": 4.9,
+        "reviews": 27,
+        "url": "https://pro.fiverr.com/freelancers/keithmartins?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66b0565f077890067d7%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa64e0565f07789005f5e%252CparentId%253Anull&gigs=id%253A236664227%252Cpckg_id%253A1%257Cid%253A408278215%252Cpckg_id%253A1&imp_id=f980f5a5-7dda-43fd-970e-0804c23f75b2&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Predictive analytics", "Exploratory data analysis", "Python"]
+      },
+      {
+        "name": "Artech Digital",
+        "jobTitle": "Agency - Machine Learning & NLP",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a70e4bfcb26f3b4b3e4acfceac7ced85-1727997543867/3e765cdd-981c-4087-b8b9-5cb19dbb2743.jpg",
+        "country": "United States",
+        "rating": 5.0,
+        "reviews": 88,
+        "url": "https://pro.fiverr.com/agencies/artech?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2736%252CparentId%253A520%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6660565f07789006654%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6390565f0778900591d%252CparentId%253Anull&gigs=id%253A353665912%252Cpckg_id%253A1&imp_id=71d69104-0152-49c7-8c56-c20c4e9afaad&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine learning", "Natural language processing (NLP)"]
+      },
+      {
+        "name": "Nikola",
+        "jobTitle": "Vetted Pro AI Project Consultant",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/424d7aaa0c1a3aaa1e5859258d13ff27-1658249965343/07490c6c-d97c-4bb7-bfc2-bc8e3479ab09.jpeg",
+        "country": "Switzerland",
+        "rating": 4.9,
+        "reviews": 58,
+        "url": "https://pro.fiverr.com/freelancers/nikolanikolo236?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2650%252CparentId%253A517%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A278235742%252Cpckg_id%253A1%257Cid%253A278546317%252Cpckg_id%253A1%257Cid%253A271110024%252Cpckg_id%253A1&imp_id=3db8cf17-3c83-444a-b049-2778fa028054&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Interview Prep", "Machine learning", "Data science", "Python"]
+      },
+      {
+        "name": "Yassin E",
+        "jobTitle": "Vetted Pro Data Scientist",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/d44a53b923dc8eb4241009470f10efc0-1706092924589/ec884278-ef7a-4f34-a6a8-1858683f7e14.jpg",
+        "country": "Morocco",
+        "rating": 4.7,
+        "reviews": 265,
+        "url": "https://pro.fiverr.com/freelancers/yassinjakani?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6470565f07789005d57%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa65a0565f077890062de%252CparentId%253Anull&gigs=id%253A235645748%252Cpckg_id%253A1%257Cid%253A235746914%252Cpckg_id%253A1&imp_id=cd11e46d-0df0-4b0e-9be8-21b44443dc54&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Deep learning", "Image processing", "C programming", "Java"]
+      },
+      {
+        "name": "Lars K",
+        "jobTitle": "Vetted Pro Data to Action Consultant",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/a6db01fb26dc659de3a77efac5ffb7fc-1736785096090/3c01dfc2-4b6f-43f3-a15e-cb816791f4f8.jpg",
+        "country": "Norway",
+        "rating": 4.9,
+        "reviews": 24,
+        "url": "https://pro.fiverr.com/freelancers/lakris16?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66b0565f077890067d7%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d05%252CparentId%253Anull&gigs=id%253A354969635%252Cpckg_id%253A1%257Cid%253A311259982%252Cpckg_id%253A1%257Cid%253A368017576%252Cpckg_id%253A1&imp_id=fef819d7-dc14-43bd-a7f5-ffdeb18d246f&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Predictive analytics", "Data engineering", "Data visualization"]
+      },
+      {
+        "name": "Ayman Youss",
+        "jobTitle": "Vetted Pro Artificial Intelligence Engineering and DevOps Enthusiast",
+        "image": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/7e1d59fca12c4a733f4ae25bf81fd417-1653930579764/cd5048b5-1bad-4c3c-bcba-0014bd0d17e7.jpg",
+        "country": "Morocco",
+        "rating": 5.0,
+        "reviews": 23,
+        "url": "https://pro.fiverr.com/freelancers/aymanyouss?ref_ctx_id=f0859dcfcdd74ccab93a74711e38e6d6&expertises=type%253Aleaf_cat_id%252Cid%253A2774%252CparentId%253A455%257Ctype%253Askill%252Cid%253A617fa6630565f0778900654e%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa6460565f07789005d26%252CparentId%253Anull%257Ctype%253Askill%252Cid%253A617fa66d0565f07789006849%252CparentId%253Anull&gigs=id%253A258224181%252Cpckg_id%253A1%257Cid%253A272010056%252Cpckg_id%253A1&imp_id=1e7be612-5dd1-4e03-9f48-fb929b0d87e1&source=skill_pages&is_experiential=true&context_referrer=skill_page",
+        "skills": ["Machine Learning", "Data science", "Python", "Video editing", "Design"]
+      }
+    ];
 
+    const teamContainer = document.querySelector('.team-listing');
+    teamContainer.innerHTML = ""; // Clear static team members if present
 
-  <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/joelhounak/60min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
-<li><a href="contact.html"><i class="fa fa-envelope"></i> Contact Us</a></li>
+    data.forEach(member => {
+      const div = document.createElement('div');
+      div.className = 'product-item';
+      div.innerHTML = `
+        <a href="${member.url}" target="_blank">
+          <img src="${member.image}" alt="${member.name}">
+          <div class="name">${member.name}</div>
+          <div class="role">${member.jobTitle}</div>
+          <div class="info">${member.country} | ⭐ ${member.rating} (${member.reviews} reviews)</div>
+          <div class="skills">${member.skills.join(", ")}</div>
+        </a>
+      `;
+      teamContainer.appendChild(div);
+    });
+  </script>
 </body>
 </html>
