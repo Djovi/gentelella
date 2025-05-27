@@ -4,207 +4,220 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rechain Global - Empowering Businesses with Ecological Solutions</title>
+  <!-- Bootstrap & Gentelella CSS -->
   <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="../vendors/nprogress/nprogress.css">
   <link rel="stylesheet" href="../vendors/animate.css/animate.min.css">
   <link rel="stylesheet" href="../build/css/custom.min.css">
   <style>
-    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    header, main, footer { width: 100%; max-width: 1200px; margin: 0 auto; }
-    nav { background-color: #f8f9fa; padding: 10px 0; }
-    nav ul { list-style-type: none; margin: 0; padding: 0; }
-    nav ul li { display: inline; margin-right: 20px; }
-    .hero { display: flex; justify-content: space-between; align-items: center; margin-top: 50px; }
-    .hero-content { flex: 1; padding: 20px; }
-    .hero-image img { max-width: 100%; }
-    .quality-card { padding: 20px; }
-    .delivery, .call-to-action { padding: 20px 0; }
-    footer { text-align: center; padding: 20px 0; background-color: #f8f9fa; }
+    .navbar-custom {
+      background: #2A3F54;
+      padding: 0.75rem 1.5rem;
+    }
+    .navbar-custom .navbar-brand, .navbar-custom .nav-link, .navbar-custom .btn {
+      color: #fff !important;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #1ABB9C !important;
+    }
+    .hero-section {
+      background: #F7F7F7;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(44,62,80,0.07);
+      padding: 3rem 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .hero-section .hero-content {
+      flex: 1 1 350px;
+      margin-right: 2rem;
+    }
+    .hero-section .hero-image img {
+      max-width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(44,62,80,0.08);
+    }
+    .button, .btn-custom {
+      background: #1ABB9C;
+      color: #fff !important;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.2s;
+      margin-top: 1rem;
+    }
+    .button:hover, .btn-custom:hover {
+      background: #169F85;
+    }
+    .product-quality {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 3rem 0 2rem 0;
+    }
+    .quality-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(44,62,80,0.09);
+      padding: 2rem 1.5rem;
+      max-width: 320px;
+      text-align: center;
+      flex: 1 1 250px;
+    }
+    .quality-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .delivery, .call-to-action {
+      background: #F7F7F7;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(44,62,80,0.07);
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    footer {
+      background: #2A3F54;
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      margin-top: 2rem;
+      border-radius: 0 0 10px 10px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 992px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-section .hero-content {
+        margin-right: 0;
+        margin-bottom: 2rem;
+      }
+    }
   </style>
 </head>
-<body class="login">
-  <div class="navbar nav_title" style="border: 0;">
-  <header>
-    
-  </header>
-    <div class="clearfix"></div>
-    <div class="x_content">
-  <div class="navbar nav_title" style="border: 0;">
-           <nav>
-      <a href="#" class="fafa-globe">Rechain Global</a>
-      <ul>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Solutions</a></li>
-        <li><a href="about">About Us</a></li>
-        <li><a href="about">Contact</a></li>
+<body class="nav-md">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand font-weight-bold" href="#"><i class="fa fa-globe"></i> Rechain Global</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+      aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Solutions</a></li>
+        <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
       </ul>
-    </nav>   
-                  <button type="button" onclick="window.location.href='login';" class="btn btn-round btn-secondary">Login</button></div>
-  </div></div>
-  <main>
-    <section class="hero">
+      <a href="login" class="btn btn-round btn-custom ml-lg-3 mt-2 mt-lg-0">Login</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <section class="hero-section">
       <div class="hero-content">
-        <h1>It All Starts With A Single REST API Empowering Businesses with Sustainable Solutions</h1>
-        <p>We offer a curated selection of innovative, ecologically responsible products that help large companies reduce their environmental impact, without compromising on quality or performance.</p>
+        <h1 class="display-4 font-weight-bold mb-3">It All Starts With A Single REST API</h1>
+        <p class="lead mb-4">Empowering Businesses with Sustainable Solutions. We offer a curated selection of innovative, ecologically responsible products that help large companies reduce their environmental impact, without compromising on quality or performance.</p>
         <a href="#" class="button">Explore Our Products</a>
       </div>
       <div class="hero-image">
-        <img src="https://www.800buildingmaterials.com/wp-content/uploads/2021/06/1111_product_image.png" alt="Placeholder image for hero section">
+        <img src="https://www.800buildingmaterials.com/wp-content/uploads/2021/06/1111_product_image.png" alt="Eco Product">
       </div>
     </section>
-<div class="col-md-12">
 
-                        <!-- price element -->
-                        <div class="col-md-3 col-sm-6  ">
-                          <div class="pricing">
-                            <div class="title">
-                              <h2>Free plan</h2>
-                              <h1>free</h1>
-                            </div>
-                            <div class="x_content">
-                              <div class="">
-                                <div class="pricing_features">
-                                  <ul class="list-unstyled text-left">
-                                    <li><i class="fa fa-times text-danger"></i> Instant access <strong> to all our reports from news and reseach papers</strong></li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>Underwriting</strong> work</li>
-                                    <li><i class="fa fa-check text-success"></i> Access to <strong> Rechain Dashboard</strong></li>
-                                    <li><i class="fa fa-check text-danger"></i> <strong>APIs suggestion</strong></li>
-                                    <li><i class="fa fa-check text-danger"></i> All time <strong> updates</strong></li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>24/7</strong> support and assistance</li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div class="pricing_footer">
-                                <a href="javascript:void(0);" class="btn btn-success btn-block bg-blue" role="button">Upgrade <span> now!</span></a>
-                                <p>
-                                  <a href="javascript:void(0);">Current plan</a>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- price element -->
+    <div class="row justify-content-center mb-5">
+      <!-- Free Plan -->
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="pricing card">
+          <div class="title card-header bg-light">
+            <h2 class="mb-1">Free plan</h2>
+            <h1 class="mb-0">free</h1>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled text-left mb-3">
+              <li><i class="fa fa-times text-danger"></i> Instant access <strong>to all our reports from news and research papers</strong></li>
+              <li><i class="fa fa-times text-danger"></i> <strong>Underwriting</strong> work</li>
+              <li><i class="fa fa-check text-success"></i> Access to <strong>Rechain Dashboard</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>APIs suggestion</strong></li>
+              <li><i class="fa fa-check text-success"></i> All time <strong>updates</strong></li>
+              <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
+              <li><i class="fa fa-times text-danger"></i> <strong>24/7</strong> support and assistance</li>
+            </ul>
+            <a href="#" class="btn btn-success btn-block">Upgrade now!</a>
+            <p class="mt-2 text-center"><a href="#">Current plan</a></p>
+          </div>
+        </div>
+      </div>
+      <!-- Advanced plan -->
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="pricing card">
+          <div class="title card-header bg-danger text-white">
+            <h2 class="mb-1">Advanced plan</h2>
+            <h1 class="mb-0">$29.9</h1>
+            <span>Monthly</span>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled text-left mb-3">
+              <li><i class="fa fa-check text-success"></i> Instant access <strong>to all our reports from news and research papers</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>Underwriting</strong> work</li>
+              <li><i class="fa fa-check text-success"></i> Access to <strong>Rechain Dashboard</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>APIs suggestion</strong></li>
+              <li><i class="fa fa-check text-success"></i> All time <strong>updates</strong></li>
+              <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
+              <li><i class="fa fa-times text-danger"></i> <strong>24/7</strong> support and assistance</li>
+            </ul>
+            <a href="#" class="btn btn-success btn-block">Upgrade now!</a>
+            <p class="mt-2 text-center"><a href="#">Start free trial</a></p>
+          </div>
+        </div>
+      </div>
+      <!-- Integration plan -->
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="pricing card">
+          <div class="title card-header bg-info text-white">
+            <h2 class="mb-1">Integration</h2>
+            <h1 class="mb-0">Quote</h1>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled text-left mb-3">
+              <li><i class="fa fa-check text-success"></i> Instant access <strong>to all our reports from news and research papers</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>Underwriting</strong> work</li>
+              <li><i class="fa fa-check text-success"></i> Access to <strong>Rechain Dashboard</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>APIs suggestion</strong></li>
+              <li><i class="fa fa-check text-success"></i> All time <strong>updates</strong></li>
+              <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> access to all files</li>
+              <li><i class="fa fa-check text-success"></i> <strong>24/7</strong> support and assistance</li>
+            </ul>
+            <a href="#" class="btn btn-success btn-block">Ask for a Quote now!</a>
+            <p class="mt-2 text-center"><a href="#">Start</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                        <!-- price element 
-                        <div class="col-md-3 col-sm-6  ">
-                          <div class="pricing ui-ribbon-container">
-                            <div class="ui-ribbon-wrapper">
-                              <div class="ui-ribbon">
-                                30% Off
-                              </div>
-                            </div>
-                            <div class="title">
-                              <h2>Moderate plan</h2>
-                              <h1>$29.9</h1>
-                              <span>Monthly</span>
-                            </div>
-                            <div class="x_content">
-                              <div class="">
-                                <div class="pricing_features">
-                                  <ul class="list-unstyled text-left">
-                                    <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                    <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div class="pricing_footer">
-                                <a href="javascript:void(0);" class="btn btn-primary btn-block" role="button">Download <span> now!</span></a>
-                                <p>
-                                  <a href="javascript:void(0);">Start Free Trial</a>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                         price element -->
-
-                        <!-- price element -->
-                        <div class="col-md-3 col-sm-6  ">
-                          <div class="pricing">
-                            <div class="title bg-red">
-                              <h2>Advanced plan</h2>
-                              <h1>$29.9</h1>
-                              <span>Monthly</span>
-                            </div>
-                            <div class="x_content">
-                              <div class="">
-                                <div class="pricing_features">
-                                  <ul class="list-unstyled text-left">
-                                    <li><i class="fa fa-check text-success"></i> Instant access <strong> to all our reports from news and reseach papers</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> <strong>Underwriting</strong> work</li>
-                                    <li><i class="fa fa-check text-success"></i> Access to <strong> Rechain Dashboard</strong></li>
-                                    <li><i class="fa fa-check text-success"></i><strong>APIs suggestion</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                    <li><i class="fa fa-times text-danger"></i> <strong>24/7</strong> support and assistance</li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div class="pricing_footer ">
-                                <a href="javascript:void(0);" class="btn btn-success btn-block bg-blue" role="button">Upgrade <span> now!</span></a>
-                                <p>
-                                  <a href="javascript:void(0);">Start free trial</a>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- price element -->
-
-                        <!-- price element -->
-                        <div class="col-md-3 col-sm-6  ">
-                          <div class="pricing">
-                            <div class="title bg-blue">
-                              <h2>Integration</h2>
-                              <h1>Quote</h1>
-                              
-                            </div>
-                            <div class="x_content">
-                              <div class="">
-                                <div class="pricing_features">
-                                  <ul class="list-unstyled text-left">
-                                    <li><i class="fa fa-check text-success"></i> Instant access <strong> to all our reports from news and reseach papers</strong></li>
-                                    <li><i class="fa fa-check text-success"></i><strong>Underwriting</strong> work</li>
-                                    <li><i class="fa fa-check text-success"></i> Access to <strong> Rechain Dashboard</strong></li>
-                                    <li><i class="fa fa-check text-success"></i><strong>APIs suggestion</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> access to all files</li>
-                                    <li><i class="fa fa-check text-success"></i> <strong>24/7</strong> support and assistance</li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div class="pricing_footer">
-                                <a href="javascript:void(0);" class="btn btn-success btn-block bg-blue" role="button">Ask for a Quote <span> now!</span></a>
-                                <p>
-                                  <a href="javascript:void(0);">Start</a>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- price element -->
-                      </div>
     <section class="product-quality">
-      <h2>Uncompromising Quality for a Sustainable Future</h2>
       <div class="quality-card">
-        <img src="images/tenax.png" alt="Placeholder image for product quality">
+        <img src="images/tenax.png" alt="Rigorously Tested">
         <h3>Rigorously Tested</h3>
         <p>Our products undergo rigorous testing to ensure they meet the highest standards for quality, durability, and performance.</p>
       </div>
       <div class="quality-card">
-        <img src="images/62328-body.jpg" alt="Placeholder image for sustainable materials">
+        <img src="images/62328-body.jpg" alt="Sustainable Materials">
         <h3>Sustainable Materials</h3>
         <p>We use responsibly sourced, eco-friendly materials in our products to minimize our environmental footprint.</p>
       </div>
       <div class="quality-card">
-        <img src="https://walkerinfo.com/wp-content/uploads/2022/04/customersat-50-1200x796.jpg" alt="Placeholder image for customer satisfaction">
+        <img src="https://walkerinfo.com/wp-content/uploads/2022/04/customersat-50-1200x796.jpg" alt="Customer Satisfaction">
         <h3>Customer Satisfaction Guaranteed</h3>
         <p>We are confident in the quality and performance of our products and offer a comprehensive satisfaction guarantee.</p>
       </div>
@@ -213,24 +226,28 @@
     <section class="delivery">
       <h2>Fast and Reliable Delivery</h2>
       <p>We understand that timely delivery is essential for your business operations. That's why we offer fast and reliable shipping options to get your products to you when you need them.</p>
-      <ul>
+      <ul class="list-unstyled mb-0">
         <li>Free shipping on orders over $10,000.</li>
         <li>Multiple shipping options available to meet your needs.</li>
         <li>Real-time order tracking so you can stay informed.</li>
       </ul>
     </section>
-<!-- Elfsight Accessibility | Untitled Accessibility -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-db03e219-0cd2-4d3f-865c-604be8af13f3" data-elfsight-app-lazy></div>
+
+    <!-- Elfsight Accessibility Widget -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-db03e219-0cd2-4d3f-865c-604be8af13f3" data-elfsight-app-lazy></div>
+
     <section class="call-to-action">
       <h2>Ready to make a difference?</h2>
       <a href="#" class="button">Contact Us Today</a>
     </section>
-  </main>
-
+  </div>
   <footer>
     <p>&copy; 2024 Rechain Global. All rights reserved.</p>
   </footer>
 
+  <!-- Bootstrap JS -->
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
