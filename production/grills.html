@@ -156,8 +156,7 @@
       products.forEach(p => {
         container.innerHTML += `
           <div class="product-card">
-            ${p.sponsored ? `<span class="badge">Sponsored</span>` : ""}
-            ${p.amazon_choice ? `<span class="badge amazon-choice">Amazon's Choice</span>` : ""}
+        
             <img class="product-image" src="${p.image}" alt="${p.title}" />
             <div class="product-title">${p.title}</div>
             <div>
