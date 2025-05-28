@@ -292,7 +292,7 @@ const deliveryDiv = document.createElement('div');
 let parsedPrice = 25; // default fallback
 try {
     // Try to extract the numeric price (handle both $ and ₦)
-    let priceStr = product.offers.price ? product.offers.priceSpecification.price.toString().replace(/[$₦]/g, '').trim() : '';
+    let priceStr =  product.offers.priceSpecification.price  ? product.offers.priceSpecification.price.toString().replace(/[$₦]/g, '').trim() : '';
     parsedPrice = parseFloat(priceStr);
     if (isNaN(parsedPrice)) {
         parsedPrice = 25;
