@@ -307,11 +307,11 @@ try {
 let origin = (typeof zparams !== 'undefined' && zparams.get) ? zparams.get('origin') : null;
 
 if (origin === "usd") {
-    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
+    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(1))}&image_url=${encodeURIComponent(product.image)}`;
    // link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
     priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(1);
 } else {
-    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
+    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(1))}&image_url=${encodeURIComponent(product.image)}`;
      // link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2)}&image_url=${encodeURIComponent(product.image)}`;
     priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(1);
   //  link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(parsedPrice * 100)}&image_url=${encodeURIComponent(product.image)}`;
