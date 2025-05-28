@@ -267,7 +267,7 @@
 
                 const priceDiv = document.createElement('div');
                 priceDiv.className = 'price';
-                priceDiv.textContent = product.offers.priceSpecification.price && product.offers.priceSpecification.price ? `$${product.offers.priceSpecification.price}`*600 : "N/A";
+                priceDiv.textContent = product.offers.priceSpecification.price && product.offers.priceSpecification.price ? `$${product.offers.priceSpecification.price}` : "N/A";
                 const today = new Date();
 const minDeliveryDate = new Date(today);
 minDeliveryDate.setDate(today.getDate() + 3);
