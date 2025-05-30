@@ -4,6 +4,6 @@
 [context.production.environment]
   STRIPE_SECRET_KEY2 = "psk_live_51CoUdVEun1d1jmtnOA2Pzot8UfmdHQPzncM0XpGFqYproDLt8wK8FtMGSihqf1zBkk5GjBHvmzyNIwwZmD4yqlhb003uG8QMgU" # Set this in your Netlify environment variables
 [[redirects]]
-  from = "sales.html"
+  from = "/sales.html"
   to = "/production/sales.html"
   status = 200
