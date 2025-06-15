@@ -133,6 +133,41 @@ header {
         </div>
       </div>
     </div>
+    <!-- Step 2 Registration: Additional User Details -->
+<div id="complete-registration" class="animate form registration_form" style="display:none;">
+  <section class="login_content">
+    <form name="complete-registration-form">
+      <h1>Complete Your Registration</h1>
+      <div>
+        <input name="job_title" type="text" class="form-control" placeholder="Job Title" required />
+      </div>
+      <div>
+        <input name="linkedin" type="url" class="form-control" placeholder="LinkedIn Profile Link" />
+      </div>
+      <div>
+        <input name="organisation" type="text" class="form-control" placeholder="Organisation" required />
+      </div>
+      <div>
+        <select name="company_size" class="form-control" required>
+          <option value="">Company Size</option>
+          <option value="1-10">1-10</option>
+          <option value="11-50">11-50</option>
+          <option value="51-200">51-200</option>
+          <option value="201-500">201-500</option>
+          <option value="501-1000">501-1000</option>
+          <option value="1000+">1000+</option>
+        </select>
+      </div>
+      <div>
+        <input name="plus" type="text" class="form-control" placeholder="Plus (additional info)" />
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default submit">Continue</button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </section>
+</div>
     <!-- Popup widget content -->
   <div class="popup-widget" id="popup-widget">
     <p>This website uses cookies and stores data in your browser's cache. Do you agree to this?</p>
@@ -243,6 +278,68 @@ const successMessage = document.querySelector('.js-success-message')
       display: none !important;
     } 
 </style>
+    <!-- Add these lines just before your closing </body> tag in login.html -->
+<script>
+  // Show the second-step registration form
+  function showCompleteRegistration() {
+    document.querySelector('.login_form').style.display = 'none';
+    document.getElementById('complete-registration').style.display = 'block';
+  }
+
+  // Example: call showCompleteRegistration() after successful login/signup
+  // showCompleteRegistration();
+
+  // Handle the complete registration form submission
+  const completeForm = document.forms['complete-registration-form'];
+  if (completeForm) {
+    completeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Google Apps Script endpoint (replace with your actual script URL)
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbz.../exec';
+
+      // Optionally, show a loading indicator here
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(completeForm) })
+        .then(response => {
+          if (response.ok) return response.json();
+          throw new Error(`Error: ${response.statusText}`);
+        })
+        .then(data => {
+          showStep2SuccessMessage(data.result || "Registration completed!");
+          // Optionally, redirect or hide the form
+        })
+        .catch(error => {
+          showStep2ErrorMessage(error.message || "Unknown error, try again.");
+        });
+    });
+  }
+
+  // Success and error feedback for step 2, styled per your theme
+  function showStep2SuccessMessage(msg) {
+    let el = document.querySelector('#complete-registration .js-success-message');
+    if (!el) {
+      el = document.createElement('p');
+      el.className = 'js-success-message';
+      document.querySelector('#complete-registration form').appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.remove('is-hidden');
+    el.style.color = '#06d6a0';
+  }
+
+  function showStep2ErrorMessage(msg) {
+    let el = document.querySelector('#complete-registration .js-error-message');
+    if (!el) {
+      el = document.createElement('p');
+      el.className = 'js-error-message';
+      document.querySelector('#complete-registration form').appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.remove('is-hidden');
+    el.style.color = '#e74c3c';
+  }
+</script>
   <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
 <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
 <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
