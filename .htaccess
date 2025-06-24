@@ -1,4 +1,11 @@
 RewriteEngine on
+
+# Redirect all root .html files to /production/
+RewriteCond %{REQUEST_URI} !^/production/
+RewriteCond %{REQUEST_URI} \.html$
+RewriteRule ^(.*\.html)$ /production/$1 [R=301,L]
+
+# Existing rules
 RewriteCond %{HTTP_HOST} app\.rechainglobal\.com [NC]
 RewriteCond %{REQUEST_URI} ^/$
 RewriteRule ^(.*)$ /production/$1 [L]
