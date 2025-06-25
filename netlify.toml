@@ -3,17 +3,7 @@
 
 [context.production.environment]
   STRIPE_SECRET_KEY2 = "psk_live_51CoUdVEun1d1jmtnOA2Pzot8UfmdHQPzncM0XpGFqYproDLt8wK8FtMGSihqf1zBkk5GjBHvmzyNIwwZmD4yqlhb003uG8QMgU" # Set this in your Netlify environment variables
-
-[[redirects]]
-  from = "/sales.html"
-  to = "/production/sales.html"
-  status = 200
-
-[[redirects]]
-  from = "/faqs"
-  to = "/production/faqs"
-  status = 200
-
+ 
 # Wildcard pattern to redirect all top-level pages to /production/ preserving path
 [[redirects]]
   from = "/*"
