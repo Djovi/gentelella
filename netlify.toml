@@ -7,3 +7,8 @@
   from = "/sales.html"
   to = "/production/sales.html"
   status = 200
+
+[[redirects]]
+  from = "/faqs"
+  to = "/production/faqs"
+  status = 200
