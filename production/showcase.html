@@ -229,6 +229,43 @@
   filter: none;
   opacity: 1;
 }
+    .trusted-logo-card {
+  background: #fff;
+  border-radius: 1.3rem;
+  box-shadow: 0 4px 16px rgba(44,62,80,0.07);
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.17s, box-shadow 0.17s;
+  height: 90px;
+  min-height: 90px;
+}
+.trusted-logo-card img {
+  max-width: 90px;
+  max-height: 50px;
+  filter: grayscale(100%) contrast(1.1) brightness(0.9);
+  opacity: 0.85;
+  transition: filter 0.25s, opacity 0.25s;
+}
+.trusted-logo-card:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 6px 32px 0 rgba(44,62,80,0.17);
+}
+.trusted-logo-card:hover img {
+  filter: none;
+  opacity: 1;
+}
+@media (max-width: 767px) {
+  .trusted-logo-card {
+    height: 70px;
+    padding: 1rem 0.3rem;
+  }
+  .trusted-logo-card img {
+    max-width: 70px;
+    max-height: 38px;
+  }
+}
   </style>
 </head>
 <body>
