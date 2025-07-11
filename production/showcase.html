@@ -220,6 +220,15 @@
       .hero-section .hero-content { margin-right: 0; max-width: 100%; }
       .footer-cols { flex-direction: column; gap: 2.5rem; }
     }
+    #trusted img {
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: filter 0.2s, opacity 0.2s;
+}
+#trusted img:hover {
+  filter: none;
+  opacity: 1;
+}
   </style>
 </head>
 <body>
