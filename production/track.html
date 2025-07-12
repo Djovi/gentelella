@@ -3,100 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <title>Delivery Progress Tracker</title>
-  <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="build/css/custom.min.css">
-  <!-- Add any extra CSS for timeline/progress styling here -->
+  <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../build/css/custom.min.css">
+  <style>
+    .timeline {
+      list-style: none;
+      padding: 0;
+      position: relative;
+    }
+    .timeline:before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #e6e9ed;
+    }
+    .timeline li {
+      position: relative;
+      padding-left: 50px;
+      margin-bottom: 30px;
+    }
+    .timeline li:before {
+      content: '';
+      position: absolute;
+      left: 13px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid #26b99a;
+      top: 0;
+    }
+    .timeline li.active:before {
+      border-color: #f39c12;
+    }
+    .timeline li.completed:before {
+      border-color: #3498db;
+    }
+    .timeline li .timeline-panel {
+      background: #f7f7f7;
+      border-radius: 4px;
+      padding: 10px 20px;
+      position: relative;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .card-icon {
+      font-size: 2em;
+      padding: 10px;
+      border-radius: 50%;
+      color: #fff;
+      margin-right: 10px;
+      background: #26b99a;
+      vertical-align: middle;
+    }
+    .status-badge {
+      font-size: 1em;
+      background: #3498db;
+      color: #fff;
+      border-radius: 12px;
+      padding: 5px 12px;
+      margin-left: 10px;
+    }
+  </style>
 </head>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
-      <!-- Sidebar -->
-      <!-- ... Gentelella sidebar code ... -->
 
-      <!-- Top navigation -->
-      <!-- ... Gentelella navbar code ... -->
+      <!-- Sidebar and Top Nav here (from gentelella) -->
 
-      <!-- Page content -->
       <div class="right_col" role="main">
         <div class="page-title">
           <div class="title_left">
-            <h3>Delivery Progress Tracker</h3>
+            <h3>Delivery Progress <small>graphic tracker</small></h3>
           </div>
         </div>
         <div class="clearfix"></div>
 
-        <!-- Main Content -->
+        <!-- Main Graphic Content -->
         <div class="row">
-          <!-- Delivery List -->
-          <div class="col-md-4">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Active Deliveries</h2>
-                <div class="clearfix"></div>
+
+          <!-- Delivery Card -->
+          <div class="col-md-4 col-sm-6">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <span class="fa fa-truck card-icon" style="background:#3498db;"></span>
+                <span class="font-weight-bold">Order #123456</span>
+                <span class="status-badge">In Transit</span>
+                <hr>
+                <div class="mb-2">
+                  <i class="fa fa-building"></i> Carrier: <b>UPS</b>
+                </div>
+                <div>
+                  <i class="fa fa-barcode"></i> Tracking: <b>1Z999999</b>
+                </div>
+                <div class="progress mt-3" style="height:20px;">
+                  <div class="progress-bar bg-info" role="progressbar" style="width:60%;">60%</div>
+                </div>
+                <div class="text-right mt-2">
+                  <a href="#" class="btn btn-sm btn-success"><i class="fa fa-map-marker"></i> View on Map</a>
+                </div>
               </div>
-              <div class="x_content">
-                <ul class="list-group" id="delivery-list">
-                  <!-- Populated by JS: list of deliveries -->
-                  <li class="list-group-item active">Order #123456</li>
-                  <li class="list-group-item">Order #789012</li>
+            </div>
+          </div>
+
+          <!-- Timeline Progress -->
+          <div class="col-md-8 col-sm-6">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-header">
+                <i class="fa fa-tasks"></i> <b>Delivery Timeline</b>
+              </div>
+              <div class="card-body">
+                <ul class="timeline">
+                  <li class="completed">
+                    <div class="timeline-panel">
+                      <i class="fa fa-check-circle text-primary"></i> Picked Up
+                      <span class="text-muted float-right">10:00 AM</span>
+                    </div>
+                  </li>
+                  <li class="completed">
+                    <div class="timeline-panel">
+                      <i class="fa fa-arrow-circle-right text-info"></i> Dispatched
+                      <span class="text-muted float-right">11:30 AM</span>
+                    </div>
+                  </li>
+                  <li class="active">
+                    <div class="timeline-panel">
+                      <i class="fa fa-truck text-warning"></i> In Transit
+                      <span class="badge badge-warning float-right">Now</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="timeline-panel">
+                      <i class="fa fa-motorcycle text-secondary"></i> Out for Delivery
+                    </div>
+                  </li>
+                  <li>
+                    <div class="timeline-panel">
+                      <i class="fa fa-home text-success"></i> Delivered
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <!-- Progress and Timeline -->
-          <div class="col-md-8">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Order Details</h2>
-                <div class="clearfix"></div>
+        </div>
+
+        <!-- Map Card (Optional) -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-header bg-info text-white">
+                <i class="fa fa-map"></i> Delivery Route Preview
               </div>
-              <div class="x_content">
-                <!-- Progress Bar -->
-                <h4>Status: <span id="status">In Transit</span></h4>
-                <div class="progress">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" id="progress-bar">
-                    60%
-                  </div>
+              <div class="card-body" style="height:300px;">
+                <!-- Embed Google Map or Leaflet Map here -->
+                <div style="width:100%; height:100%; background:#e6e6fa; display:flex; align-items:center; justify-content:center;">
+                  <span class="fa fa-map-marker fa-3x" style="color:#3498db;"></span>
+                  <span class="ml-3">Map Preview Here</span>
                 </div>
-                <!-- Timeline -->
-                <ul class="timeline" id="timeline">
-                  <li class="completed">Picked Up</li>
-                  <li class="completed">Dispatched</li>
-                  <li class="active">In Transit</li>
-                  <li>Out for Delivery</li>
-                  <li>Delivered</li>
-                </ul>
-                <!-- Map -->
-                <div id="map" style="height: 300px; width: 100%;"></div>
-                <!-- Details -->
-                <dl class="row mt-3">
-                  <dt class="col-sm-3">Carrier</dt>
-                  <dd class="col-sm-9" id="carrier">UPS</dd>
-                  <dt class="col-sm-3">Tracking #</dt>
-                  <dd class="col-sm-9" id="tracking-number">123456789</dd>
-                </dl>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- /page content -->
 
-      <!-- Footer -->
-      <!-- ... Gentelella footer code ... -->
+      </div>
+      <!-- /right_col -->
+
+      <!-- Footer here (from gentelella) -->
+
     </div>
   </div>
-
-  <!-- JS: jQuery, Bootstrap, Gentelella, your own JS -->
-  <script src="vendors/jquery/dist/jquery.min.js"></script>
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="build/js/custom.min.js"></script>
-  <!-- Optionally: Google Maps JS API -->
-  <script>
-    // Example JS to update progress/timeline/map from API
-    // You would fetch from your backend which calls UPS/Gozem
-    // and update the DOM accordingly
-  </script>
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../build/js/custom.min.js"></script>
 </body>
 </html>
