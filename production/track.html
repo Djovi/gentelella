@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivery Progress Tracker</title>
+  <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="build/css/custom.min.css">
+  <!-- Add any extra CSS for timeline/progress styling here -->
+</head>
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <!-- Sidebar -->
+      <!-- ... Gentelella sidebar code ... -->
+
+      <!-- Top navigation -->
+      <!-- ... Gentelella navbar code ... -->
+
+      <!-- Page content -->
+      <div class="right_col" role="main">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Delivery Progress Tracker</h3>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!-- Main Content -->
+        <div class="row">
+          <!-- Delivery List -->
+          <div class="col-md-4">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Active Deliveries</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <ul class="list-group" id="delivery-list">
+                  <!-- Populated by JS: list of deliveries -->
+                  <li class="list-group-item active">Order #123456</li>
+                  <li class="list-group-item">Order #789012</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress and Timeline -->
+          <div class="col-md-8">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Order Details</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <!-- Progress Bar -->
+                <h4>Status: <span id="status">In Transit</span></h4>
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" id="progress-bar">
+                    60%
+                  </div>
+                </div>
+                <!-- Timeline -->
+                <ul class="timeline" id="timeline">
+                  <li class="completed">Picked Up</li>
+                  <li class="completed">Dispatched</li>
+                  <li class="active">In Transit</li>
+                  <li>Out for Delivery</li>
+                  <li>Delivered</li>
+                </ul>
+                <!-- Map -->
+                <div id="map" style="height: 300px; width: 100%;"></div>
+                <!-- Details -->
+                <dl class="row mt-3">
+                  <dt class="col-sm-3">Carrier</dt>
+                  <dd class="col-sm-9" id="carrier">UPS</dd>
+                  <dt class="col-sm-3">Tracking #</dt>
+                  <dd class="col-sm-9" id="tracking-number">123456789</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /page content -->
+
+      <!-- Footer -->
+      <!-- ... Gentelella footer code ... -->
+    </div>
+  </div>
+
+  <!-- JS: jQuery, Bootstrap, Gentelella, your own JS -->
+  <script src="vendors/jquery/dist/jquery.min.js"></script>
+  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="build/js/custom.min.js"></script>
+  <!-- Optionally: Google Maps JS API -->
+  <script>
+    // Example JS to update progress/timeline/map from API
+    // You would fetch from your backend which calls UPS/Gozem
+    // and update the DOM accordingly
+  </script>
+</body>
+</html>
