@@ -7,5 +7,6 @@
 # Wildcard pattern to redirect all top-level pages to /production/ preserving path
 [[redirects]]
   from = "/*"
-  to = "/production/:splat"
+  to = "https://app.rechainglobal.com/production/:splat"
+  #to = "/production/:splat"
   status = 301
