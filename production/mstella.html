@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TPE - Product Showcase</title>
+    <title>Hotel Rooms Listing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
@@ -20,46 +20,77 @@
         }
         .content { margin-top: 80px; }
         h1 { text-align: center; margin-top: 90px; }
-        .product-listing {
+        .room-listing {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 24px;
             margin: 30px auto;
-            max-width: 900px;
+            max-width: 1100px;
         }
-        .product-item {
+        .room-item {
             border: 1px solid #ddd;
             padding: 16px;
             border-radius: 8px;
-            width: 220px;
+            width: 320px;
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             text-align: center;
             transition: box-shadow 0.2s;
+            position: relative;
         }
-        .product-item:hover {
+        .room-item:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.10);
         }
-        .product-item img {
-            max-width: 100%;
-            height: 120px;
-            object-fit: contain;
-            border-radius: 4px;
-            margin-bottom: 12px;
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border-radius: 6px;
         }
-        .product-item .name {
-            font-size: 17px;
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(25,118,210,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
+        .room-item .name {
+            font-size: 19px;
             font-weight: bold;
             margin: 10px 0 6px 0;
             color: #222;
         }
-        .product-item .price {
+        .room-item .price {
             color: #e53935;
-            font-size: 16px;
+            font-size: 17px;
             margin: 4px 0 10px 0;
         }
-        .product-item .link {
+        .room-item .offers {
+            font-size: 14px;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .room-item .link {
             display: inline-block;
             margin-top: 8px;
             padding: 6px 12px;
@@ -70,41 +101,35 @@
             font-size: 14px;
             transition: background 0.18s;
         }
-        .product-item .link:hover { background: #024284; }
-        @media (max-width: 700px) {
-            .product-listing { flex-direction: column; align-items: center; }
-            .product-item { width: 90%; }
-        }
-        .delivery-label {
-    margin: 8px 0;
-    font-size: 13px;
-    color: #1976d2;
-    font-weight: 500;
-}
+        .room-item .link:hover { background: #024284; }
         .site-footer {
-    background: #f5f5f5;
-    color: #444;
-    text-align: center;
-    padding: 25px 10px 10px 10px;
-    margin-top: 40px;
-    font-size: 15px;
-    border-top: 1px solid #e0e0e0;
-}
-.site-footer .footer-links {
-    margin-bottom: 8px;
-}
-.site-footer a {
-    color: #1976d2;
-    text-decoration: none;
-    margin: 0 8px;
-}
-.site-footer a:hover {
-    text-decoration: underline;
-}
-.site-footer span {
-    color: #aaa;
-    margin: 0 4px;
-}
+            background: #f5f5f5;
+            color: #444;
+            text-align: center;
+            padding: 25px 10px 10px 10px;
+            margin-top: 40px;
+            font-size: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .site-footer .footer-links {
+            margin-bottom: 8px;
+        }
+        .site-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+        .site-footer span {
+            color: #aaa;
+            margin: 0 4px;
+        }
+        @media (max-width: 900px) {
+            .room-listing { flex-direction: column; align-items: center; }
+            .room-item { width: 95%; }
+        }
     </style>
 </head>
 <body>
@@ -113,571 +138,60 @@
             <img src="images/rechain.jpg" alt="Your Company Logo" class="logo">
         </a>
     </header>
-    <h1>Products List</h1>
+    <h1>Hotel Room Listings</h1>
     <div class="content">
-        <div id="productContainer" class="product-listing"></div>
+        <div id="roomContainer" class="room-listing"></div>
     </div>
     <script>
-        // Static product data (TWO ITEMS)
-        const staticProductData =[
-  {
-    "@type": "Product",
-    "name": "PH-600-1 Portable Handheld POS Checkout Point of Sale Android Transaction Printer Payment Machine Mobile POS WiFi NFC Bluetooth",
-    "image": "https://s.alicdn.com/@sc04/kf/H23cab4baf7a94f0b9fab3c8aae57a9dez.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-        "price": 141,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 141
-      }
-    },
-    "brand": "Easy Banker International Co., Ltd.",
-    "url": "https://easybanker.en.alibaba.com/",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "PH-100 High-Performance POS, Octa-Core CPU, 4G LTE, 58mm Printer, Multi-Port Connectivity",
-    "image": "https://s.alicdn.com/@sc04/kf/Hf64a6d1baca744069bac1aa520f4381ac.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-        "price": 248,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 248
-      }
-    },
-    "brand": "Easy Banker International Co., Ltd.",
-    "url": "https://easybanker.en.alibaba.com/",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "PH-91 Portable Handheld POS Terminal Point of Sale Android Transaction Wireless NFC High Cost-effective Receipt Printing",
-    "image": "https://s.alicdn.com/@sc04/kf/H4980d8490c4f4ea29bf2ca10a7486225s.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-     "price": 113,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 113
-      }
-    },
-    "brand": "Easy Banker International Co., Ltd.",
-    "url": "https://easybanker.en.alibaba.com/",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "PH-510-4 Hand-held Mobile Posphone Hand-held Light Cashier, Suitable for Many Industries. Integrated Cash Register.",
-    "image": "https://s.alicdn.com/@sc04/kf/H016cd1681462480580cdc536bf2482deM.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-    "price": 117.5,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 117.5
-      }
-    },
-    "brand": "Easy Banker International Co., Ltd.",
-    "url": "https://easybanker.en.alibaba.com/",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "PH-108 CASH REGISTER POS Terminal Point of Sale Android Large Display 4G 3G 2G Wi-Fi Bluetooth NFC USB MOBIL POS",
-    "image": "https://s.alicdn.com/@sc04/kf/Hb3007083ccd34f8da71ee004e051411cQ.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-        "price": 165.5,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 165.5
-      }
-    },
-    "brand": "Easy Banker International Co., Ltd.",
-    "url": "https://easybanker.en.alibaba.com/",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "Sunmi V3 V3H Android Restaurants Handheld Pos Machine System Terminal Pos System for Grocery Store",
-    "image": "https://s.alicdn.com/@sc04/kf/He6d5109a937e4bbd8a2e09d0b0863933u.png_300x300.png",
-    "offers": {
-      "type": "Offer",
-        "price": 194.5,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 194.5
-      }
-    },
-    "brand": "Guangzhou EDS Technology Co., Ltd.",
-    "url": "https://www.alibaba.com/product-detail/Sunmi-V3-V3H-Android-Restaurants-Handheld_1601385384219.html",
-    "category": "Handheld POS"
-  },
-  {
-    "@type": "Product",
-    "name": "New H10S H10SE 5.5inch Handheld Pos Terminal Thermal Printer Point of Sales Portable Handheld Payment POS Machine With Software",
-    "image": "https://s.alicdn.com/@sc04/kf/H1906c16954204b47a323f4761490525dV.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-        "price": 70,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 70
-      }
-    },
-    "brand": "Shanghai Senraise Intelligence Technology Co., Ltd.",
-    "url": "https://www.alibaba.com/product-detail/New-H10S-H10SE-5-5inch-Handheld_1601002240778.html?s=p",
-    "category": "Handheld POS"
-  },
-  {
-    "@type": "Product",
-    "name": "2+32GB H10SE 4G WIFI 58mm Printer Lotto Pos Terminal Lottery Machine Ticket Scanner Reader Handheld Mobile Point of Sale System",
-    "image": "https://s.alicdn.com/@sc04/kf/Hb5b64bcf29af4431ad3e8dd9f8543cc7r.jpg_300x300.jpg",
-    "offers": {
-      "type": "Offer",
-        "price": 73.5,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 73.5
-      }
-    },
-    "brand": "Shanghai Senraise Intelligence Technology Co., Ltd.",
-    "url": "https://www.alibaba.com/product-detail/2-32GB-H10SE-4G-WIFI-58mm_1601368745917.html",
-    "category": "Handheld POS"
-  },
-  {
-    "@type": "Product",
-    "name": "Mobile Payment Machine Portable Android Pos System 4g Nfc Handheld Pos Cheap Offline Verifone Mini Pos Terminal Mobile Payment",
-    "image": "https://s.alicdn.com/@sc04/kf/H0c345db4e6464728ac12f2c8e3609b3cc.jpg_300x300.jpg",
-    "offers": {
-      "@type": "Offer",
-         "price": 75,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 75
-      }
-    },
-    "brand": "Shenzhen TongLiang Intelligent Technology Co., Ltd.",
-    "url": "https://www.alibaba.com/product-detail/Mobile-Payment-Machine-Portable-Android-Pos_1600708626429.html?s=p",
-    "category": "Mobile POS"
-  },
-  {
-    "@type": "Product",
-    "name": "Factory Price 4G Handheld Android 14 POS Terminal Touch Screen NFC Pos Terminal Mobile Pos Systems With Receipt Printer H10P",
-    "image": "https://s.alicdn.com/@sc04/kf/H22ef2c21e4f4437f9b847a8b02d5395eA.jpg_300x300.jpg",
-    "brand": "Clover",
-    "offers": {
-      "type": "Offer",
-      "price": 91.5,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 91.5
-      }
-    },
-    "brand": "Shenzhen Hosoton Technology Co., Ltd.",
-    "url": "https://www.alibaba.com/product-detail/Factory-Price-4G-Handheld-Android-14_1600969620230.html",
-    "category": "Mobile POS"
-  },
-            //goooooooooooooooooooooooooo
-  {
-    "type": "Product",
-    "name": "Clover GO (3rd Generation) - Powering Your POS with The Mobile POS System in Your Pocket (Requires Processing Through SwyftPAY), White",
-    "image": "https://m.media-amazon.com/images/I/31cmUMxHxtL._AC_UY218_.jpg",
-    "brand": "Clover",
-    "offers": {
-      "type": "Offer",
-      "price": "129.87",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Generic-Clover-3rd-Generation-Processing/dp/B0CXJHYS2G/",
-      "shippingDetails": {
-        "type": "OfferShippingDetails",
-        "shippingRate": "5.00",
-        "shippingDestination": {
-          "type": "DefinedRegion",
-          "addressCountry": "US"
-        },
-        "deliveryTime": {
-          "type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "type": "QuantitativeValue",
-            "value": 1,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "type": "QuantitativeValue",
-            "value": 7,
-            "unitCode": "d"
-          }
-        }
-      }
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": 1
-    }
-  },
-  {
-    "type": "Product",
-    "name": "SumUp Solo Credit Card Payment Card Reader with Charging Station. Full Touch-Screen Interface with Free SIM Card and Mobile Data (SumUp Solo)",
-    "image": "https://m.media-amazon.com/images/I/61yJz3-RJJL._AC_UY218_.jpg",
-    "brand": "SumUp",
-    "offers": {
-      "type": "Offer",
-      "price": "99.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Payment-Charging-Station-Touch-Screen-Interface/dp/B09XBK97CG/",
-      "shippingDetails": {
-        "type": "OfferShippingDetails",
-        "shippingRate": "0.00",
-        "shippingDestination": {
-          "type": "DefinedRegion",
-          "addressCountry": "US"
-        },
-        "deliveryTime": {
-          "type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "type": "QuantitativeValue",
-            "value": 1,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "type": "QuantitativeValue",
-            "value": 5,
-            "unitCode": "d"
-          }
-        }
-      }
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "3.6",
-      "reviewCount": 97
-    }
-  },
-  {
-    "type": "Product",
-    "name": "Square Reader for contactless and chip (2nd Generation)",
-    "image": "https://m.media-amazon.com/images/I/71Orsd+8pNL._AC_UY218_.jpg",
-    "brand": "Square",
-    "offers": {
-      "type": "Offer",
-      "price": "48.98",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Square-Reader-contactless-chip-Generation/dp/B0C29GRRCZ/",
-      "shippingDetails": {
-        "type": "OfferShippingDetails",
-        "shippingRate": "0.00",
-        "shippingDestination": {
-          "type": "DefinedRegion",
-          "addressCountry": "US"
-        },
-        "deliveryTime": {
-          "type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "type": "QuantitativeValue",
-            "value": 1,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "type": "QuantitativeValue",
-            "value": 5,
-            "unitCode": "d"
-          }
-        }
-      }
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.6",
-      "reviewCount": 18189
-    },
-    "award": "Amazon's Choice"
-  },
-  {
-    "type": "Product",
-    "name": "Square Terminal - Credit Card Machine to Accept All Payments | Mobile POS",
-    "image": "https://m.media-amazon.com/images/I/61IVuUQ-F3L._AC_UY218_.jpg",
-    "brand": "Square",
-    "offers": {
-      "type": "Offer",
-      "price": "298.99",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Square-B07NPNNQLN-Terminal/dp/B07NPNNQLN/",
-      "shippingDetails": {
-        "type": "OfferShippingDetails",
-        "shippingRate": "0.00",
-        "shippingDestination": {
-          "type": "DefinedRegion",
-          "addressCountry": "US"
-        },
-        "deliveryTime": {
-          "type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "type": "QuantitativeValue",
-            "value": 1,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "type": "QuantitativeValue",
-            "value": 5,
-            "unitCode": "d"
-          }
-        }
-      }
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.5",
-      "reviewCount": 3898
-    }
-  },
-  {
-    "type": "Product",
-    "name": "Square Reader for magstripe (headset jack)",
-    "image": "https://m.media-amazon.com/images/I/61dAy-+OJqL._AC_UY218_.jpg",
-    "brand": "Square",
-    "offers": {
-      "type": "Offer",
-      "price": "5.49",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Square-Reader-magstripe-headset-jack/dp/B00HZYK3CO/",
-      "shippingDetails": {
-        "type": "OfferShippingDetails",
-        "shippingRate": "0.00",
-        "shippingDestination": {
-          "type": "DefinedRegion",
-          "addressCountry": "US"
-        },
-        "deliveryTime": {
-          "type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "type": "QuantitativeValue",
-            "value": 1,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "type": "QuantitativeValue",
-            "value": 5,
-            "unitCode": "d"
-          }
-        }
-      }
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.6",
-      "reviewCount": 37419
-    },
-    "award": "#1 Top Rated"
-  },
-  {
-    "type": "Product",
-    "name": "All-in-One SmartPOS-129 Professional Cash Register for Small Business, POS Bundle Includes: Cashier Touch Screen Monitor, Customer-Facing Display, Cash Drawer, Scanner, Printer",
-    "image": "https://m.media-amazon.com/images/I/71dW4+zhYML._AC_UL320_.jpg",
-    "offers": {
-      "type": "Offer",
-      "price": "989.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/SmartPOS-129-Professional-Register-Business-System/dp/B0CMVW2489/"
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.5",
-      "reviewCount": 36
-    }
-  },
-  {
-    "type": "Product",
-    "name": "POS Terminal Countertop Kit for Lightning iPads – Payment Terminal/Card Reader & Tablet Stand | Powered by Shopify POS",
-    "image": "https://m.media-amazon.com/images/I/51GxUWcyS6L._AC_UL320_.jpg",
-    "offers": {
-      "type": "Offer",
-      "price": "459.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Shopify-Terminal-Countertop-Lightning-Store/dp/B0D267QK21/"
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.3",
-      "reviewCount": 74
-    }
-  },
-  {
-    "type": "Product",
-    "name": "Mount-It! Universal Credit Card POS Terminal Stand for VeriFone Ingenico First Data Card Readers | Adjustable Clamp Width with Tilt, Swivel | Adhesive or Bolt Down Installation",
-    "image": "https://m.media-amazon.com/images/I/71QHm3D6TZL._AC_UL320_.jpg",
-    "offers": {
-      "type": "Offer",
-      "price": "39.99",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/Mount-Universal-Terminal-VeriFone-MI-3794/dp/B081ZKQVN3/"
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.0",
-      "reviewCount": 66
-    }
-  },
-  {
-    "type": "Product",
-    "name": "NETUM Upgraded Mini Wireless QR Barcode Scanner, 3 in 1 Bluetooth Portable Pocket Small 1D 2D Bar Code Reader, Automatic Fast, Precise scanning for POS, C850 White",
-    "image": "https://m.media-amazon.com/images/I/51i7I1FC-pL._AC_UL320_.jpg",
-    "offers": {
-      "type": "Offer",
-      "price": "74.99",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/NETUM-Upgraded-Bluetooth-Wireless-Automatic/dp/B09NZGDW7Y/"
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.2",
-      "reviewCount": 165
-    }
-  },
-  {
-    "type": "Product",
-    "name": "ETEKJOY USB 3-Track Magnetic Stripe Card Reader POS Credit Card Reader Swiper MagStripe Swipe Card Reader ET-MSR90",
-    "image": "https://m.media-amazon.com/images/I/51knXEE6uyL._AC_UL320_.jpg",
-    "offers": {
-      "type": "Offer",
-      "price": "Not specified",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.com/ETEKJOY-3-Track-Magnetic-Stripe-MagStripe/dp/B01N4L19CR/"
-    },
-    "aggregateRating": {
-      "type": "AggregateRating",
-      "ratingValue": "4.4",
-      "reviewCount": 326
-    }
-  }
+        // Static hotel room data
+        const hotelRooms = [
+            {
+                name: "Deluxe King Room",
+                images: [
+                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
+                ],
+                price: 120,
+                offers: "Breakfast Included, Free Wifi, Free Cancellation",
+                bookingUrl: "https://www.booking.com/hotel/deluxe-king-room",
+            },
+            {
+                name: "Suite with Sea View",
+                images: [
+                    "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80"
+                ],
+                price: 220,
+                offers: "Private Balcony, Breakfast, Spa Access",
+                bookingUrl: "https://www.booking.com/hotel/suite-sea-view",
+            },
+            {
+                name: "Standard Twin Room",
+                images: [
+                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
+                ],
+                price: 95,
+                offers: "Free Wifi, Parking, No Prepayment Needed",
+                bookingUrl: "https://www.booking.com/hotel/standard-twin-room",
+            },
+            {
+                name: "Family Room",
+                images: [
+                    "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+                ],
+                price: 180,
+                offers: "Sleeps 4, Kitchenette, Kids Stay Free",
+                bookingUrl: "https://www.booking.com/hotel/family-room",
+            },
+        ];
 
-];
-
-        function renderProducts(products) {
-            const container = document.getElementById('productContainer');
-            container.innerHTML = ""; // Clear previous content
-
-            products.forEach(product => {
-                const productItem = document.createElement('div');
-                productItem.className = 'product-item';
-
+        function createCarousel(images, index) {
+            const container = document.createElement('div');
+            container.className = 'carousel-container';
+            images.forEach((imgSrc, i) => {
                 const img = document.createElement('img');
-                img.src = product.image;
-                img.alt = product.name;
-
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'name';
-                nameDiv.textContent = product.name;
-
-                const priceDiv = document.createElement('div');
-                priceDiv.className = 'price';
-                priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
-                const today = new Date();
-const minDeliveryDate = new Date(today);
-minDeliveryDate.setDate(today.getDate() + 3);
-const maxDeliveryDate = new Date(today);
-maxDeliveryDate.setDate(today.getDate() + 11);
-
-function formatDate(date) {
-    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-}
-const deliveryDiv = document.createElement('div');
-        deliveryDiv.className = 'delivery-label';
-        deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
-
-                const link = document.createElement('a');
-                link.href = product.offers && product.offers.url ? product.offers.url : "#";
-                link.textContent = "View Product";
-                link.target = "_blank";
-                link.className = "link";
-/* ASSSSIGNNGPEMT - REWRITTEN & CLEANED UP ****************************/
-
-// Price parsing and fallback handling
-let parsedPrice = 25; // default fallback
-try {
-    // Try to extract the numeric price (handle both $ and ₦)
-    let priceStr = product.offers.price ? product.offers.price.toString().replace(/[$₦]/g, '').trim() : '';
-    parsedPrice = parseFloat(priceStr);
-    if (isNaN(parsedPrice)) {
-        parsedPrice = 25;
-        throw new Error('Price is not a valid number');
-    }
-} catch (error) {
-    console.error(`Failed to parse price for product ${product.name}:`, error);
-   // parsedPrice = 250;
-}
-
-// Currency handling (replace zparams with a default/fallback if not present)
-let origin = (typeof zparams !== 'undefined' && zparams.get) ? zparams.get('origin') : null;
-
-if (origin === "usd") {
-    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
-   // link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
-    priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2);
-} else {
-    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
-     // link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2)}&image_url=${encodeURIComponent(product.image)}`;
-    priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2);
-  //  link.href = `details_uri.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(parsedPrice * 100)}&image_url=${encodeURIComponent(product.image)}`;
-  //  priceDiv.textContent = 'CFA ' + ((((parsedPrice * 100) + (parsedPrice * 100 * 0.40)) * 4.1).toFixed(2));
-}
-
-// Image error fallback handler (optional default fallback img)
-img.onerror = () => {
-    img.src = "images/fallback.jpg";
-    console.error(`Failed to load image: ${product.image}`);
-};
-/* END ASSSSIGNNGPEMT ************************************************/
-                productItem.appendChild(img);
-                productItem.appendChild(nameDiv);
-                productItem.appendChild(priceDiv);
-                productItem.appendChild(deliveryDiv); // Add delivery label here
-                productItem.appendChild(link);
-               
-                container.appendChild(productItem);
-            });
-        }
-
-        // Render products on page load
-        renderProducts(staticProductData);
-    </script>
-            <footer class="site-footer">
-    <div class="footer-links">
-        <a href="payment_policy.html" target="_blank">Terms of Service</a>
-        <span>|</span>
-        <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
-        <span>|</span>
-        <a href="mailto:support@rechainglobal.com">Contact Us</a>
-        <span>|</span>
-        <span>2810 N Church St, Wilmington, DE 19802, United States</span>
-    </div>
-    <div class="footer-copyright">
-        &copy; 2025 Rechain Global Trade&Business LLC. All rights reserved.
-    </div>
-</footer>
-</body>
-</html>
+                img](#)
+
