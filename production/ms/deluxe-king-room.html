@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deluxe King Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        .room-item {
+            border: 1px solid #ddd;
+            padding: 16px;
+            border-radius: 8px;
+            width: 320px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+            margin: 30px auto;
+            position: relative;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border-radius: 6px;
+        }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .carousel-slide.active { display: block; }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(25,118,210,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
+        .name { font-size: 19px; font-weight: bold; margin: 10px 0 6px 0; color: #222; }
+        .price { color: #e53935; font-size: 17px; margin: 4px 0 10px 0; }
+        .offers { font-size: 14px; color: #1976d2; margin-bottom: 10px; }
+        .link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.18s;
+        }
+        .link:hover { background: #024284; }
+    </style>
+</head>
+<body>
+    <div class="room-item">
+        <div class="carousel-container" id="carousel">
+            <img class="carousel-slide active" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Room image">
+            <img class="carousel-slide" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Room image">
+            <button class="carousel-btn prev">&#8249;</button>
+            <button class="carousel-btn next">&#8250;</button>
+        </div>
+        <div class="name">Deluxe King Room</div>
+        <div class="price">$120 / night</div>
+        <div class="offers">Breakfast Included, Free Wifi, Free Cancellation</div>
+        <a href="https://www.booking.com/hotel/deluxe-king-room" target="_blank" class="link">Book Now</a>
+    </div>
+    <script>
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentIdx = 0;
+        function showSlide(idx) {
+            slides.forEach((sl, i) => sl.classList.toggle('active', i === idx));
+        }
+        document.querySelector('.carousel-btn.prev').onclick = function() {
+            currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+            showSlide(currentIdx);
+        };
+        document.querySelector('.carousel-btn.next').onclick = function() {
+            currentIdx = (currentIdx + 1) % slides.length;
+            showSlide(currentIdx);
+        };
+    </script>
+</body>
+</html>
