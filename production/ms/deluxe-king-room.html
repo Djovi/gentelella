@@ -124,7 +124,16 @@
                 console.error(result.error.message);
             }
         }
-
+      // Function to get query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                price: params.get('price'),
+                image_url: params.get('image_url')
+            };
+        }
+let usPrice;
         // Event listener for Buy Now button
         buyButton.addEventListener('click', async () => {
           try{  let sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
