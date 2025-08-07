@@ -92,7 +92,7 @@
             showSlide(currentIdx);
         };
           function renderProductDetails(product) {
-              return  document.querySelectorAll('link')
+              return  document.querySelector('.link')
           };
      // Fetch product details from query parameters
         const product = getQueryParams();
@@ -164,5 +164,6 @@ let usPrice;
   }
         });
     </script>
+    <script src="https://js.stripe.com/v3/"></script>
 </body>
 </html>
