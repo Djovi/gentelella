@@ -75,7 +75,7 @@
         <div class="name">Deluxe King Room</div>
         <div class="price">$120 / night</div>
         <div class="offers">Breakfast Included, Free Wifi, Free Cancellation</div>
-        <a href="https://www.booking.com/hotel/deluxe-king-room" target="_blank" class="link">Book Now</a>
+        <a href="" target="_blank" class="link">Book Now</a>
     </div>
     <script>
         const slides = document.querySelectorAll('.carousel-slide');
@@ -91,7 +91,9 @@
             currentIdx = (currentIdx + 1) % slides.length;
             showSlide(currentIdx);
         };
-        
+          function renderProductDetails(product) {
+              return  document.querySelectorAll('link')
+          };
      // Fetch product details from query parameters
         const product = getQueryParams();
         const buyButton = renderProductDetails(product);
