@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Deluxe King Room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
         body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
         .room-item {
@@ -77,7 +79,26 @@
         <div class="offers">Breakfast Included, Free Wifi, Free Cancellation</div>
         <a href="" target="_blank" class="link">Book Now</a>
     </div>
-    <script>
+<form id="booking-form">
+  <label for="date-range">Select your stay:</label>
+  <input id="date-range" name="date-range" required>
+  <button type="submit">Book Now</button>
+</form>
+
+<script>
+   flatpickr("#date-range", {
+    mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d"
+  });
+
+  document.getElementById('booking-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const dates = document.getElementById('date-range').value;
+    alert(`Selected dates: ${dates}`);
+    // Call your booking function here
+  });
+ 
         const slides = document.querySelectorAll('.carousel-slide');
         let currentIdx = 0;
         function showSlide(idx) {
