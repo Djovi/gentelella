@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rechain Global – Ignite Your Growth. Master Your Digital Landscape.</title>
-  <!-- Bootstrap CSS (or Tailwind for even more SaaS-like style) -->
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -124,7 +124,6 @@
       color: var(--accent);
       margin-bottom: 1rem;
     }
-    /* Pricing section */
     .pricing-section {
       background: #fff;
       border-radius: 2rem;
@@ -154,7 +153,6 @@
     }
     .pricing-card ul { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
     .pricing-card ul li { margin-bottom: 0.6rem; color: #444; }
-    /* Footer */
     .footer {
       background: var(--footer-dark);
       color: #fff;
@@ -221,51 +219,241 @@
       .footer-cols { flex-direction: column; gap: 2.5rem; }
     }
     #trusted img {
-  filter: grayscale(0%);
-  opacity: 0.8;
-  transition: filter 0.2s, opacity 0.2s;
-}
-#trusted img:hover {
-  filter: none;
-  opacity: 1;
-}
+      filter: grayscale(0%);
+      opacity: 0.8;
+      transition: filter 0.2s, opacity 0.2s;
+    }
+    #trusted img:hover {
+      filter: none;
+      opacity: 1;
+    }
     .trusted-logo-card {
-  background: #fff;
-  border-radius: 1.3rem;
-  box-shadow: 0 4px 16px rgba(44,62,80,0.07);
-  padding: 1.5rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.17s, box-shadow 0.17s;
-  height: 90px;
-  min-height: 90px;
-}
-.trusted-logo-card img {
-  max-width: 90px;
-  max-height: 50px;
-  filter: grayscale(100%) contrast(1.1) brightness(0.9);
-  opacity: 0.85;
-  transition: filter 0.25s, opacity 0.25s;
-}
-.trusted-logo-card:hover {
-  transform: translateY(-5px) scale(1.04);
-  box-shadow: 0 6px 32px 0 rgba(44,62,80,0.17);
-}
-.trusted-logo-card:hover img {
-  filter: none;
-  opacity: 1;
-}
-@media (max-width: 767px) {
-  .trusted-logo-card {
-    height: 70px;
-    padding: 1rem 0.3rem;
-  }
-  .trusted-logo-card img {
-    max-width: 70px;
-    max-height: 38px;
-  }
-}
+      background: #fff;
+      border-radius: 1.3rem;
+      box-shadow: 0 4px 16px rgba(44,62,80,0.07);
+      padding: 1.5rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.17s, box-shadow 0.17s;
+      height: 90px;
+      min-height: 90px;
+    }
+    .trusted-logo-card img {
+      max-width: 90px;
+      max-height: 50px;
+      filter: grayscale(100%) contrast(1.1) brightness(0.9);
+      opacity: 0.85;
+      transition: filter 0.25s, opacity 0.25s;
+    }
+    .trusted-logo-card:hover {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 6px 32px 0 rgba(44,62,80,0.17);
+    }
+    .trusted-logo-card:hover img {
+      filter: none;
+      opacity: 1;
+    }
+    @media (max-width: 767px) {
+      .trusted-logo-card {
+        height: 70px;
+        padding: 1rem 0.3rem;
+      }
+      .trusted-logo-card img {
+        max-width: 70px;
+        max-height: 38px;
+      }
+    }
+    /* AI Chat Styles */
+    #ai-chat-assist {
+      position: fixed;
+      bottom: 34px;
+      right: 30px;
+      z-index: 9999;
+      width: 350px;
+      max-width: 98vw;
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1.5px solid #4f46e5;
+      min-height: 340px;
+    }
+    #ai-chat-header {
+      background: var(--primary);
+      color: #fff;
+      font-weight: bold;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #ai-chat-header span {
+      font-size: 1.15rem;
+    }
+    #ai-chat-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    #ai-chat-body {
+      padding: 1rem;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 1rem;
+      background: #f7f8fc;
+    }
+    .ai-chat-msg {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+    .ai-chat-msg.user .ai-chat-avatar {
+      background: var(--accent);
+    }
+    .ai-chat-msg.bot .ai-chat-avatar {
+      background: var(--primary);
+    }
+    .ai-chat-msg .ai-chat-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .ai-chat-msg .ai-chat-text {
+      background: #fff;
+      padding: 0.65rem 1rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+      max-width: 74%;
+      word-break: break-word;
+      color: #222;
+      font-size: 1rem;
+    }
+    #ai-chat-input-area {
+      background: #efefef;
+      padding: 0.7rem 1rem;
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    #ai-chat-input {
+      flex: 1;
+      border-radius: 1.2rem;
+      border: 1px solid #dbeafe;
+      padding: 0.5rem 1rem;
+      outline: none;
+      font-size: 1rem;
+    }
+    #ai-chat-send {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 1.2rem;
+      padding: 0.5rem 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #ai-chat-send:disabled {
+      background: #b7b8be;
+      cursor: not-allowed;
+    }
+    #ai-chat-launch-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9998;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 61px;
+      height: 61px;
+      box-shadow: 0 6px 24px rgba(44,62,80,0.18);
+      cursor: pointer;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #ai-chat-launch-btn:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+    /* Book a Demo Styles */
+    #demo-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(44,62,80,0.28);
+      align-items: center;
+      justify-content: center;
+    }
+    #demo-modal .demo-modal-content {
+      background: #fff;
+      border-radius: 1.1rem;
+      padding: 2.4rem 2.2rem;
+      max-width: 410px;
+      width: 95vw;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      position: relative;
+    }
+    #demo-modal .close-btn {
+      position: absolute;
+      right: 17px;
+      top: 17px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    #demo-modal label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    #demo-modal input, #demo-modal textarea {
+      border-radius: 1rem;
+      border: 1px solid #dbeafe;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      margin-bottom: 1.2rem;
+      outline: none;
+      font-size: 1rem;
+    }
+    #demo-modal button[type="submit"] {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 1rem;
+      padding: 0.7rem 1.4rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.3rem;
+    }
+    #demo-modal button[type="submit"]:hover {
+      background: var(--primary);
+    }
+    @media (max-width: 500px) {
+      #ai-chat-assist, #demo-modal .demo-modal-content { max-width: 98vw; }
+    }
   </style>
 </head>
 <body>
@@ -280,10 +468,11 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
           <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-          <li class="nav-item"><a class="nav-link" href="about">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
         <a href="login" class="btn btn-accent ms-lg-3 mt-2 mt-lg-0">Login</a>
+        <button class="btn btn-outline-accent ms-lg-3 mt-2 mt-lg-0" style="border-radius:2rem; border:1.5px solid var(--accent); color:var(--primary);font-weight:600;" id="book-demo-btn">Book a Demo</button>
       </div>
     </div>
   </nav>
@@ -296,9 +485,10 @@
         <h2>Welcome to Rechain Global</h2>
         <p>
           Unleash the true power of seamless application integration.<br>
-          <b>Rechain Global</b> is your strategic partner, providing unparalleled API ratings and integrations for next-level growth. Globalize your workflow with the power of Silicon Valley, and turn powerful apps into your task management powerhouse.
+          <b>Rechain Global</b> is your strategic partner, providing unparalleled API ratings and integrations for next-level growth. Globalize your workflow with the power of Silicon Valley, and turn challenges into new opportunities.
         </p>
         <a href="#pricing" class="btn btn-accent btn-lg">Get Started</a>
+        <button class="btn btn-outline-accent ms-2" style="border-radius:2rem; border:1.5px solid var(--accent); color:var(--primary);font-weight:600;" id="book-demo-btn-hero">Book a Demo</button>
       </div>
       <div class="hero-image">
         <img src="images/rglobal.jpg" alt="API Integration">
@@ -337,32 +527,27 @@
       </div>
     </div>
   </div>
-<!-- Trusted By Section -->
-<div class="container my-5" id="trusted">
-  <div class="section-title">Businesses That Trust Us</div>
-  <div class="row justify-content-center align-items-center g-4">
-    <div class="col-6 col-md-2 text-center">
-      <img src="https://cdn.worldvectorlogo.com/logos/shell-energy.svg" alt="LG" style="max-width:90px;max-height:55px;">
-      
-    </div>
-    <div class="col-6 col-md-2 text-center">
-      <img src="https://www.svgrepo.com/show/303259/shell-logo.svg" alt="Shell Energy" style="max-width:65px;max-height:55px;">
-  
-    </div>
-    <div class="col-6 col-md-2 text-center">
-      <img src="https://climateasap.org/wp-content/uploads/2020/08/Daystar-Power-Energy-Solutions-fotter-logo.png" alt="Daystar Power" style="max-width:110px;max-height:55px;">
-     
-    </div>
-    <div class="col-6 col-md-2 text-center">
-      <img src="https://cdn.brandfetch.io/ecobank.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" alt="Ecobank" style="max-width:100px;max-height:55px;">
-     
-    </div>
-    <div class="col-6 col-md-2 text-center">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-7zePh92J1DT8ougbwXjatqr7IAHTnKulNQ&s" alt="Societe Nouvelle de la Brasserie" style="max-width:90px;max-height:55px;">
-      
+  <!-- Trusted By Section -->
+  <div class="container my-5" id="trusted">
+    <div class="section-title">Businesses That Trust Us</div>
+    <div class="row justify-content-center align-items-center g-4">
+      <div class="col-6 col-md-2 text-center">
+        <img src="https://cdn.worldvectorlogo.com/logos/shell-energy.svg" alt="LG" style="max-width:90px;max-height:55px;">
+      </div>
+      <div class="col-6 col-md-2 text-center">
+        <img src="https://www.svgrepo.com/show/303259/shell-logo.svg" alt="Shell Energy" style="max-width:65px;max-height:55px;">
+      </div>
+      <div class="col-6 col-md-2 text-center">
+        <img src="https://climateasap.org/wp-content/uploads/2020/08/Daystar-Power-Energy-Solutions-fotter-logo.png" alt="Daystar Power" style="max-width:110px;max-height:55px;">
+      </div>
+      <div class="col-6 col-md-2 text-center">
+        <img src="https://cdn.brandfetch.io/ecobank.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" alt="Ecobank" style="max-width:100px;max-height:55px;">
+      </div>
+      <div class="col-6 col-md-2 text-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-7zePh92J1DT8ougbwXjatqr7IAHTnKulNQ&s" alt="Societe Nouvelle de la Brasserie" style="max-width:90px;max-height:55px;">
+      </div>
     </div>
   </div>
-</div>
   <!-- Pricing Section -->
   <div class="container pricing-section" id="pricing">
     <div class="section-title">Simple, Flexible Pricing</div>
@@ -408,68 +593,6 @@
     <p class="text-center mt-3"><small>Integration fees apply only if you require more than three integrations per month.</small></p>
   </div>
 
-  <!-- About / Team Section 
-  
-
-X Underwriting work
-
-Access to Rechain Dashboard
-
-APIs suggestion
-
-All time updates
-
-X Unlimited access to all files
-
-× 24/7 support and assistance
-
-
-  Instant access to all our reports from news and reseach papers
-
-Underwriting work
-
-Access to Rechain Dashboard
-
-APIs suggestion
-
-All time updates
-
-X Unlimited access to all files
-
-× 24/7 support and assistance
-
-  Instant access to all our reports from news and reseach papers
-
-Underwriting work
-
-Access to Rechain Dashboard
-
-APIs suggestion
-
-All time updates
-
-Unlimited access to all files
-
-24/7 support and assistance
-  
-  <div class="container mb-5" id="about">
-    <div class="section-title">Meet The Visionary</div>
-    <div class="row align-items-center">
-      <div class="col-md-7">
-        <h5>Joel Hounakey, Founder & CEO</h5>
-        <ul>
-          <li>Built Magrotte, a social app with 1M+ users</li>
-          <li>Ran Awatech, employing dozens</li>
-          <li>Delivered sales solutions for LG, Shell</li>
-          <li>Alumnus of Founder Institute & Hive</li>
-        </ul>
-      </div>
-      <div class="col-md-5 text-center">
-        <img src="https://randomuser.me/api/portraits/men/" alt="Joel Hounakey" class="img-fluid rounded-circle shadow" style="max-width:170px;">
-      </div>
-    </div>
-  </div>
--->
   <!-- Footer -->
   <footer class="footer mt-auto">
     <div class="container">
@@ -493,6 +616,7 @@ Unlimited access to all files
             <li><a href="#contact">Contact</a></li>
             <li><a href="login">Sign In</a></li>
             <li><a href="login">Sign Up</a></li>
+            <li><a href="javascript:void(0)" id="footer-book-demo">Book a Demo</a></li>
           </ul>
         </div>
         <div class="col-md-2 mb-4 mb-md-0">
@@ -517,6 +641,134 @@ Unlimited access to all files
       </div>
     </div>
   </footer>
+
+  <!-- AI Chat Assistance Button -->
+  <button id="ai-chat-launch-btn" title="Chat with AI Assistant">
+    <i class="fa-solid fa-message"></i>
+  </button>
+  <!-- AI Chat Assistance Panel -->
+  <div id="ai-chat-assist">
+    <div id="ai-chat-header">
+      <span><i class="fa-solid fa-robot"></i> AI Assistant</span>
+      <button id="ai-chat-close"><i class="fa fa-times"></i></button>
+    </div>
+    <div id="ai-chat-body">
+      <div class="ai-chat-msg bot">
+        <div class="ai-chat-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div class="ai-chat-text">Hi! 👋 How can I help you today? Ask me anything about Rechain Global, API integrations, pricing, or book a demo!</div>
+      </div>
+    </div>
+    <form id="ai-chat-input-area" autocomplete="off">
+      <input type="text" id="ai-chat-input" placeholder="Type your question..." autocomplete="off" required>
+      <button type="submit" id="ai-chat-send"><i class="fa fa-paper-plane"></i></button>
+    </form>
+  </div>
+
+  <!-- Book a Demo Modal -->
+  <div id="demo-modal">
+    <div class="demo-modal-content">
+      <button class="close-btn" id="close-demo-modal">&times;</button>
+      <h4 class="mb-3" style="color:var(--primary);font-weight:700;">Book a Demo</h4>
+      <form id="book-demo-form">
+        <label for="demo-name">Name</label>
+        <input type="text" id="demo-name" name="name" required>
+        <label for="demo-email">Email</label>
+        <input type="email" id="demo-email" name="email" required>
+        <label for="demo-company">Company</label>
+        <input type="text" id="demo-company" name="company">
+        <label for="demo-message">Your Needs</label>
+        <textarea id="demo-message" name="message" rows="3" placeholder="Tell us what you want to achieve..."></textarea>
+        <button type="submit">Book My Demo</button>
+      </form>
+      <div id="demo-success" style="display:none; color:var(--accent); margin-top:1rem; font-weight:600; text-align:center;">Thank you! We'll reach out soon to schedule your demo.</div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Chat UI Logic
+    const chatBtn = document.getElementById('ai-chat-launch-btn');
+    const chatPanel = document.getElementById('ai-chat-assist');
+    const chatClose = document.getElementById('ai-chat-close');
+    chatBtn.onclick = () => { chatPanel.style.display = 'flex'; chatBtn.style.display = 'none'; };
+    chatClose.onclick = () => { chatPanel.style.display = 'none'; chatBtn.style.display = 'flex'; };
+    // Focus input when panel opens
+    chatPanel.addEventListener('transitionend', () => {
+      if (chatPanel.style.display === 'flex') document.getElementById('ai-chat-input').focus();
+    });
+    // Chat logic
+    const chatBody = document.getElementById('ai-chat-body');
+    const chatInput = document.getElementById('ai-chat-input');
+    const chatForm = document.getElementById('ai-chat-input-area');
+    chatForm.onsubmit = function(e) {
+      e.preventDefault();
+      let msg = chatInput.value.trim();
+      if (!msg) return;
+      // User message
+      chatBody.innerHTML += `
+        <div class="ai-chat-msg user">
+          <div class="ai-chat-avatar"><i class="fa fa-user"></i></div>
+          <div class="ai-chat-text">${escapeHtml(msg)}</div>
+        </div>
+      `;
+      chatInput.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+      // Simulated AI response
+      setTimeout(() => {
+        let response = getAIResponse(msg);
+        chatBody.innerHTML += `
+          <div class="ai-chat-msg bot">
+            <div class="ai-chat-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="ai-chat-text">${escapeHtml(response)}</div>
+          </div>
+        `;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 850);
+    };
+    function escapeHtml(text) {
+      return text.replace(/[&<>"]/g, function(c) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+      });
+    }
+    // Basic AI logic (simulate with keywords)
+    function getAIResponse(msg) {
+      msg = msg.toLowerCase();
+      if (msg.includes('pricing')) return "We offer three flexible plans, starting from $29.99/month. Scroll to our Pricing section for details or ask for specific plan features.";
+      if (msg.includes('api')) return "Our platform curates top APIs and enables seamless integrations. You get recommendations tailored to your business goals.";
+      if (msg.includes('integration')) return "Integration is our specialty! We help you connect your apps and automate workflows. Want a demo?";
+      if (msg.includes('demo')) return "Sure! Click 'Book a Demo' (top right or in footer) to schedule a personalized walkthrough.";
+      if (msg.includes('contact')) return "You can reach us via the Contact section or book a demo for a direct conversation.";
+      if (msg.includes('team')) return "Our team includes industry experts led by Joel Hounakey. Check out the Team section for more!";
+      if (msg.includes('support') || msg.includes('help')) return "Our support team is dedicated to your success. Ask here or email us for help.";
+      if (msg.includes('newsletter')) return "Subscribe to our newsletter at the bottom of the page to get trends and offers!";
+      if (msg.includes('hello') || msg.includes('hi')) return "Hello! How can I help you today?";
+      return "I'm here to help! Ask me about features, pricing, integrations, or anything else regarding Rechain Global.";
+    }
+
+    // Book a Demo Modal Logic
+    function showDemoModal() {
+      document.getElementById('demo-modal').style.display = 'flex';
+      document.getElementById('book-demo-form').style.display = 'block';
+      document.getElementById('demo-success').style.display = 'none';
+    }
+    function closeDemoModal() {
+      document.getElementById('demo-modal').style.display = 'none';
+    }
+    document.getElementById('book-demo-btn').onclick = showDemoModal;
+    document.getElementById('book-demo-btn-hero').onclick = showDemoModal;
+    document.getElementById('footer-book-demo').onclick = showDemoModal;
+    document.getElementById('close-demo-modal').onclick = closeDemoModal;
+    document.getElementById('demo-modal').onclick = function(e) {
+      if (e.target === this) closeDemoModal();
+    }
+
+    // Book Demo Form Submission (simulate)
+    document.getElementById('book-demo-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('book-demo-form').style.display = 'none';
+      document.getElementById('demo-success').style.display = 'block';
+      setTimeout(() => { closeDemoModal(); }, 3000);
+    };
+  </script>
 </body>
 </html>
