@@ -685,6 +685,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ...existing code above... -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Chat UI Logic
     const chatBtn = document.getElementById('ai-chat-launch-btn');
@@ -762,13 +764,48 @@
       if (e.target === this) closeDemoModal();
     }
 
-    // Book Demo Form Submission (simulate)
-    document.getElementById('book-demo-form').onsubmit = function(e) {
+    // Book Demo Form Submission (send email via Formspree)
+    document.getElementById('book-demo-form').onsubmit = async function(e) {
       e.preventDefault();
-      document.getElementById('book-demo-form').style.display = 'none';
-      document.getElementById('demo-success').style.display = 'block';
-      setTimeout(() => { closeDemoModal(); }, 3000);
+      // Gather form data
+      const name = document.getElementById('demo-name').value;
+      const email = document.getElementById('demo-email').value;
+      const company = document.getElementById('demo-company').value;
+      const message = document.getElementById('demo-message').value;
+
+      // Construct payload for Formspree (or similar service)
+      // NOTE: You must set up a Formspree endpoint for joel@rechainglobal.com to actually receive the emails.
+      // Replace below endpoint with your Formspree endpoint if you have one.
+      const endpoint = 'https://formspree.io/f/mqkrzvkb'; // Example endpoint, please replace with your actual
+
+      const payload = {
+        name,
+        email,
+        company,
+        message,
+        _replyto: email,
+        _subject: "Book a Demo Request from Rechain Global Website",
+      };
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          document.getElementById('book-demo-form').style.display = 'none';
+          document.getElementById('demo-success').style.display = 'block';
+          setTimeout(() => { closeDemoModal(); }, 3000);
+        } else {
+          alert('Sorry, there was a problem submitting your request. Please try again later or email joel@rechainglobal.com directly.');
+        }
+      } catch (err) {
+        alert('Network error. Please try again or email joel@rechainglobal.com directly.');
+      }
     };
   </script>
+<!-- ...existing code below... -->
 </body>
 </html>
