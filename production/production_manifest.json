@@ -1,0 +1,23 @@
+{
+  "name": "POS Machines",
+  "short_name": "POS",
+  "description": "Product listing for POS machines",
+  "start_url": "posmachines.html",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#1976d2",
+  "orientation": "portrait",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "images/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
