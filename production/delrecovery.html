@@ -1,0 +1,162 @@
+<!-- recoveryUploader.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recovery Zip Uploader</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container my-5">
+    <h2>Upload Recovery Zip File</h2>
+    <div id="notice" class="alert alert-info d-none"></div>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" name="file" class="form-control-file" required accept=".zip">
+      </div>
+      <button id="uploadGoogle" type="button" class="btn btn-success">Upload to Google Drive</button>
+      <button id="uploadGithub" type="button" class="btn btn-warning">Upload to GitHub</button>
+    </form>
+    <div id="result" class="mt-4"></div>
+  </div>
+  <script>
+    async function upload(type) {
+      let form = document.getElementById('uploadForm');
+      let data = new FormData(form);
+      let res = await fetch('/upload/' + type, { method: 'POST', body: data });
+      let out = await res.json();
+      let result = document.getElementById('result');
+      if(res.ok) {
+        result.innerHTML = type === 'google'
+          ? `<div class="alert alert-success">Uploaded to Google Drive: <a href="${out.link}" target="_blank">View File</a></div>`
+          : `<div class="alert alert-success">Uploaded to GitHub: <a href="${out.githubUrl}" target="_blank">View File</a></div>`;
+      } else {
+        result.innerHTML = `<div class="alert alert-danger">Error: ${out.error}</div>`;
+        if(out.needGoogleAuth) {
+          document.getElementById('notice').classList.remove('d-none');
+          document.getElementById('notice').innerHTML = `<a href="/auth/google" class="btn btn-sm btn-primary">Sign in with Google Drive</a>`;
+        }
+      }
+    }
+    document.getElementById('uploadGoogle').onclick = () => upload('google');
+    document.getElementById('uploadGithub').onclick = () => upload('github');
+  </script>
+  <script>
+    // Node.js embedded server code for single-file application
+    if (typeof require !== "undefined") {
+      const express = require('express');
+      const multer = require('multer');
+      const session = require('express-session');
+      const { google } = require('googleapis');
+      const { Octokit } = require('@octokit/rest');
+      const fs = require('fs');
+      const path = require('path');
+
+      // CONFIG: Set these values!
+      const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+      const GOOGLE_CLIENT_SECRET = 'YOUR_GOOGLE_CLIENT_SECRET';
+      const GOOGLE_REDIRECT_URI = 'http://localhost:3000/auth/google/callback';
+      const GITHUB_TOKEN = 'YOUR_GITHUB_PAT';
+      const GITHUB_REPO = 'Djovi/gentelella'; // owner/repo
+      const GITHUB_BRANCH = 'master';
+      const UPLOAD_PATH = 'production/';
+      const SESSION_SECRET = 'devsecret';
+
+      const PORT = 3000;
+      const app = express();
+      const upload = multer({ dest: 'uploads/' });
+
+      app.use(express.static(__dirname));
+      app.use(express.json());
+      app.use(session({
+        secret: SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false
+      }));
+
+      // Google OAuth2 setup
+      const oauth2Client = new google.auth.OAuth2(
+        GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI
+      );
+      function getGoogleAuthUrl() {
+        const scopes = [ 'https://www.googleapis.com/auth/drive.file' ];
+        return oauth2Client.generateAuthUrl({
+          access_type: 'offline',
+          scope: scopes
+        });
+      }
+
+      app.get('/auth/google', (req, res) => {
+        res.redirect(getGoogleAuthUrl());
+      });
+
+      app.get('/auth/google/callback', async (req, res) => {
+        const { code } = req.query;
+        try {
+          const { tokens } = await oauth2Client.getToken(code);
+          req.session.tokens = tokens;
+          res.redirect('/');
+        } catch (error) {
+          res.status(500).send('Google OAuth Error: ' + error.message);
+        }
+      });
+
+      app.post('/upload/google', upload.single('file'), async (req, res) => {
+        if (!req.session.tokens) {
+          return res.status(401).json({ error: 'Authenticate with Google Drive', needGoogleAuth: true });
+        }
+        oauth2Client.setCredentials(req.session.tokens);
+        const drive = google.drive({ version: 'v3', auth: oauth2Client });
+        const fileMetadata = { name: req.file.originalname };
+        const media = {
+          mimeType: req.file.mimetype,
+          body: fs.createReadStream(req.file.path)
+        };
+        try {
+          const file = await drive.files.create({
+            resource: fileMetadata,
+            media,
+            fields: 'id, webViewLink'
+          });
+          fs.unlinkSync(req.file.path); // clean up temp
+          res.json({ success: true, fileId: file.data.id, link: file.data.webViewLink });
+        } catch (err) {
+          res.status(500).json({ error: err.message });
+        }
+      });
+
+      app.post('/upload/github', upload.single('file'), async (req, res) => {
+        const octokit = new Octokit({ auth: GITHUB_TOKEN });
+        const [owner, repo] = GITHUB_REPO.split('/');
+        const branch = GITHUB_BRANCH;
+        const content = fs.readFileSync(req.file.path, 'base64');
+        const filePath = path.join(UPLOAD_PATH, req.file.originalname).replace(/\\/g, '/');
+        try {
+          // Get SHA if file exists
+          let sha = null;
+          try {
+            const { data } = await octokit.repos.getContent({ owner, repo, path: filePath, ref: branch });
+            sha = data.sha;
+          } catch (e) { /* File does not exist */ }
+          // Create or update file
+          await octokit.repos.createOrUpdateFileContents({
+            owner, repo,
+            path: filePath,
+            message: `Upload recovery zip: ${req.file.originalname}`,
+            content,
+            branch,
+            ...(sha ? { sha } : {})
+          });
+          fs.unlinkSync(req.file.path);
+          res.json({ success: true, githubUrl: `https://github.com/${owner}/${repo}/blob/${branch}/${filePath}` });
+        } catch (err) {
+          res.status(500).json({ error: err.message });
+        }
+      });
+
+      app.listen(PORT, () => console.log(`Recovery uploader running at http://localhost:${PORT}`));
+    }
+  </script>
+</body>
+</html>
