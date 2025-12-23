@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rechain | </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    
+    <style>
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1000;
+      }
+      .logo {
+        height: 50px;
+        margin: 10px;
+      }
+      .content {
+        margin-top: 60px;
+      }
+
+      /* Slack button styling */
+      .slack-btn {
+        background: linear-gradient(180deg,#4A154B,#3A0F3D);
+        color: #fff;
+        border: 1px solid #3a0f3d;
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+      }
+      .slack-btn .fa { font-size: 18px; }
+      .auth-row { margin-top: 10px; }
+      .popup-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+      }
+      .is-hidden { display: none !important; }
+    </style>
+  </head>
+
+  <body class="login">
+    <header>
+      <a href="https://www.rechainglobal.com">
+        <img src="images/rechain.jpg" alt="Your Company Logo" class="logo">
+      </a>
+    </header>
+
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form name="login-to-google-sheet">
+              <h1>Login</h1>
+              <div>
+                <input name="email" type="text" class="form-control" placeholder="Username/email" required="" />
+              </div>
+              <div>
+                <input name="password" type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <a class="reset_pass" href="#">Lost your password?</a>
+              <div class="auth-row">
+                <button type="submit" class="btn btn-default submit">Log in</button>
+                <!-- Slack Sign-in -->
+                <button type="button" id="slack-login-btn" class="btn slack-btn">
+                  <i class="fa fa-slack"></i> Sign in with Slack
+                </button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-globe"></i> Rechain Dashboard</h1>
+                  <p>©2025 All Rights Reserved. Rechain Global Trade & Business LLC. <a href="https://app.rechainglobal.com/production/privacy_policy">Privacy</a> and <a href="https://app.rechainglob[...]">Terms</a></p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form name="submit-to-google-sheet" >
+              <h1>Create Account</h1>
+              <div>
+                <input name="username" type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input name="email" type="email" class="form-control" placeholder="Email" required="" />
+                 <p class="js-success-message is-hidden">Success!</p>
+                 <p class="js-error-message is-hidden">User already Exists!</p>
+              </div>
+              <div>
+                <input name="password" type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div class="auth-row">
+                <button type="submit" class="btn btn-default submit">Submit</button>
+                <!-- Slack Signup -->
+                <button type="button" id="slack-signup-btn" class="btn slack-btn">
+                  <i class="fa fa-slack"></i> Create account with Slack
+                </button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-globe"></i> Rechain Dashboard</h1>
+                  <p>©2025 All Rights Reserved. Rechain Global Trade & Business LLC. <a href="https://app.rechainglobal.com/production/privacy_policy">Privacy</a> and <a href="https://app.rechainglob[...]">Terms</a></p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 Registration: Additional User Details -->
+    <div id="complete-registration" class="animate form registration_form" style="display:none;">
+      <section class="login_content">
+        <form name="complete-registration-form">
+          <h1>Complete Your Registration</h1>
+          <div>
+            <input name="job_title" type="text" class="form-control" placeholder="Job Title" required />
+          </div>
+          <div>
+            <input name="linkedin" type="url" class="form-control" placeholder="LinkedIn Profile Link" />
+          </div>
+          <div>
+            <input name="organisation" type="text" class="form-control" placeholder="Organisation" required />
+          </div>
+          <div>
+            <select name="company_size" class="form-control" required>
+              <option value="">Company Size</option>
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="201-500">201-500</option>
+              <option value="501-1000">501-1000</option>
+              <option value="1000+">1000+</option>
+            </select>
+          </div>
+          <div>
+            <input name="plus" type="text" class="form-control" placeholder="Plus (additional info)" />
+          </div>
+          <div>
+            <button type="submit" class="btn btn-default submit">Continue</button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Popup widget content -->
+    <div class="popup-widget" id="popup-widget">
+      <p>This website uses cookies and stores data in your browser's cache. Do you agree to this?</p>
+      <button onclick="agree()">Agree</button>
+      <button onclick="disagree()">Disagree</button>
+    </div>
+
+    <!-- Existing Google Apps Script integration (kept unchanged) -->
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzc4G2XKu1jYDGU8Dqe90uj3XQJ7_Za3n9pmTi4589RE_lyZfTykPWLzHJ3Yn43wRGm/exec'
+      const form = document.forms['submit-to-google-sheet']
+      const successMessage = document.querySelector('.js-success-message')
+      const errorMessage = document.querySelector('.js-error-message')
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error(`Error: ${response.statusText}`);
+            }
+          })
+          .then(data => showSuccessMessage(data))
+          .catch(error => showErrorMessage(error));
+      })
+      const form2 = document.forms['login-to-google-sheet']
+      form2.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form2)})
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error(`Error: ${response.statusText}`);
+            }
+          })
+          .then(data => showSuccessMessage(data))
+          .catch(error => showErrorMessage(error));
+      })
+
+      function showSuccessMessage (response) {
+        console.log('Success!', response);
+        setTimeout(() => {
+          successMessage.textContent = response.result || 'Success!';
+          successMessage.classList.remove('is-hidden')
+        }, 500)
+      }
+
+      function showErrorMessage (error) {
+        console.error('Error!', error.message || error);
+        setTimeout(() => {
+          errorMessage.textContent = error.message || error || 'There was an error';
+          errorMessage.classList.remove('is-hidden')
+        }, 500)
+      }
+
+      function agree() {
+        localStorage.setItem('agreedCookiesCache', true);
+        document.getElementById('popup-widget').style.display = 'none';
+      }
+
+      function disagree() {
+        window.location.href = "https://app.rechainglobal.com/cookie-policy.html";
+      }
+
+      window.onload = function() {
+        if (!localStorage.getItem('agreedCookiesCache')) {
+          document.getElementById('popup-widget').style.display = 'block';
+        }
+      };
+    </script>
+
+    <!-- Slack integration client-side glue -->
+    <script>
+      // Set this to your server endpoint that starts Slack OAuth (server should set state cookie and redirect to slack)
+      // Example: https://app.rechainglobal.com/auth/slack
+      const SLACK_AUTH_URL = 'https://app.rechainglobal.com/auth/slack';
+
+      // Optional: include a returnTo so server can redirect back to the page the user came from
+      function buildSlackUrl(mode) {
+        const params = new URLSearchParams();
+        params.set('mode', mode); // 'login' or 'signup'
+        // include returnTo if you want server to redirect back to this page after auth
+        const returnTo = window.location.pathname + window.location.search;
+        params.set('returnTo', returnTo);
+        return SLACK_AUTH_URL + '?' + params.toString();
+      }
+
+      document.getElementById('slack-login-btn').addEventListener('click', function () {
+        // start Slack OAuth for login
+        window.location.href = buildSlackUrl('login');
+      });
+
+      document.getElementById('slack-signup-btn').addEventListener('click', function () {
+        // start Slack OAuth for signup
+        window.location.href = buildSlackUrl('signup');
+      });
+
+      // If your server redirects back to this page with status params, you can optionally parse them and act.
+      // Example: ?slack=success&mode=signup
+      (function handleSlackRedirectFeedback() {
+        const qs = new URLSearchParams(window.location.search);
+        const slackStatus = qs.get('slack'); // success / error
+        const slackMode = qs.get('mode'); // login / signup
+        if (slackStatus) {
+          if (slackStatus === 'success') {
+            // server likely set a session and redirected here — redirect to dashboard or show message
+            // if server returned a target, redirect there
+            const target = qs.get('target') || '/production/iboard.html';
+            window.location.href = target;
+          } else if (slackStatus === 'error') {
+            const msg = qs.get('msg') || 'Slack authentication failed.';
+            // show error using your existing error UI
+            const el = document.querySelector('.js-error-message') || document.createElement('p');
+            el.classList.remove('is-hidden');
+            el.textContent = msg;
+            if (!document.querySelector('.js-error-message')) {
+              document.querySelector('#register form')?.appendChild(el);
+            }
+          }
+        }
+      })();
+    </script>
+
+    <script src="https://unpkg.com/prefixfree@1.0.0/prefixfree.min.js"></script>
+    <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+    <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+    <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+  </body>
+</html>
