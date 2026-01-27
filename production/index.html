@@ -569,25 +569,79 @@
       </div>
     </div>
   </div>
-  <div class="container my-5" id="testimonials"> <div class="section-title">What Our Clients Say</div> <div class="testimonials-section"> <div class="testimonial-cards"> <div class="testimonial-card"> <div class="testimonial-avatar"><img src="https://i.pravatar.cc/150?img=47" alt="Amina"></div> <div> <div class="testimonial-quote">"Rechain transformed our integrations — the speed and clarity are unmatched. Our team saved weeks of development time."</div> <div class="testimonial-name">Amina K.</div> <div class="testimonial-title">CTO, FinCraft</div> </div> </div>
-
-  <div class="testimonial-card">
-    <div class="testimonial-avatar"><img src="https://i.pravatar.cc/150?img=12" alt="Michael"></div>
-    <div>
-      <div class="testimonial-quote">"Their API recommendations were spot on. We increased automation and reduced operational costs within the first month."</div>
-      <div class="testimonial-name">Michael D.</div>
-      <div class="testimonial-title">VP Product, MediaWorks</div>
+  <div class="container my-5" id="testimonials"> <div class="section-title">What Our Clients Say</div> <div class="testimonials-section"> <div id="testimonialsCarousel" class="carousel slide testimonials-carousel" data-bs-ride="carousel" data-bs-interval="5500"> <div class="carousel-inner">
+Code
+    <div class="carousel-item active">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=47" alt="Amina K">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Rechain transformed our integrations — the speed and clarity are unmatched. Our team saved weeks of development time and reduced friction across teams.</p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Amina K.</div>
+              <div class="testimonial-title">CTO, FinCraft</div>
+            </div>
+            <div class="testimonial-stars ms-auto">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="carousel-item">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=12" alt="Michael D">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Their API recommendations were spot on. We increased automation and reduced operational costs within the first month — excellent ROI.</p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Michael D.</div>
+              <div class="testimonial-title">VP Product, MediaWorks</div>
+            </div>
+            <div class="testimonial-stars ms-auto">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=5" alt="Sofia L">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Professional, fast, and reliable. The Rechain team guided us through integrations and helped scale our platform globally.</p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Sofia L.</div>
+              <div class="testimonial-title">Head of Ops, GreenMart</div>
+            </div>
+            <div class="testimonial-stars ms-auto">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="testimonial-card">
-    <div class="testimonial-avatar"><img src="https://i.pravatar.cc/150?img=5" alt="Sofia"></div>
-    <div>
-      <div class="testimonial-quote">"Professional, fast, and reliable. The Rechain team guided us through integrations and helped scale our platform globally."</div>
-      <div class="testimonial-name">Sofia L.</div>
-      <div class="testimonial-title">Head of Ops, GreenMart</div>
-    </div>
-  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true" style="filter:invert(20%) sepia(80%) saturate(200%) hue-rotate(210deg);"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true" style="filter:invert(20%) sepia(80%) saturate(200%) hue-rotate(210deg);"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
 </div>
 </div> </div>
   <!-- Pricing Section -->
