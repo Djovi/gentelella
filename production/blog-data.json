@@ -1,0 +1,23 @@
+[  
+    {  
+        "title": "Understanding the Basics of JSON",  
+        "author": "John Doe",  
+        "date": "2026-02-01",  
+        "content": "In this article, we explore the basics of JSON and how it is used to transmit data in web applications.",  
+        "tags": ["JSON", "Data", "Web Development"]  
+    },  
+    {  
+        "title": "A Guide to Building RESTful APIs",  
+        "author": "Jane Smith",  
+        "date": "2026-02-05",  
+        "content": "This article provides a comprehensive guide on how to build RESTful APIs using different technologies.",  
+        "tags": ["API", "REST", "Web Development"]  
+    },  
+    {  
+        "title": "Exploring the Latest in JavaScript",  
+        "author": "Alice Johnson",  
+        "date": "2026-02-07",  
+        "content": "In this article, we discuss the latest features in JavaScript and how they impact modern web development.",  
+        "tags": ["JavaScript", "Web Development", "Frontend"]  
+    }  
+]
