@@ -1386,7 +1386,7 @@
                 }
 
                 // Currency handling (replace zparams with a default/fallback if not present)
-                let origin = (typeof zparams !== 'undefined' && zparams.get) ? zparams.get('origin') : null;
+                let origin = product.offers.priceCurrency;
                 if (origin === "usd") {
                     link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
                     priceDiv.textContent = '$' + ((parsedPrice * 1.30)).toFixed(2);
