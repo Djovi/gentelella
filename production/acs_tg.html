@@ -1391,7 +1391,7 @@
                     link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}&description=${encodeURIComponent(String(product.description || '')) }`;
                     priceDiv.textContent = '$' + ((parsedPrice * 1.30)).toFixed(2);
                 } else {
-                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.30)*0.000736).toFixed(2))}&image_url=${encodeURIComponent(product.image)}&description=${encodeURIComponent(String(product.description || '')}`;
+                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.30)*0.000736).toFixed(2))}&image_url=${encodeURIComponent(product.image)}&description=${encodeURIComponent(String(product.description || '')) }`;
                     priceDiv.textContent = '$' + ((parsedPrice * 1.30)*0.000736).toFixed(2);
                 }
 
