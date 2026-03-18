@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AC - Climatiseurs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    <!-- iOS support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="POS Machines">
+    <link rel="apple-touch-icon" href="images/pwa-192.png">
+    <meta name="theme-color" content="#1976d2">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            height: 50px;
+            margin: 10px;
+        }
+        .content { margin-top: 80px; }
+        h1 { text-align: center; margin-top: 90px; }
+        .product-listing {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 16px;
+            border-radius: 8px;
+            width: 220px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        }
+        .product-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .product-item .name {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 10px 0 6px 0;
+            color: #222;
+        }
+        .product-item .price {
+            color: #e53935;
+            font-size: 16px;
+            margin: 4px 0 10px 0;
+        }
+        .product-item .link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.18s;
+        }
+        .product-item .link:hover { background: #024284; }
+        @media (max-width: 700px) {
+            .product-listing { flex-direction: column; align-items: center; }
+            .product-item { width: 90%; }
+        }
+        .delivery-label {
+            margin: 8px 0;
+            font-size: 13px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        .site-footer {
+            background: #f5f5f5;
+            color: #444;
+            text-align: center;
+            padding: 25px 10px 10px 10px;
+            margin-top: 40px;
+            font-size: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .site-footer .footer-links {
+            margin-bottom: 8px;
+        }
+        .site-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+        .site-footer span {
+            color: #aaa;
+            margin: 0 4px;
+        }
+        /* PWA install banner style */
+        #installBanner {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #1976d2;
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            z-index: 2000;
+        }
+        #installBanner button {
+            background: #fff;
+            color: #1976d2;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin-left: 12px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://www.rechainglobal.com">
+            <img src="images/rechain.jpg" alt="RG" class="logo">
+        </a>
+    </header>
+    <h1> Liste des produits </h1>
+    <div class="content">
+        <div id="productContainer" class="product-listing"></div>
+    </div>
+    <div id="installBanner">
+        Install this app for a faster experience!
+        <button id="installBtn">Install</button>
+    </div>
+    <script>
+        // Static product data (TWO ITEMS)
+        const staticProductData = [
+            // ... (Product data unchanged, paste from previous source)
+            // [--- SNIP: The full staticProductData array from the original source ---]
+            // For brevity, keep this unchanged.
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "CHiQ Réfrigérateur Congélateur 107 L",
+  "image": "https://m.media-amazon.com/images/I/51eMG1-YcaL._AC_UF1000,1000_QL80_FMwebp_.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "CHiQ"
+  },
+  "sku": "CTT107BD",
+  "mpn": "CTT107BD",
+  "description": "Réfrigérateur congélateur une porte 107 L (94 L réfrigération + 13 L congélation). Classe énergétique D (0,296 kWh/24h), ultra-silencieux 39 dB, 7 niveaux de température (-24°C à +8°C), contrôle de l'humidité, porte réversible 180°, finition acier noir mat. Dimensions : 549 x 556 x 845 mm. Garantie 12 ans compresseur.",
+  "category": "Électroménager > Réfrigération > Réfrigérateurs congélateurs",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.amazon.fr/CHIQ-Réfrigérateur-107-hauteur-encombrement/dp/B0CP977PWP",
+    "price": 89.99,
+    "priceCurrency": "EUR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": 89.99,
+      "priceCurrency": "EUR"
+    },
+    "seller": {
+      "@type": "Organization",
+      "name": "Amazon.fr"
+    },
+    "availability": "https://schema.org/InStock"
+  },
+  "url": "https://www.amazon.fr/CHIQ-Réfrigérateur-107-hauteur-encombrement/dp/B0CP977PWP",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4.3,
+    "reviewCount": null,
+    "bestRating": 5
+  }
+}, 
+
+
+
+    {
+    "@type": "Product",
+    "name": "LG LRFXS2503S 25 Cu. Ft. Smart French Door Refrigerator",
+    "image": "https://m.media-amazon.com/images/I/41kGBR8O6bL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "offers": {
+      "type": "Offer",
+      "price": 699.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1799.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRFXS2503S",
+    "url": "https://www.amazon.com/LG-LRFXS2503S-Stainless-French-Refrigerator/dp/B09VNWVR2F",
+    "availability": "InStock",
+    "description": "33-inch wide, 24.5 cu. ft. Smart Wi-Fi enabled French door refrigerator with external tall ice and water dispenser, Door Cooling+, Slim SpacePlus Ice System, and PrintProof Stainless Steel finish.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRMVS3006S 30 Cu. Ft. InstaView Door-in-Door Refrigerator with Craft Ice",
+    "image": "https://m.media-amazon.com/images/I/61oHP6MxXIL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "offers": {
+      "type": "Offer",
+      "price": 1099.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 3299.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRMVS3006S",
+    "url": "https://www.amazon.com/LG-LRMVS3006S-Smart-Door-Refrigerator/dp/B08XJXMCV3",
+    "availability": "InStock",
+    "description": "36-inch, 4-door French Door refrigerator with 30 cu. ft. capacity, InstaView knock-twice glass panel, Craft Ice round ball maker, ThinQ app compatibility, and Full-Convert Drawer.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRDCS2603S 25.5 Cu. Ft. Bottom Freezer Refrigerator",
+    "image": "https://m.media-amazon.com/images/I/31yh-y3gETS._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "offers": {
+      "type": "Offer",
+      "price": 499.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1399.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRDCS2603S",
+    "url": "https://www.amazon.com/LG-LRDCS2603S-Stainless-Freezer-Refrigerator/dp/B08PMJSHCX",
+    "availability": "InStock",
+    "description": "33-inch wide bottom mount freezer refrigerator with 25.5 cu. ft. capacity, Door Cooling+, Multi-AirFlow system, spill-proof tempered glass shelves, and ENERGY STAR certified.",
+    "category": "Appliances: Refrigerators: Bottom Freezer"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LROFC0605V 5.8 Cu. Ft. Upright Single Door Freezer",
+    "image": "https://m.media-amazon.com/images/I/41G0VU5fKSL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock#",
+    "offers": {
+      "type": "Offer",
+      "price": 169.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 549.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LROFC0605V",
+    "url": "https://www.amazon.com/LG-LROFC0605V-Stainless-Single-Freezer/dp/B0B28KZZDD",
+    "availability": "InStock",
+    "description": "21-inch compact upright freezer with 5.8 cu. ft. capacity, direct cooling system, tempered glass shelves, manual defrost, and curved pocket handle in Platinum Silver.",
+    "category": "Appliances: Freezers: Upright Freezers"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LTCS24223S 33-inch Top-Freezer Refrigerator Stainless Steel",
+    "image": "https://m.media-amazon.com/images/I/71nfoI3HB2L._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "offers": {
+      "type": "Offer",
+      "price": 179.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 849.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LTCS24223S",
+    "url": "https://www.amazon.com/LG-LTCS24223S-Traditional-Refrigerator-Stainless/dp/B00O9PRSNO",
+    "availability": "InStock",
+    "description": "33-inch top freezer refrigerator with 24 cu. ft. total capacity, multi-air flow system, LED lighting, humidity-controlled crispers, and ENERGY STAR certification.",
+    "category": "Appliances: Refrigerators: Top Freezer"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LSXS26366S 26 Cu. Ft. Side-by-Side Door-in-Door Refrigerator",
+    "image": "https://i.ebayimg.com/images/g/4hkAAeSwMcVpp4ZZ/s-l1200.webp",
+    "offers": {
+      "type": "Offer",
+      "price": 599.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1699.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LSXS26366S",
+    "url": "https://www.ebay.com/b/LG-Refrigerators/20713/bn_1644289",
+    "availability": "InStock",
+    "description": "36-inch side-by-side refrigerator with Door-in-Door access, ColdSaver panel, linear compressor, ice and water dispenser, and adjustable glass shelving with humidity crisper drawers.",
+    "category": "Appliances: Refrigerators: Side-by-Side"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRMVS3006S Open Box 30 Cu. Ft. InstaView French Door (eBay)",
+    "image": "https://m.media-amazon.com/images/I/71cJiMjGjRL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 720.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 2200.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRMVS3006S-OB",
+    "url": "https://www.ebay.com/itm/176782511933",
+    "availability": "InStock",
+    "description": "Open Box LG 30 cu. ft. InstaView Door-in-Door French Door refrigerator with Craft Ice Maker, MSRP $4,599. Sold via eBay with free inspection. Best Offer accepted.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRFDS3006S 30 Cu. Ft. French Door Refrigerator with Craft Ice",
+    "image": "https://m.media-amazon.com/images/I/713DWnC4lEL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 899.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification", 
+"price": 2799.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRFDS3006S",
+    "url": "https://www.ebay.com/b/LG-Bottom-Freezer-Refrigerators/20713/bn_3238760",
+    "availability": "InStock",
+    "description": "36-inch 3-door French door bottom freezer refrigerator with 30 cu. ft. capacity, Craft Ice slow-melting round balls, ThinQ smart Wi-Fi, and PrintProof Stainless Steel.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRYKC2606S 26 Cu. Ft. Smart French Door Refrigerator Counter Depth",
+    "image": "https://m.media-amazon.com/images/I/61VvB2h4e5L._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 899.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 2499.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRYKC2606S",
+    "url": "https://www.amazon.com/s?k=LG+LRYKC2606S",
+    "availability": "InStock",
+    "description": "Counter-depth 3-door French door refrigerator with 26 cu. ft. usable capacity, InstaView glass panel, Craft Ice maker, Door Cooling+, and ThinQ app smart home integration.",
+    "category": "Appliances: Refrigerators: Counter-Depth French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRSXC2306S 23 Cu. Ft. Side-by-Side Refrigerator with Smooth Touch Dispenser",
+    "image": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/0722f472-1baa-44b5-ad0f-0eae9431b1c1/Refrigerator_LRSXC2306S_gallery_01_5000x5000?io=transform:fill,width:1200",
+    "offers": {
+      "type": "Offer",
+      "price": 499.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1299.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRSXC2306S",
+    "url": "https://www.amazon.com/s?k=LG+LRSXC2306S",
+    "availability": "InStock",
+    "description": "33-inch side-by-side refrigerator with 23 cu. ft. capacity, smooth touch dispenser, Door Cooling+, multi-air flow, humidity-controlled crispers, and ENERGY STAR certification.",
+    "category": "Appliances: Refrigerators: Side-by-Side"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRONC0625V 6 Cu. Ft. Single Door Refrigerator Platinum Silver",
+    "image": "https://i.ebayimg.com/images/g/wtUAAeSwHGNpmo6p/s-l1200.webp",
+    "offers": {
+      "type": "Offer",
+      "price": 179.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 479.99
+      }
+    },
+    "brand": "LG",
+    "sku": "LRONC0625V",
+    "url": "https://www.ebay.com/b/LG-Refrigerators-With-Frost-Free-Auto-Defrost/20713/bn_72826336",
+    "availability": "InStock",
+    "description": "Compact 6 cu. ft. single door refrigerator with direct cooling system, tempered glass shelves, platinum silver finish, and small-footprint design ideal for offices and secondary spaces.",
+    "category": "Appliances: Refrigerators: Compact & Mini Fridges"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRFVS3006S 30 Cu. Ft. InstaView Door-in-Door Refrigerator Black Stainless",
+    "image": "https://m.media-amazon.com/images/I/71VXl0gKkuL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 1099.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 3099.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRFVS3006D",
+    "url": "https://www.ebay.com/b/LG-Stainless-Steel-Refrigerators/20713/bn_17375149",
+    "availability": "InStock",
+    "description": "36-inch 4-door French door refrigerator in PrintProof Black Stainless with 30 cu. ft., InstaView, Door-in-Door, Craft Ice, and smart ThinQ Wi-Fi connectivity.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+{
+    "@type": "Product",
+    "name": "LG LTCS20020S 20 Cu. Ft. Top Freezer Refrigerator",
+    "image": "https://m.media-amazon.com/images/I/61fygEnwEDL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 299.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 699.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LTCS20020S",
+    "url": "https://www.amazon.com/s?k=LG+LTCS20020S",
+    "availability": "InStock",
+    "description": "30-inch top freezer refrigerator with 20 cu. ft. capacity, multi-flow air system, LED interior lighting, flat-door design, and fingerprint-resistant stainless steel.",
+    "category": "Appliances: Refrigerators: Top Freezer"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRTNC0915V 8.5 Cu. Ft. Top Freezer Refrigerator Platinum Silver",
+    "image": "https://m.media-amazon.com/images/I/61e3U+MoEaL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 209.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 599.99
+      }
+    },
+    "brand": "LG",
+    "sku": "LRTNC0915V",
+    "url": "https://www.ebay.com/b/LG-Refrigerators/20713/bn_1644289",
+    "availability": "InStock",
+    "description": "Compact top freezer refrigerator with 8.5 cu. ft. capacity, direct cooling, adjustable glass shelves, crisper drawer, and platinum silver finish for small kitchens and apartments.",
+    "category": "Appliances: Refrigerators: Top Freezer"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRMVC2306S 22.5 Cu. Ft. Counter-Depth French Door Refrigerator",
+    "image": "https://m.media-amazon.com/images/I/71BKb+X2k5L._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 709.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 2199.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRMVC2306S",
+    "url": "https://www.amazon.com/s?k=LG+LRMVC2306S",
+    "availability": "InStock",
+    "description": "36-inch counter-depth 3-door French door refrigerator with 22.5 cu. ft. usable capacity, InstaView panel, Craft Ice maker, and ThinQ smart app compatibility.",
+    "category": "Appliances: Refrigerators: Counter-Depth French Door"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LSXS26386S 26.1 Cu. Ft. Side-by-Side Refrigerator Black Stainless",
+    "image": "https://m.media-amazon.com/images/I/71R0bBMZ1fL._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 539.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1549.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LSXS26386S",
+    "url": "https://www.ebay.com/b/LG-Stainless-Steel-Refrigerators/20713/bn_17375149",
+    "availability": "InStock",
+    "description": "36-inch side-by-side refrigerator in PrintProof Black Stainless with 26.1 cu. ft., Door-in-Door, SpacePlus Ice System, water/ice dispenser, and humidity crispers.",
+    "category": "Appliances: Refrigerators: Side-by-Side"
+  },
+  {
+    "@type": "Product",
+    "name": "LG LRFOS2503V 25 Cu. Ft. French Door Bottom Freezer Refrigerator Platinum Silver",
+    "image": "https://m.media-amazon.com/images/I/71a7J6pOO3L._AC_SL1500_.jpg",
+    "offers": {
+      "type": "Offer",
+      "price": 504.30,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1504.30
+      }
+    },
+    "brand": "LG",
+    "sku": "LRFOS2503V",
+    "url": "https://www.ebay.com/b/LG-Bottom-Freezer-Refrigerators/20713/bn_3238760",
+    "availability": "InStock",
+    "description": "33-inch 3-door French door refrigerator in Platinum Silver with 25 cu. ft., bottom freezer drawer, multi-air flow, Door Cooling+, spill-proof glass shelves, and ENERGY STAR certification.",
+    "category": "Appliances: Refrigerators: French Door Bottom Freezer"
+  }, 
+{
+    "@type": "Product",
+    "name": "Digital IP67 Mushroom Farm Growing CO2 Controller Sensor",
+    "image": "https://sc04.alicdn.com/kf/H86f6edd311b044a6ad8b39e9f89b4896o.jpg",
+    "offers": {
+        "type": "Offer",
+        "price": 40.00,
+        "priceCurrency": "USD",
+        "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": 45.00
+        }
+    },
+    "brand": "Generic",
+    "url": "https://www.alibaba.com/product-detail/Digital-IP67-Mushroom-Farm-Growing-CO2_1601238600300.html",
+    "category": "Agriculture & Food: Farm Equipment: CO2 Controllers & Sensors"
+}, 
+            // ... [Add all other product items here as in original file]
+            // [--- SNIP: End ---]
+        ];
+
+        function renderProducts(products) {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = ""; // Clear previous content
+
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                img.alt = product.name;
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = product.name;
+
+                const priceDiv = document.createElement('div');
+                priceDiv.className = 'price';
+                priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
+                const today = new Date();
+                const minDeliveryDate = new Date(today);
+                minDeliveryDate.setDate(today.getDate() + 3);
+                const maxDeliveryDate = new Date(today);
+                maxDeliveryDate.setDate(today.getDate() + 11);
+
+                function formatDate(date) {
+                    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+                }
+                const deliveryDiv = document.createElement('div');
+                deliveryDiv.className = 'delivery-label';
+                deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
+
+                const link = document.createElement('a');
+                link.href = product.offers && product.offers.url ? product.offers.url : "#";
+                link.textContent = "View Product";
+                link.target = "_blank";
+                link.className = "link";
+                // Price parsing and fallback handling
+                let parsedPrice = 25; // default fallback
+                try {
+                    let priceStr = product.offers.price ? product.offers.price.toString().replace(/[$₦]/g, '').trim() : '';
+                    parsedPrice = parseFloat(priceStr);
+                    if (isNaN(parsedPrice)) {
+                        parsedPrice = 25;
+                        throw new Error('Price is not a valid number');
+                    }
+                } catch (error) {
+                    console.error(`Failed to parse price for product ${product.name}:`, error);
+                }
+
+                // Currency handling (replace zparams with a default/fallback if not present)
+                let origin = (typeof zparams !== 'undefined' && zparams.get) ? zparams.get('origin') : null;
+                if (origin === "usd") {
+                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
+                    priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2);
+                } else {
+                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}`;
+                    priceDiv.textContent = '$' + ((parsedPrice * 1) + (parsedPrice * 10 * 0.30)).toFixed(2);
+                }
+
+                img.onerror = () => {
+                    img.src = "images/fallback.jpg";
+                    console.error(`Failed to load image: ${product.image}`);
+                };
+
+                productItem.appendChild(img);
+                productItem.appendChild(nameDiv);
+                productItem.appendChild(priceDiv);
+                productItem.appendChild(deliveryDiv);
+                productItem.appendChild(link);
+
+                container.appendChild(productItem);
+            });
+        }
+
+        renderProducts(staticProductData);
+
+        // PWA: Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(function(registration) {
+                    // Registration successful
+                    console.log('ServiceWorker registered with scope:', registration.scope);
+                }, function(err) {
+                    // Registration failed
+                    console.log('ServiceWorker registration failed:', err);
+                });
+            });
+        }
+
+        // PWA: Install Banner
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            installBanner.style.display = 'none';
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBanner.style.display = 'none';
+        });
+    </script>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="payment_policy.html" target="_blank">Terms of Service</a>
+            <span>|</span>
+            <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
+            <span>|</span>
+            <a href="mailto:support@rechainglobal.com">Contact Us</a>
+            <span>|</span>
+            <span>2810 N Church St, Wilmington, DE 19802, United States</span>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 Rechain Global Trade&Business LLC. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
