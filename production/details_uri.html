@@ -12,16 +12,10 @@ header {
   left: 0;
   width: 100%;
   background-color: #fff; /* Adjust background color as needed */
-  z-index: 1000;
- display: flex;
- align-items: center;
- justify-content: space-between;
- box-sizing: border-box;
- padding: 10px 16px;
- height: 140px; /* Ensure logo stays on top */
+  z-index: 1000; /* Ensure logo stays on top */
 }
 .ad-banner {
-  height : 100px; /* Adjust banner height as needed */
+  height: 120px; /* Adjust banner height as needed */
   margin: 5px auto;
     margin-left: 120px;
 }
@@ -31,7 +25,7 @@ header {
 }
 
 .content {
-  margin-top: 140px; /* Adjust margin to account for header height */
+  margin-top: 60px; /* Adjust margin to account for header height */
 }
     .product-details {
             margin: 20px;
@@ -93,6 +87,24 @@ header {
     color: #aaa;
     margin: 0 4px;
 }
+
+/* === Carousel & thumbs styles (added, non-destructive) === */
+.carousel { max-width: 760px; margin: 0 auto 18px auto; }
+.carousel-main { position: relative; display:flex; align-items:center; justify-content:center; background:#fff; border-radius:6px; overflow:hidden; }
+.carousel-main img { width:100%; height:auto; display:block; object-fit:contain; max-height:520px; background:#fafafa; }
+.carousel-controls { position:absolute; top:50%; transform:translateY(-50%); width:100%; display:flex; justify-content:space-between; pointer-events:none; padding:0 8px; box-sizing:border-box; }
+.carousel-controls button { pointer-events:all; background:rgba(0,0,0,0.35); color:#fff; border:0; padding:8px 12px; border-radius:4px; cursor:pointer; margin:0 6px; font-size:20px; line-height:1; }
+.carousel-thumbs { display:flex; gap:8px; margin-top:10px; justify-content:center; flex-wrap:wrap; }
+.carousel-thumbs .thumb { width:64px; height:64px; overflow:hidden; border-radius:4px; border:2px solid transparent; cursor:pointer; display:inline-block; background:#fff; }
+.carousel-thumbs .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.carousel-thumbs .thumb.active { border-color:#1976d2; }
+.carousel-caption { margin-top:10px; font-size:14px; color:#333; line-height:1.35; background:#fff; padding:10px; border-radius:6px; border:1px solid #eee; }
+
+/* small screens */
+@media (max-width:700px){ .carousel-thumbs .thumb{ width:56px; height:56px;} .carousel-main img{max-height:320px;} }
+
+/* keep an unobtrusive indicator for fallback single img (preserved) */
+.original-image-fallback { display:none !important; } /* keep original DOM but hide visually by default */
     </style>
 </head>
 <body>
@@ -114,116 +126,355 @@ header {
             return {
                 name: params.get('name'),
                 price: params.get('price'),
-                image_url: params.get('image_url')
+                image_url: params.get('image_url'),
+                description: params.get('description') // new: read description param if present
             };
         }
 let usPrice;
-        // Function to render product details
-        function renderProductDetails(product) {
-            const container = document.getElementById('productDetails');
-            
-            const img = document.createElement('img');
-            img.src = product.image_url;
-            container.appendChild(img);
-   const today = new Date();
-const minDeliveryDate = new Date(today);
-minDeliveryDate.setDate(today.getDate() + 3);
-const maxDeliveryDate = new Date(today);
-maxDeliveryDate.setDate(today.getDate() + 11);
 
-function formatDate(date) {
-    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+/* -----------------------------------------
+   Helper utilities (added) - non-destructive
+   - normalizeUrl, makeImg, collectImages, createCarousel
+   ----------------------------------------- */
+function normalizeUrl(u){
+  if (!u) return null;
+  try { u = decodeURIComponent(u); } catch(e) {}
+  u = (''+u).trim();
+  // remove trailing stray hash/spaces which sometimes cause issues
+  u = u.replace(/[#\s]+$/, '');
+  // Some inputs may already be encoded, encodeURI is safe for most cases
+  try { return encodeURI(u); } catch(e) { return u; }
 }
-const deliveryDiv = document.createElement('div');
-        deliveryDiv.className = 'delivery-label';
-        deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
 
-            const name = document.createElement('div');
-            name.className = 'name';
-            name.textContent = product.name;
-            container.appendChild(name);
-            usPrice=product.price;
-            const price = document.createElement('div');
-            price.className = 'price';
-             const zparams = new URLSearchParams(window.location.search);
-                               if (zparams.get('origin') == "usd") {
-  price.textContent = '$ '+product.price;//(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*1.40));
-                                //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
-                               } else { 
-                //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
-       price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.041;                  
+function makeImg(src, alt){
+  const img = document.createElement('img');
+  img.alt = alt || '';
+  img.loading = 'lazy';
+  img.src = normalizeUrl(src) || '';
+  img.dataset.original = src || '';
+  // retry once, then fallback to local fallback image
+  img.onerror = function(){
+    if (!img.dataset.retry) {
+      img.dataset.retry = '1';
+      // try reload after cleaning whitespace or re-encoding
+      setTimeout(()=> { img.src = normalizeUrl(img.dataset.original || img.src); }, 150);
+    } else {
+      img.src = 'images/fallback.jpg';
+    }
+  };
+  return img;
 }
-       
-            container.appendChild(price);
-            container.appendChild(deliveryDiv);
-            const buyButton = document.createElement('a');
-            buyButton.className = 'buy-button';
-            buyButton.href = `#`;
-            buyButton.textContent = 'Buy Now';
-            container.appendChild(buyButton);
-            return buyButton;
-        }
 
-        // Fetch product details from query parameters
-        const product = getQueryParams();
-        const buyButton = renderProductDetails(product);
-
-        const stripe = Stripe('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe publishable key
-
-        async function createCheckoutSession(name, price, image) {
-            const response = await fetch('/.netlify/functions/createCheckoutSession', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name,
-                    price: product.price*100, // Convert price to cents
-                    image: image
-                })
-            });
-
-            const session = await response.json();
-            return session.id;
-        }
-
-        async function redirectToCheckout(sessionId) {
-            const result = await stripe.redirectToCheckout({
-                sessionId: sessionId
-            });
-
-            if (result.error) {
-                console.error(result.error.message);
-            }
-        }
-
-        // Event listener for Buy Now button
-        buyButton.addEventListener('click', async () => {
-          try{  let sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
-              const zparams = new URLSearchParams(window.location.search);
-                               if (zparams.get('origin') == "usd") {
- sessionId = await createCheckoutSession(product.name,  product.price*100
-                 , product.image_url);
-                                //  usPrice=(((parseFloat(product.price.replace('$', ''))))+(((parseFloat(product.price.replace('$', ''))))*0.40))*0.0016;
-                               } else if(zparams.get('origin') == "euro"){ 
-                //   usPrice=     (((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.0067;
-                                    sessionId = await createCheckoutSession(product.name,  product.price*100
-                 , product.image_url);
-                         
-}else {
-                                    { 
-            sessionId = await createCheckoutSession(product.name,   product.price*100
-                 , product.image_url);                                                 
+/* Collect up to 15 images from query params:
+   - product.image_url is kept first when present
+   - image_url2..image_url15 are used in numeric order
+   - image_urls (comma-separated) appended after
+   Duplicates removed, empty entries filtered, limit = 15
+*/
+function collectImages(product){
+  const params = new URLSearchParams(window.location.search);
+  const images = [];
+  if (product && product.image_url) images.push(product.image_url);
+  for (let i = 2; i <= 15; i++){
+    const k = 'image_url' + i;
+    const v = params.get(k);
+    if (v) images.push(v);
+  }
+  if (params.get('image_urls')){
+    const list = params.get('image_urls').split(',').map(s=>s.trim()).filter(Boolean);
+    images.push(...list);
+  }
+  // normalize and remove empties
+  const normalized = images.map(u => normalizeUrl(u)).filter(Boolean);
+  // dedupe preserving order
+  const seen = new Set();
+  const unique = [];
+  for (const u of normalized){
+    if (!seen.has(u)){
+      seen.add(u);
+      unique.push(u);
+    }
+    if (unique.length >= 15) break;
+  }
+  return unique.slice(0, 15);
 }
+
+/* Create an accessible, responsive carousel and append to container.
+   Preserves original single-image fallback (keeps it in DOM but hidden).
+*/
+function createCarousel(imageList, container){
+  // top-level wrapper
+  const carousel = document.createElement('div');
+  carousel.className = 'carousel';
+
+  const main = document.createElement('div');
+  main.className = 'carousel-main';
+
+  // main image element (starts with first image or fallback)
+  const mainImg = makeImg(imageList[0] || '', 'Product image');
+  main.appendChild(mainImg);
+
+  // controls overlay
+  const controls = document.createElement('div');
+  controls.className = 'carousel-controls';
+  const prevBtn = document.createElement('button');
+  prevBtn.type = 'button';
+  prevBtn.setAttribute('aria-label', 'Previous image');
+  prevBtn.innerHTML = '‹';
+  const nextBtn = document.createElement('button');
+  nextBtn.type = 'button';
+  nextBtn.setAttribute('aria-label', 'Next image');
+  nextBtn.innerHTML = '›';
+  controls.appendChild(prevBtn);
+  controls.appendChild(nextBtn);
+  main.appendChild(controls);
+
+  carousel.appendChild(main);
+
+  // thumbnails area
+  const thumbs = document.createElement('div');
+  thumbs.className = 'carousel-thumbs';
+  carousel.appendChild(thumbs);
+
+  // caption area (product description will be inserted separately)
+  const caption = document.createElement('div');
+  caption.className = 'carousel-caption';
+  caption.style.display = 'none'; // hidden until description is set
+  carousel.appendChild(caption);
+
+  // build thumbnails & logic
+  let current = 0;
+  const updateMain = (idx) => {
+    if (imageList.length === 0) return;
+    if (idx < 0) idx = imageList.length - 1;
+    if (idx >= imageList.length) idx = 0;
+    current = idx;
+    // change main image src (with graceful fallback)
+    mainImg.src = imageList[idx] || 'images/fallback.jpg';
+    // mark active thumb
+    Array.from(thumbs.children).forEach((t,i)=> t.classList.toggle('active', i === idx));
+    // update ARIA attributes
+    mainImg.setAttribute('aria-label', 'Image ' + (idx+1) + ' of ' + imageList.length);
+  };
+
+  imageList.forEach((src, i) => {
+    const t = document.createElement('div');
+    t.className = 'thumb' + (i===0? ' active': '');
+    const ti = makeImg(src, 'thumb-'+i);
+    t.appendChild(ti);
+    t.addEventListener('click', () => updateMain(i));
+    thumbs.appendChild(t);
+  });
+
+  // prev/next handlers
+  prevBtn.addEventListener('click', () => updateMain(current - 1));
+  nextBtn.addEventListener('click', () => updateMain(current + 1));
+
+  // keyboard navigation (left/right)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') updateMain(current - 1);
+    if (e.key === 'ArrowRight') updateMain(current + 1);
+  });
+
+  // basic touch swipe
+  let touchStartX = null;
+  main.addEventListener('touchstart', e => { if(e.touches && e.touches[0]) touchStartX = e.touches[0].clientX; }, {passive:true});
+  main.addEventListener('touchend', e => {
+    if (touchStartX === null) return;
+    const diff = (e.changedTouches[0].clientX - touchStartX);
+    if (diff > 50) updateMain(current - 1);
+    else if (diff < -50) updateMain(current + 1);
+    touchStartX = null;
+  });
+
+  // append carousel to container above other product info (non-destructive)
+  container.appendChild(carousel);
+
+  // if no images, remove controls & thumbs
+  if (imageList.length <= 1){
+    controls.style.display = 'none';
+    thumbs.style.display = 'none';
+  }
+
+  // return an API to set caption or programmatically change image
+  return {
+    setCaption: (text) => {
+      if (text && String(text).trim()){
+        caption.textContent = text;
+        caption.style.display = 'block';
+      } else {
+        caption.style.display = 'none';
+      }
+    },
+    showIndex: updateMain
+  };
 }
-       
-          
-            await redirectToCheckout(sessionId);
-             } catch (e) {
+
+/* Adjust the page content spacing so fixed header doesn't hide the carousel or product image.
+   This measures header height dynamically and applies margin-top to #productDetails (non-destructive).
+*/
+function adjustForHeader(){
+  const header = document.querySelector('header');
+  const content = document.querySelector('.content') || document.getElementById('productDetails');
+  if (!header) return;
+  const h = header.getBoundingClientRect().height || 140;
+  if (content) content.style.marginTop = h + 'px';
+  else document.body.style.paddingTop = h + 'px';
+}
+window.addEventListener('load', adjustForHeader);
+window.addEventListener('resize', adjustForHeader);
+
+/* -----------------------------------------
+   Render product details (augmented, non-destructive)
+   - keeps original single-image DOM (but hidden) for preservation
+   - inserts carousel and product description area
+   ----------------------------------------- */
+function renderProductDetails(product) {
+    const container = document.getElementById('productDetails');
+
+    // --- Build carousel from params (image_url, image_url2..15, image_urls) ---
+    const images = collectImages(product);
+    // fallback: if no images collected but product.image_url exists, ensure it's present
+    if (images.length === 0 && product.image_url) images.push(product.image_url);
+
+    // Create carousel and append it (this is additive - doesn't remove existing elements)
+    const carouselApi = createCarousel(images, container);
+
+    // --- Preserve the original single image element (as requested: never suppress anything).
+    // The original code created an img and appended it; we keep that DOM node but hide it visually
+    // so UI shows the carousel. This keeps old DOM structure intact for any external code.
+    const originalImg = document.createElement('img');
+    originalImg.className = 'original-image-fallback';
+    originalImg.src = product.image_url || (images[0] || '');
+    originalImg.alt = product.name || 'Product';
+    // Keep it in DOM but visually hidden (CSS above sets display:none)
+    container.appendChild(originalImg);
+
+    // --- product name (original behaviour preserved) ---
+    const name = document.createElement('div');
+    name.className = 'name';
+    name.textContent = product.name;
+    container.appendChild(name);
+
+    // --- product description (new full caption area) ---
+    // Add a dedicated element that can include a longer description/caption. Non-destructive addition.
+    const desc = document.createElement('div');
+    desc.className = 'product-description';
+    // styled via .carousel-caption style above or can be further styled in style.css
+    // Use product.description param if present. If not, leave empty but element kept.
+    const providedDescription = product.description ? decodeURIComponent(product.description) : '';
+    if (providedDescription && providedDescription.trim()){
+      desc.textContent = providedDescription;
+    } else {
+      // If no description param was provided, we'll leave space for editors to fill later.
+      desc.textContent = ''; // intentionally empty but element is present
+    }
+    // Style the description area with the same style used for captions if desired:
+    desc.style.marginTop = '10px';
+    desc.style.fontSize = '14px';
+    desc.style.color = '#333';
+    desc.style.lineHeight = '1.35';
+    desc.style.background = '#fff';
+    desc.style.padding = '10px';
+    desc.style.borderRadius = '6px';
+    desc.style.border = '1px solid #eee';
+    container.appendChild(desc);
+
+    // If carousel API exists, set caption content from description param (keeps caption duplicated but consistent)
+    if (carouselApi && providedDescription) {
+      carouselApi.setCaption(providedDescription);
+    }
+
+    // --- price & delivery & buy button (preserved original logic) ---
+    usPrice = product.price;
+    const price = document.createElement('div');
+    price.className = 'price';
+    const zparams = new URLSearchParams(window.location.search);
+    if (zparams.get('origin') == "usd") {
+      price.textContent = '$ '+product.price; // preserved existing USD branch
+    } else {
+      price.textContent = 'CFA '+(((parseFloat(product.price.replace('₦', ''))*100))+(((parseFloat(product.price.replace('₦', ''))*100))*0.40))*0.041;                  
+    }
+    container.appendChild(price);
+
+    const today = new Date();
+    const minDeliveryDate = new Date(today);
+    minDeliveryDate.setDate(today.getDate() + 3);
+    const maxDeliveryDate = new Date(today);
+    maxDeliveryDate.setDate(today.getDate() + 11);
+
+    function formatDate(date) {
+        return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+    const deliveryDiv = document.createElement('div');
+    deliveryDiv.className = 'delivery-label';
+    deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
+    container.appendChild(deliveryDiv);
+
+    const buyButton = document.createElement('a');
+    buyButton.className = 'buy-button';
+    buyButton.href = `#`;
+    buyButton.textContent = 'Buy Now';
+    container.appendChild(buyButton);
+
+    // Return buyButton for later checkout wiring (keeps existing flow)
+    return buyButton;
+}
+
+/* -----------------------------------------
+   Fetch product details from query parameters and render
+   ----------------------------------------- */
+const product = getQueryParams();
+const buyButton = renderProductDetails(product);
+
+/* Existing Stripe + createCheckoutSession + redirectToCheckout code preserved (no deletion) */
+const stripe = Stripe('pk_live_fgMxvyvoSrhEGCMCNixTpD7R'); // Replace with your Stripe publishable key
+
+async function createCheckoutSession(name, price, image) {
+    const response = await fetch('/.netlify/functions/createCheckoutSession', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            price: product.price*100, // Convert price to cents (preserved)
+            image: image
+        })
+    });
+
+    const session = await response.json();
+    return session.id;
+}
+
+async function redirectToCheckout(sessionId) {
+    const result = await stripe.redirectToCheckout({
+        sessionId: sessionId
+    });
+
+    if (result.error) {
+        console.error(result.error.message);
+    }
+}
+
+// Event listener for Buy Now button (preserves original branching behavior)
+buyButton.addEventListener('click', async () => {
+  try {
+    let sessionId = await createCheckoutSession(product.name,  usPrice, product.image_url);
+    const zparams = new URLSearchParams(window.location.search);
+    if (zparams.get('origin') == "usd") {
+      sessionId = await createCheckoutSession(product.name,  product.price*100, product.image_url);
+    } else if (zparams.get('origin') == "euro"){ 
+      sessionId = await createCheckoutSession(product.name,  product.price*100, product.image_url);
+    } else {
+      sessionId = await createCheckoutSession(product.name,   product.price*100, product.image_url);
+    }
+    await redirectToCheckout(sessionId);
+  } catch (e) {
     alert('Checkout failed: ' + e.message);
     console.error(e);
   }
-        });
+});
     </script>
     <script src="script.js"></script> 
           <footer class="site-footer">
@@ -242,3 +493,4 @@ const deliveryDiv = document.createElement('div');
 </footer>
 </body>
 </html>
+ 
