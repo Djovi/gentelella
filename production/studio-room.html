@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>TPE - Terminaux</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    <!-- iOS support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="POS Machines">
+    <link rel="apple-touch-icon" href="images/pwa-192.png">
+    <meta name="theme-color" content="#1976d2">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            height: 50px;
+            margin: 10px;
+        }
+        .content { margin-top: 80px; }
+        h1 { text-align: center; margin-top: 90px; }
+        .product-listing {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 16px;
+            border-radius: 8px;
+            width: 220px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        }
+        .product-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .product-item .name {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 10px 0 6px 0;
+            color: #222;
+        }
+        .product-item .price {
+            color: #e53935;
+            font-size: 16px;
+            margin: 4px 0 10px 0;
+        }
+        .product-item .link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.18s;
+        }
+        .product-item .link:hover { background: #024284; }
+        @media (max-width: 700px) {
+            .product-listing { flex-direction: column; align-items: center; }
+            .product-item { width: 90%; }
+        }
+        .delivery-label {
+            margin: 8px 0;
+            font-size: 13px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        .site-footer {
+            background: #f5f5f5;
+            color: #444;
+            text-align: center;
+            padding: 25px 10px 10px 10px;
+            margin-top: 40px;
+            font-size: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .site-footer .footer-links {
+            margin-bottom: 8px;
+        }
+        .site-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+        .site-footer span {
+            color: #aaa;
+            margin: 0 4px;
+        }
+        /* PWA install banner style */
+        #installBanner {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #1976d2;
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            z-index: 2000;
+        }
+        #installBanner button {
+            background: #fff;
+            color: #1976d2;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin-left: 12px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://www.rechainglobal.com">
+            <img src="images/rechain.jpg" alt="RG" class="logo">
+        </a>
+    </header>
+    <h1> Liste des produits </h1>
+    <div class="content">
+        <div id="productContainer" class="product-listing"></div>
+    </div>
+    <div id="installBanner">
+        Install this app for a faster experience!
+        <button id="installBtn">Install</button>
+    </div>
+    <script>
+        // Static product data (TWO ITEMS)
+        const staticProductData = [
+            // ... (Product data unchanged, paste from previous source)
+            // [--- SNIP: The full staticProductData array from the original source ---]
+            // For brevity, keep this unchanged.
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Reader for Magstripe (USB-C)",
+    "image": "https://m.media-amazon.com/images/I/71ab6+31kEL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "brand": {
+      "@type": "Brand",
+      "name": "Square"
+    },
+    "sku": "A-SKU-0862",
+    "mpn": "B0DGTHLCGN",
+    "description": "Accept all major credit and debit cards instantly on your iOS or Android device via USB-C. No battery required. Works with the free Square Point of Sale app. Offline payments available for up to 24 hours. One simple rate, no hidden fees or long-term contracts. First reader free, $10 for additional.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Credit Card Readers",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Square-Reader-for-magstripe-USB-C/dp/B0DGTHLCGN",
+      "price": 9.88,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 9.88,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Square-Reader-for-magstripe-USB-C/dp/B0DGTHLCGN",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.6,
+      "reviewCount": 66,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Reader for Contactless and Chip (2nd Generation)",
+    "image": "https://m.media-amazon.com/images/I/71Orsd+8pNL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "brand": {
+      "@type": "Brand",
+      "name": "Square"
+    },
+    "sku": "A-SKU-0792",
+    "mpn": "B0C29GRRCZ",
+    "description": "Accept EMV chip cards, contactless NFC payments, Apple Pay, and Google Pay from anywhere. Wireless Bluetooth connection. Rechargeable battery. Rate of 2.6% + $0.10 per tap, dip, or swipe. Includes free Square Reader for magstripe. Data security and 24/7 fraud prevention included.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Credit Card Readers",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Square-Reader-contactless-chip-Generation/dp/B0C29GRRCZ",
+      "price": 49.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 49.00,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Square-Reader-contactless-chip-Generation/dp/B0C29GRRCZ",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": 12800,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Tera D5100 1D 2D QR Barcode Scanner Wireless & Wired",
+    "image": "https://m.media-amazon.com/images/I/71zYCipq2jL._AC_SL1500_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Tera"
+    },
+    "sku": "D5100",
+    "mpn": "B07MRZF19K",
+    "description": "Versatile 1D and 2D QR barcode scanner with wireless (2.4GHz) and USB wired modes. Features a built-in battery level indicator and digital display. Cordless handheld design with compact plug-and-play setup. Compatible with Windows, Mac, Android, iOS, and POS systems. Ideal for retail, warehouses, and inventory.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Bar Code Scanners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Tera-Barcode-Scanner-Wireless-Indicator/dp/B07MRZF19K",
+      "price": 39.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 39.99,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Tera-Barcode-Scanner-Wireless-Indicator/dp/B07MRZF19K",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": 9400,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Rongta RP326 80mm USB Thermal Receipt Printer",
+    "image": "https://m.media-amazon.com/images/I/61esCL-zfcL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "brand": {
+      "@type": "Brand",
+      "name": "Rongta"
+    },
+    "sku": "RP326",
+    "mpn": "B08V4H7T47",
+    "description": "80mm POS thermal receipt printer with auto-cutter and cash drawer support. Printing speed 250mm/s. USB, Serial, and Ethernet interfaces. Compatible with Windows, Mac, and Linux via ESC/POS. Ideal for restaurants, retail stores, supermarkets, and cafes. Wall-mountable design. Does not support Square.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Receipt Printers",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Rongta-Ethernet-Interface-Optional-RP326/dp/B08V4H7T47",
+      "price": 79.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 79.99,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Rongta-Ethernet-Interface-Optional-RP326/dp/B08V4H7T47",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4,
+      "reviewCount": 3200,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "NETUM NT-1228BC Bluetooth Barcode Scanner 2.4G Wireless & USB Wired",
+    "image": "https://m.media-amazon.com/images/I/61y6UBhAFML._AC_SL1500_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "NETUM"
+    },
+    "sku": "NT-1228BC",
+    "mpn": "B07TB64XD8",
+    "description": "Multipurpose CCD barcode reader with 3-in-1 connectivity: Bluetooth, 2.4G wireless, and USB wired. Compatible with smartphones, tablets, PC (Windows, Mac, Android, iOS). Scans 1D barcodes at up to 500 scans/minute. Rechargeable 1000mAh battery. Plug and play, no driver needed. Great for POS and inventory.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Bar Code Scanners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/NETUM-Bluetooth-Compatible-Wireless-Connection/dp/B07TB64XD8",
+      "price": 35.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 35.99,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/NETUM-Bluetooth-Compatible-Wireless-Connection/dp/B07TB64XD8",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4,
+      "reviewCount": 6100,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Reader for Magstripe (USB-C)",
+    "image": "https://m.media-amazon.com/images/I/51hJFEqVMFL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "A-SKU-0862", "mpn": "B0DGTHLCGN",
+    "description": "Accept all major credit and debit cards on any iOS or Android device via USB-C. No battery required. Works with the free Square POS app. Offline payments up to 24 hours. First reader free.",
+    "category": "POS Equipment > Credit Card Readers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0DGTHLCGN", "price": 9.88, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0DGTHLCGN",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 66, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Reader for Contactless and Chip (2nd Generation)",
+    "image": "https://m.media-amazon.com/images/I/61QbApDWTBL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "A-SKU-0792", "mpn": "B0C29GRRCZ",
+    "description": "Accept EMV chip cards, NFC contactless, Apple Pay, and Google Pay via Bluetooth. Rechargeable battery. Rate: 2.6% + $0.10 per tap, dip, or swipe. 24/7 fraud prevention included.",
+    "category": "POS Equipment > Credit Card Readers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0C29GRRCZ", "price": 49.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0C29GRRCZ",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 12800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Terminal – All-in-One Credit Card Machine",
+    "image": "https://m.media-amazon.com/images/I/61eV2gyeNcL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "SQTERM-01", "mpn": "B07FNK5MXK",
+    "description": "Portable all-in-one POS terminal with built-in receipt printer. Accepts all payment types including magstripe, chip, and contactless. 3G + Wi-Fi connectivity. Long battery life.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07FNK5MXK", "price": 299.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07FNK5MXK",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 5200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Stand for iPad (USB-C) – Adjustable POS Stand",
+    "image": "https://m.media-amazon.com/images/I/61K8QlXRtAL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "SQ-STAND-USBC", "mpn": "B0BNTPXZGK",
+    "description": "Adjustable iPad stand with built-in Square Reader for USB-C iPad models. Swivel design for customer-facing payments. Connects via USB-C. Works with Square POS app for retail and restaurants.",
+    "category": "POS Equipment > POS Stands & Mounts",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0BNTPXZGK", "price": 149.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0BNTPXZGK",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 3100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Tera D5100 1D 2D QR Barcode Scanner – Wireless & Wired",
+    "image": "https://m.media-amazon.com/images/I/71zYCipq2jL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Tera" },
+    "sku": "D5100", "mpn": "B07MRZF19K",
+    "description": "Versatile 1D/2D QR barcode scanner with 2.4GHz wireless and USB wired modes. Battery level indicator, digital display, plug-and-play. Compatible with Windows, Mac, Android, iOS, and POS systems.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07MRZF19K", "price": 39.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07MRZF19K",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 9400, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "NETUM NT-1228BC Bluetooth Barcode Scanner – 3-in-1 Connectivity",
+    "image": "https://m.media-amazon.com/images/I/61y6UBhAFML._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "NETUM" },
+    "sku": "NT-1228BC", "mpn": "B07TB64XD8",
+    "description": "3-in-1 CCD barcode reader: Bluetooth, 2.4G wireless, and USB wired. 500 scans/min, 1000mAh rechargeable battery. No driver needed. Compatible with smartphones, tablets, and PC (Windows, Mac, Android, iOS).",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07TB64XD8", "price": 35.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07TB64XD8",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 6100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Zebra DS2208-SR Corded Handheld Barcode Scanner with Stand",
+    "image": "https://m.media-amazon.com/images/I/71tgWIWad7L._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "brand": { "@type": "Brand", "name": "Zebra" },
+    "sku": "DS2208-SR7U2100SGW", "mpn": "DS2208-SR7U2100SGW",
+    "description": "Zebra DS2208 standard range 1D/2D corded imager with stand and shielded USB cable. 100 scans/sec. IP52 dust and water resistance. Ideal for retail POS, healthcare, and hospitality environments.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B01N7N7IST", "price": 149.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B01N7N7IST",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 3700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Honeywell Voyager 1250g Single-Line Laser Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/71rR9oM-k7L._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Honeywell" },
+    "sku": "1250G-2USB-1", "mpn": "B00006B8GX",
+    "description": "Reliable single-line laser 1D barcode scanner with USB interface. Durable enough for high-volume retail checkout. Reads standard 1D barcodes at up to 100 scans/sec. Plug and play. Wide compatibility with POS software.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00006B8GX", "price": 89.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00006B8GX",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 8200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Symcode USB Wired Handheld 1D Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/71q7CBJDW3L._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Symcode" },
+    "sku": "MJ-300", "mpn": "B01LZBI7DR",
+    "description": "Budget-friendly USB wired CCD 1D barcode scanner. Plug and play, no driver required. Compatible with all major POS software and operating systems. Reads UPC, EAN, Code 39, Code 128 and more. Ideal for retail, libraries, and small businesses.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B01LZBI7DR", "price": 19.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B01LZBI7DR",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 14700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Rongta RP326 80mm USB Thermal Receipt Printer",
+    "image": "https://m.media-amazon.com/images/I/71V1H2pJwdL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Rongta" },
+    "sku": "RP326", "mpn": "B08V4H7T47",
+    "description": "80mm POS thermal receipt printer, 250mm/s print speed, auto-cutter, cash drawer support. USB, Serial, and Ethernet interfaces. ESC/POS compatible. Ideal for restaurants, retail, and cafes. Does not support Square.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08V4H7T47", "price": 79.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08V4H7T47",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 3200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Star Micronics TSP143IIIU USB Thermal Receipt Printer – Gray",
+    "image": "https://m.media-amazon.com/images/I/61VqESwbdZL._AC_SL1200_.jpg",
+    "brand": { "@type": "Brand", "name": "Star Micronics" },
+    "sku": "TSP143IIIU GRY US", "mpn": "B07VQ8G9XM",
+    "description": "Industry-standard USB POS thermal receipt printer with Mfi USB charging port. 250mm/s, guillotine auto-cutter, internal power supply. Includes futurePRNT software and wall mount bracket. Compatible with Square, iOS, Android, Windows, Mac, and Linux.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07VQ8G9XM", "price": 229.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07VQ8G9XM",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 4800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Star Micronics TSP143IIILAN Ethernet LAN Thermal Receipt Printer",
+    "image": "https://m.media-amazon.com/images/I/61VWQ7iknHL._AC_SL1200_.jpg",
+    "brand": { "@type": "Brand", "name": "Star Micronics" },
+    "sku": "TSP143IIILAN GRY US", "mpn": "B01LZAJDQW",
+    "description": "Ethernet (LAN) thermal receipt printer with auto-cutter and internal power supply. Ideal for restaurant kitchen and retail POS environments. 250mm/s print speed. Wall-mountable. Compatible with most POS software via ESC/POS command set.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B01LZAJDQW", "price": 249.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B01LZAJDQW",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 2900, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Epson TM-T20III Monochrome Thermal POS Printer",
+    "image": "https://m.media-amazon.com/images/I/71tWlCwfwUL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Epson" },
+    "sku": "C31CH51001", "mpn": "C31CH51001",
+    "description": "Compact, reliable 80mm thermal POS printer. 250mm/s print speed, auto-cutter, and drop-in paper loading. USB and Serial interface. Ideal for small-to-medium retail and hospitality. Energy Star certified.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B071Z7FN3Y", "price": 189.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B071Z7FN3Y",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 5600, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Epson TM-T88VI USB Ethernet NFC Thermal Receipt Printer",
+    "image": "https://m.media-amazon.com/images/I/71g0oVEDh8L._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Epson" },
+    "sku": "C31CE94001", "mpn": "B0BG1LFPJZ",
+    "description": "High-performance 80mm thermal receipt printer with NFC, USB-A, and Ethernet. 350mm/s print speed. Server Direct Print, beacon support, and paper-saving features. Printhead life of 200km. Auto-cutter life of 3 million cuts.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0BG1LFPJZ", "price": 399.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0BG1LFPJZ",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.7, "reviewCount": 1900, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Bixolon SRP-350PLUSIIICOSG USB/Serial/Ethernet Thermal Printer",
+    "image": "https://m.media-amazon.com/images/I/61i59JGMHSL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "Bixolon" },
+    "sku": "SRP-350PLUSIIICOSG", "mpn": "B015FX4732",
+    "description": "80mm thermal receipt printer with USB, Serial, and Ethernet interfaces. 200mm/s print speed, auto-cutter, power supply included. 3-year warranty. Prints receipts, coupons, logos, and barcodes. Rugged design for demanding POS environments.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B015FX4732", "price": 199.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B015FX4732",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 2100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MUNBYN 80mm USB Receipt Printer & 16\" Cash Drawer Bundle",
+    "image": "https://m.media-amazon.com/images/I/81Z8L7C0WDL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "MUNBYN" },
+    "sku": "MUNBYN-P068-BUNDLE", "mpn": "B08P5NHHV7",
+    "description": "Complete POS bundle: 80mm thermal receipt printer (230mm/s) + heavy-duty 16\" 5-bill/5-coin cash drawer. USB, LAN, and Serial printer interfaces. Auto-cutter, wall-mount design. Compatible with Windows, Mac, and Linux.",
+    "category": "POS Equipment > POS Bundles",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08P5NHHV7", "price": 139.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08P5NHHV7",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 1500, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MUNBYN WiFi Thermal Receipt Printer 80mm",
+    "image": "https://m.media-amazon.com/images/I/71dDTBDl8tL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "MUNBYN" },
+    "sku": "ITPP047", "mpn": "B088MZRDMX",
+    "description": "80mm wireless thermal receipt printer with Wi-Fi, USB, and Ethernet. 260mm/s print speed, auto-cutter, cash drawer port. ESC/POS compatible. Ideal for busy retail, restaurant, and delivery environments. Includes free roll of thermal paper.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B088MZRDMX", "price": 162.64, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B088MZRDMX",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 2800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Volcora 13\" Electronic Cash Register Drawer – Black",
+    "image": "https://m.media-amazon.com/images/I/71-mG3AJLZL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Volcora" },
+    "sku": "VCD-13-BK", "mpn": "B08KT95ZBH",
+    "description": "13\" heavy-duty electronic cash drawer with 4-bill and 5-coin removable cash tray. 24V RJ11/RJ12 key-lock, media slot. Compatible with Square, Clover, and most POS receipt printers with RJ11 cash drawer port.",
+    "category": "POS Equipment > Cash Drawers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08KT95ZBH", "price": 49.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08KT95ZBH",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 2900, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Volcora 16\" Cash Register Drawer – 5 Bill 7 Coin, Adjustable",
+    "image": "https://m.media-amazon.com/images/I/71y4NHmPRuL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Volcora" },
+    "sku": "VCD-16-BK", "mpn": "B09BFQTDCW",
+    "description": "Large 16\" cash drawer with 5-bill and 7-coin adjustable compartments. 24V RJ11/RJ12 key-lock and media slot. Sturdy steel construction. Compatible with most POS printers. Ideal for grocery, retail, hospitality, and convenience stores.",
+    "category": "POS Equipment > Cash Drawers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09BFQTDCW", "price": 59.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09BFQTDCW",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 1700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "APG VB320-BL1616 Vasario Series Cash Drawer – USB",
+    "image": "https://m.media-amazon.com/images/I/61VZ-oOH0aL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "APG Cash Drawer" },
+    "sku": "VB320-BL1616", "mpn": "B000FMXKXA",
+    "description": "APG Vasario Series 16\" cash drawer with USB interface. 5-bill and 5-coin media slots, key lock, and durable steel chassis. One of the most trusted cash drawer brands in POS. Compatible with most major POS systems and receipt printers.",
+    "category": "POS Equipment > Cash Drawers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000FMXKXA", "price": 119.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000FMXKXA",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 3400, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "POS Hardware Bundle for Square – Cash Drawer, Printer, Scanner",
+    "image": "https://m.media-amazon.com/images/I/71XQqZD1jWL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Bundlestar" },
+    "sku": "SQ-BUNDLE-3PC", "mpn": "B08R6HLFTS",
+    "description": "Complete Square-compatible POS bundle: includes thermal receipt printer, USB cash drawer, and USB barcode scanner. Pre-configured and ready to use with Square Stand or Square Register. Ideal for retail and restaurant setups.",
+    "category": "POS Equipment > POS Bundles",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08R6HLFTS", "price": 249.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08R6HLFTS",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 870, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "NRS Cash Register POS System – 15\" Touchscreen, Scanner, Printer",
+    "image": "https://m.media-amazon.com/images/I/61ZjZFG0rdL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "NRS" },
+    "sku": "NRS-POS-BUNDLE", "mpn": "B07NDLH58V",
+    "description": "Complete POS bundle: 15\" merchant touchscreen, customer-facing display, barcode scanner, and thermal receipt printer. Free 1-month software, then monthly fee. Free setup support. Trusted by 20,000+ US businesses. Requires hardwired internet. USA only.",
+    "category": "POS Equipment > POS Systems",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07NDLH58V", "price": 599.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07NDLH58V",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.1, "reviewCount": 4300, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Retail Point of Sale System – 15\" PC, Printer, Scanner, Drawer (CRE Software)",
+    "image": "https://m.media-amazon.com/images/I/71hJCHqEi5L._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "pcAmerica" },
+    "sku": "POS-CRE-BUNDLE", "mpn": "B075FGCJXM",
+    "description": "Complete turnkey retail POS system: 15\" Touchscreen PC (Windows 10 Pro), thermal receipt printer, laser barcode scanner, 16\" cash drawer, mini keyboard, and credit card swipe reader. Includes CRE software trusted by 70,000+ merchants. 90-day free support and 2-year hardware warranty.",
+    "category": "POS Equipment > POS Systems",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B075FGCJXM", "price": 1299.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B075FGCJXM",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 2600, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Volcora 15.6\" Android 11 POS Terminal – Touch Screen, Hardware Only",
+    "image": "https://m.media-amazon.com/images/I/61yAYKFKfFL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Volcora" },
+    "sku": "VPT-156-A11", "mpn": "B0BT8FL1L9",
+    "description": "15.6\" capacitive touchscreen (1366x768) Android 11 POS terminal. Withstands 15,000+ hours of screen time. Lifetime warranty. Flexible app installation. Ideal for retail, restaurants, salons, and hospitality. Hardware only – POS app sold separately.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0BT8FL1L9", "price": 249.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0BT8FL1L9",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 780, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "ASSUR 15\" POS System – J6412 CPU, Windows 10 Pro, Wi-Fi",
+    "image": "https://m.media-amazon.com/images/I/61iLM1KgqrL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "ASSUR" },
+    "sku": "ASSUR-POS-15", "mpn": "B09ZNXD9T1",
+    "description": "15\" capacitive touch POS system with J6412 4-core CPU, 4GB RAM, 128GB SSD, Windows 10 Pro, and built-in Wi-Fi. Multiple I/O ports. POS software not included. Suitable for retail, restaurant, store, and club environments.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09ZNXD9T1", "price": 399.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09ZNXD9T1",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 950, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MUNBYN 17\" POS Touch Screen Monitor – True Flat, Multi-Touch",
+    "image": "https://m.media-amazon.com/images/I/61dS3W3QRaL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "MUNBYN" },
+    "sku": "ITSC001", "mpn": "B092T6WQXT",
+    "description": "17-inch true flat seamless capacitive multi-touch POS monitor. 400 nits brightness, VGA/HDMI input. No driver required. Ideal for retail checkout and restaurant POS stations. Compatible with all major POS software.",
+    "category": "POS Equipment > POS Monitors & Displays",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B092T6WQXT", "price": 189.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B092T6WQXT",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 1200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Datio POS System for 10\" Amazon Fire Tablet – Register Kit",
+    "image": "https://m.media-amazon.com/images/I/71oJZvU2bUL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Datio" },
+    "sku": "DATIO-FIRE10", "mpn": "B08LTSRVJK",
+    "description": "Complete cash register kit for 10\" Amazon Fire Tablet. Includes receipt printer, cash drawer, and adjustable stand. POS software included for retail, restaurants, and salons. Easy setup in minutes. Great for small businesses.",
+    "category": "POS Equipment > POS Bundles",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08LTSRVJK", "price": 279.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08LTSRVJK",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.1, "reviewCount": 640, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MUNBYN Thermal Label Printer – 4x6 Shipping Label Printer",
+    "image": "https://m.media-amazon.com/images/I/71fgS6VZ3QL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "MUNBYN" },
+    "sku": "ITPP941", "mpn": "B08LYZNKPT",
+    "description": "150mm/s 4x6 direct thermal label printer for shipping packages, inventory, and barcodes. Compatible with Shopify, Etsy, eBay, PayPal, UPS, USPS, FedEx, Amazon, and more. USB connectivity. No ink or toner required.",
+    "category": "POS Equipment > Label Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08LYZNKPT", "price": 169.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08LYZNKPT",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 18400, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Rollo Wireless Label Printer – Wi-Fi 4x6 Shipping Printer",
+    "image": "https://m.media-amazon.com/images/I/61y3ZZMP5EL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Rollo" },
+    "sku": "ROLLO-WIFI", "mpn": "B07QY7BKYK",
+    "description": "Wireless Wi-Fi thermal label printer for 4x6 shipping labels. Prints up to 150mm/s. Compatible with Mac, Windows, Chromebook, Android, and iOS. No driver required for most uses. Works with all major carriers and marketplaces including Amazon, Shopify, and USPS.",
+    "category": "POS Equipment > Label Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07QY7BKYK", "price": 199.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07QY7BKYK",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 11200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Brother QL-820NWB Professional Label Maker – Wireless",
+    "image": "https://m.media-amazon.com/images/I/71mdI5BSGAL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Brother" },
+    "sku": "QL-820NWB", "mpn": "B073QLXXYG",
+    "description": "Wireless professional label maker with Bluetooth, Wi-Fi, USB, and NFC connectivity. Prints up to 110 labels/min at 300dpi. Compatible with Mac, Windows, iOS, and Android. Supports multiple label widths. Ideal for retail price tags, barcodes, and shipping.",
+    "category": "POS Equipment > Label Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B073QLXXYG", "price": 179.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B073QLXXYG",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 7800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Zebra ZD421 Desktop Thermal Label Printer – USB/Bluetooth",
+    "image": "https://m.media-amazon.com/images/I/61yLz6TSZUL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "Zebra" },
+    "sku": "ZD4A022-D01M00EZ", "mpn": "B08NZ26Y3X",
+    "description": "Zebra ZD421 compact 4-inch direct thermal label printer with USB and Bluetooth. 203 dpi, 6 ips print speed. Supports ZPL II and EPL2 languages. Ideal for retail price tags, inventory labels, name badges, and shipping labels.",
+    "category": "POS Equipment > Label Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08NZ26Y3X", "price": 449.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08NZ26Y3X",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 2100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Epson TM-U220B Dot Matrix Impact Kitchen Printer – Ethernet",
+    "image": "https://m.media-amazon.com/images/I/61B72tCMkNL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "Epson" },
+    "sku": "C31C516A8841", "mpn": "C31C516A8841",
+    "description": "Compact dot matrix kitchen/receipt printer for noisy, high-heat restaurant environments. 6 lines per second, auto-cutter, DK and Ethernet ports. Ideal for kitchen order printing where thermal paper won't hold up to heat and grease.",
+    "category": "POS Equipment > Kitchen Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B01JNS1ZMG", "price": 349.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B01JNS1ZMG",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 1300, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Logic Controls LD9900 Series USB VFD Customer Pole Display",
+    "image": "https://m.media-amazon.com/images/I/51T0sJgW4IL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Logic Controls" },
+    "sku": "LD9900U-BK", "mpn": "B000FH3UNE",
+    "description": "2-line x 20-character USB VFD (vacuum fluorescent display) customer pole display. Adjustable pole height. Compatible with all major POS software. Bright, easy-to-read display for customer-facing transaction info at checkout.",
+    "category": "POS Equipment > Customer Displays",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000FH3UNE", "price": 129.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000FH3UNE",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 980, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Epson DM-D110 USB Customer Display – 2-Line VFD",
+    "image": "https://m.media-amazon.com/images/I/51E9Z9pP7YL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Epson" },
+    "sku": "DM-D110", "mpn": "B00028SNRY",
+    "description": "2x20 character VFD customer pole display with USB connectivity. Adjustable tilt and height. Compatible with Epson TM-series receipt printers and most POS software. Ideal for retail checkout counters and cafes.",
+    "category": "POS Equipment > Customer Displays",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00028SNRY", "price": 109.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00028SNRY",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 760, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Magtek Mini MICR USB Check Reader – 21040102",
+    "image": "https://m.media-amazon.com/images/I/51RhNaGlSdL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "MagTek" },
+    "sku": "21040102", "mpn": "21040102",
+    "description": "Compact USB MICR check reader for reading the magnetic ink character recognition line on personal, business, and government checks. Keyboard wedge interface. Plug and play. Ideal for retail POS, banks, and insurance agencies.",
+    "category": "POS Equipment > Check Readers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000H8VQB4", "price": 199.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000H8VQB4",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 540, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MagTek 21073062 Mini USB Magnetic Stripe Card Reader",
+    "image": "https://m.media-amazon.com/images/I/41fO0wZVm2L._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "MagTek" },
+    "sku": "21073062", "mpn": "21073062",
+    "description": "Compact USB magnetic stripe card reader with bi-directional swipe. Reads tracks 1, 2, and 3. HID keyboard emulation, no driver required. Compatible with Windows, Mac, and Linux. Ideal for loyalty cards, access control, and POS environments.",
+    "category": "POS Equipment > Card Readers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B003YH1UMU", "price": 49.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B003YH1UMU",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 2300, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Posiflex HS-3510 Fanless All-in-One POS Terminal",
+    "image": "https://m.media-amazon.com/images/I/51pRScfFDpL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Posiflex" },
+    "sku": "HS-3510", "mpn": "B09X4SXPQR",
+    "description": "Fanless all-in-one 15.6\" touchscreen POS terminal with Intel Celeron processor, 4GB RAM, 128GB SSD, and Windows 10 IoT. Includes USB, RS232, and Ethernet ports. Silent operation ideal for customer-facing environments.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09X4SXPQR", "price": 899.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09X4SXPQR",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 420, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Elo 10\" I-Series 4 Android POS Touchscreen Terminal",
+    "image": "https://m.media-amazon.com/images/I/51xeR3m5G8L._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Elo" },
+    "sku": "E611369", "mpn": "E611369",
+    "description": "10.1\" Android 10 all-in-one POS terminal with capacitive multi-touch display, Qualcomm Snapdragon 660 processor, 4GB RAM, 32GB eMMC storage. Integrated MSR, NFC, and camera. Front-facing speaker. IP54 rated. Ideal for restaurants, hospitality, and retail.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09CZ6QFL6", "price": 1299.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09CZ6QFL6",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 310, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Infinite Peripherals Linea Pro 7 Sled – iPhone 7/8 Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/41xNtBbC7sL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Infinite Peripherals" },
+    "sku": "LP7-WH-0200-BTR", "mpn": "B07QY1MKSH",
+    "description": "Transform an iPhone 7/8 into a mobile POS barcode scanner and magnetic stripe card reader. 1D/2D barcode scanning, MSR for credit/debit cards. Bluetooth 4.0. Rechargeable battery included. Ideal for retail, hospitality, and field service.",
+    "category": "POS Equipment > Mobile POS Accessories",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07QY1MKSH", "price": 349.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07QY1MKSH",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 290, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Eposnow Complete Retail POS System – Cloud-Based Bundle",
+    "image": "https://m.media-amazon.com/images/I/61rZjdWE8AL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Epos Now" },
+    "sku": "EPOSNOW-RETAIL", "mpn": "B07W5YVKDL",
+    "description": "Complete cloud-based retail POS bundle: 15\" touchscreen terminal, receipt printer, barcode scanner, and cash drawer. Includes 1-month free software trial. Integrates with Xero, QuickBooks, Shopify, and WooCommerce. Ideal for retail shops and boutiques.",
+    "category": "POS Equipment > POS Systems",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07W5YVKDL", "price": 999.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07W5YVKDL",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.0, "reviewCount": 580, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Clover Station Duo POS System – Merchant & Customer Screens",
+    "image": "https://m.media-amazon.com/images/I/61g0YA7XBZL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Clover" },
+    "sku": "CLOVER-DUO", "mpn": "B09VHLTHJ2",
+    "description": "Clover Station Duo with dual 14\" merchant and 7\" customer-facing display, built-in payment processing, receipt printer, and barcode scanner. Accepts swipe, chip, tap, and contactless payments. Cloud-based dashboard for sales and inventory.",
+    "category": "POS Equipment > POS Systems",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09VHLTHJ2", "price": 1649.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09VHLTHJ2",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.1, "reviewCount": 730, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Thermal Receipt Paper Rolls 80x80mm – 50 Pack",
+    "image": "https://m.media-amazon.com/images/I/71A26-AVXJL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Nakagawa" },
+    "sku": "RCP-80-50PK", "mpn": "B07KL96GZL",
+    "description": "50-pack of 80x80mm (3-1/8\" x 230') BPA-free thermal receipt paper rolls. Compatible with most 80mm POS printers including Epson, Star, Bixolon, and Rongta. Smooth, high-quality paper for crisp, smudge-free receipts.",
+    "category": "POS Equipment > Receipt Paper & Supplies",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07KL96GZL", "price": 34.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07KL96GZL",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 22100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Thermal Receipt Paper Rolls 57x40mm – 100 Pack (58mm Printers)",
+    "image": "https://m.media-amazon.com/images/I/71UHBhqVNmL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "PM Company" },
+    "sku": "RCP-58-100PK", "mpn": "B001YAO59E",
+    "description": "100-pack of 57mm x 40mm thermal paper rolls for 58mm receipt printers and credit card terminals. Compatible with most handheld and compact POS printers. BPA-free. Clean, consistent print quality.",
+    "category": "POS Equipment > Receipt Paper & Supplies",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B001YAO59E", "price": 19.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B001YAO59E",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 9800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Nadex Coins CC-1000 Coin Counter Sorter – Touchscreen",
+    "image": "https://m.media-amazon.com/images/I/71WEdLSqDfL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Nadex Coins" },
+    "sku": "CC-1000", "mpn": "B09LQJFVND",
+    "description": "Electric coin counter and sorter with touchscreen display. Sorts and counts US coins at up to 312 coins/min. LCD display shows total value and count. Removable coin tray for easy wrapping. Ideal for cash-heavy retail, banks, and arcades.",
+    "category": "POS Equipment > Cash Handling",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09LQJFVND", "price": 64.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09LQJFVND",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 3100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Cassida 6600 UV/MG Professional Bill Counter with Counterfeit Detection",
+    "image": "https://m.media-amazon.com/images/I/71oMNO0yyVL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Cassida" },
+    "sku": "6600", "mpn": "B000V0FWWY",
+    "description": "High-speed bill counter with UV and MG counterfeit detection. Counts up to 1,500 bills/min. Batch, add, and auto modes. LCD display. Handles US currency and most foreign bills. 1-year warranty. Ideal for retail, banks, and casinos.",
+    "category": "POS Equipment > Cash Handling",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000V0FWWY", "price": 279.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000V0FWWY",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 4700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Dri Mark Flash Test Counterfeit Bill Detector Pen – 12 Pack",
+    "image": "https://m.media-amazon.com/images/I/71sP3pIxfUL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Dri Mark" },
+    "sku": "351B12", "mpn": "B00004TC0K",
+    "description": "Pack of 12 counterfeit detection pens for US currency. Mark turns yellow on genuine bills and dark on counterfeits. Works on all US bills. Ideal for retail checkout counters, restaurants, and banks. Long-lasting ink formula.",
+    "category": "POS Equipment > Cash Handling",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00004TC0K", "price": 18.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00004TC0K",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.6, "reviewCount": 16800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Wasp WLS9600 Cordless Laser Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/51tKz-Iq8aL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Wasp" },
+    "sku": "633809003776", "mpn": "B00006RPM6",
+    "description": "Cordless laser 1D barcode scanner with a 33-foot wireless range and charging cradle. 100-scan/second rate. Reads all standard 1D barcodes. USB and serial interface options. Durable enough for retail, warehousing, and manufacturing environments.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00006RPM6", "price": 119.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00006RPM6",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 1800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Datalogic QuickScan QD2430 2D Corded Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/51cKGQ14dRL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Datalogic" },
+    "sku": "QD2430-BKK1", "mpn": "B00KZEZXDC",
+    "description": "Handheld 2D imager barcode scanner with USB cable. Reads 1D and 2D codes including QR, DataMatrix, and PDF417. 100 scans/second. Drop-resistant to 5.9 feet. Compatible with all major POS software and systems.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00KZEZXDC", "price": 109.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00KZEZXDC",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 2400, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Zebra LS2208 USB Handheld Laser Barcode Scanner",
+    "image": "https://m.media-amazon.com/images/I/61FRE3K-qAL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Zebra" },
+    "sku": "LS2208-SR20007R-NA", "mpn": "B00006RSMO",
+    "description": "Zebra LS2208 1D laser barcode scanner with USB interface and stand. Trusted by major retailers worldwide. Reads all standard 1D barcodes at 100 scans/sec. Light, ergonomic design. Preferred for high-volume POS environments.",
+    "category": "POS Equipment > Barcode Scanners",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00006RSMO", "price": 99.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00006RSMO",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 6300, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "CardConnect CardPointe Bolt P2PE Smart Card Terminal",
+    "image": "https://m.media-amazon.com/images/I/41TcOWk8L4L._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "CardConnect" },
+    "sku": "BOLT-P2PE", "mpn": "B08RNFVWSD",
+    "description": "Point-to-point encrypted (P2PE) EMV smart card terminal that accepts chip, swipe, and contactless payments. Connects via USB or serial to any POS system. PCI-DSS compliant. Reduces PCI compliance scope with end-to-end encryption.",
+    "category": "POS Equipment > Payment Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B08RNFVWSD", "price": 299.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B08RNFVWSD",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 380, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Verifone VX520 EMV Credit Card Terminal",
+    "image": "https://m.media-amazon.com/images/I/51y6aK7CelL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Verifone" },
+    "sku": "M252-753-03-NAA-3", "mpn": "B076X7CLWH",
+    "description": "Verifone VX520 countertop payment terminal with EMV chip, magnetic stripe, and PIN debit support. Ethernet and dial connectivity. Large 128x64 backlit display. High-speed processing. Compatible with most merchant service providers. NFC/contactless optional.",
+    "category": "POS Equipment > Payment Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B076X7CLWH", "price": 179.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B076X7CLWH",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.1, "reviewCount": 1200, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Ingenico Link/2500 Bluetooth Payment Terminal",
+    "image": "https://m.media-amazon.com/images/I/51HNb9IELWL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Ingenico" },
+    "sku": "LNK2500-USBLU05A", "mpn": "B07JDNNMJJ",
+    "description": "Portable Bluetooth EMV payment terminal with magnetic stripe, chip, and NFC contactless support. USB charging. Pairs with iOS, Android, and Windows tablets or POS systems. Lightweight and ideal for tableside, line-busting, and mobile retail.",
+    "category": "POS Equipment > Payment Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07JDNNMJJ", "price": 349.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07JDNNMJJ",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 510, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Elo 15\" Desktop Touchscreen POS Monitor – Multi-Touch",
+    "image": "https://m.media-amazon.com/images/I/61Y6a+wbzNL._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "Elo" },
+    "sku": "E001054", "mpn": "E001054",
+    "description": "15\" AccuTouch resistive touchscreen monitor. USB and VGA connectivity. Bezel and rear-facing design for POS countertop use. Water and dust sealed front bezels. Compatible with Windows and Linux. Widely used in retail, hospitality, and healthcare POS setups.",
+    "category": "POS Equipment > POS Monitors & Displays",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000WXZRK2", "price": 349.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000WXZRK2",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 1700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Sam4s ER-920 Electronic Cash Register with Scanner Port",
+    "image": "https://m.media-amazon.com/images/I/61kFjfzwJ4L._AC_SL1000_.jpg",
+    "brand": { "@type": "Brand", "name": "Sam4s" },
+    "sku": "ER-920", "mpn": "B000FHCV5O",
+    "description": "Professional electronic cash register with large LCD display, scanner and printer ports, 20 departments, 2000 PLU capacity, and SD card for data backup. Thermal receipt printer built in. Ideal for retail grocery, café, and food service.",
+    "category": "POS Equipment > Cash Registers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000FHCV5O", "price": 459.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000FHCV5O",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 890, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Sharp XE-A207 Electronic Cash Register – 7 Department",
+    "image": "https://m.media-amazon.com/images/I/71vCEhODuyL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Sharp" },
+    "sku": "XE-A207", "mpn": "B00MO0JHJC",
+    "description": "7-department electronic cash register with built-in thermal printer, 8-digit LCD operator display, 112 PLU/item keys, and USB port for data management. SD card backup. Ideal for small retail shops, bakeries, and food stands.",
+    "category": "POS Equipment > Cash Registers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B00MO0JHJC", "price": 199.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B00MO0JHJC",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 3400, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Casio PCR-T2300 Electronic Cash Register",
+    "image": "https://m.media-amazon.com/images/I/51RWLz8gFkL._AC_.jpg",
+    "brand": { "@type": "Brand", "name": "Casio" },
+    "sku": "PCR-T2300", "mpn": "B000AMFKKI",
+    "description": "40-department cash register with thermal receipt printer, 8-line LCD display, and 10-coin cash drawer. 2,000 price look-ups. SD card slot for storing sales reports. Ideal for small businesses including cafes, boutiques, and delis.",
+    "category": "POS Equipment > Cash Registers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B000AMFKKI", "price": 249.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B000AMFKKI",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 2100, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Register – Complete POS with Dual Screens",
+    "image": "https://m.media-amazon.com/images/I/61tPtk5sTJL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "SQ-REGISTER", "mpn": "B07KJWG5TZ",
+    "description": "All-in-one POS register with 13.25\" merchant display and 7\" customer-facing touchscreen. Built-in payment processing: tap, chip, and swipe. No additional hardware required. Integrates with Square's full suite of business tools. 2.6% + $0.10 per transaction.",
+    "category": "POS Equipment > POS Systems",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B07KJWG5TZ", "price": 799.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B07KJWG5TZ",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 6700, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Epsilont Square Register Hardware Bundle – Compact M10 Printer & Mini Drawer",
+    "image": "https://m.media-amazon.com/images/I/61yJkJBYIoL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Epsilont" },
+    "sku": "EPS-SQ-M10-BUNDLE", "mpn": "B09K7BBFNL",
+    "description": "Compact Square-compatible bundle: M10 2\" thermal receipt printer, mini cash drawer, and adjustable iPad USB-C stand for 10.9\" and 11\" iPad. Works with Square Register. Requires payment processing through Powering POS. Ideal for countertop retail.",
+    "category": "POS Equipment > POS Bundles",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09K7BBFNL", "price": 329.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09K7BBFNL",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 490, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Rongta RP850 80mm Thermal Receipt Printer – High Speed",
+    "image": "https://m.media-amazon.com/images/I/71x8T47VqVL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Rongta" },
+    "sku": "RP850", "mpn": "B09N8BGPK3",
+    "description": "High-speed 80mm thermal receipt printer with 300mm/s print speed, auto-cutter, USB/Serial/Ethernet interfaces, and cash drawer support. ESC/POS command compatible. Supports Windows, Mac, and Linux. Wall-mountable. Ideal for fast-paced restaurant and retail use.",
+    "category": "POS Equipment > Receipt Printers",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B09N8BGPK3", "price": 89.99, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B09N8BGPK3",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.4, "reviewCount": 1800, "bestRating": 5 }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Handheld – Portable All-in-One POS Terminal",
+    "image": "https://m.media-amazon.com/images/I/61KZJDP5PFL._AC_SL1500_.jpg",
+    "brand": { "@type": "Brand", "name": "Square" },
+    "sku": "SQUARE-HANDHELD", "mpn": "B0CXJ34Y7R",
+    "description": "Portable all-in-one POS with built-in receipt printer and barcode scanner. Accepts tap, chip, and swipe payments. Long battery life. Wi-Fi connected. Ideal for restaurants, retail, beauty, and service businesses on the go.",
+    "category": "POS Equipment > POS Terminals",
+    "offers": { "@type": "Offer", "url": "https://www.amazon.com/dp/B0CXJ34Y7R", "price": 299.00, "priceCurrency": "USD", "seller": { "@type": "Organization", "name": "Amazon.com" }, "availability": "https://schema.org/InStock" },
+    "url": "https://www.amazon.com/dp/B0CXJ34Y7R",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.3, "reviewCount": 870, "bestRating": 5 }
+  }, 
+
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Star Micronics TSP143IIIU USB Thermal Receipt Printer – Gray",
+    "image": "https://m.media-amazon.com/images/I/61VqESwbdZL._AC_SL1200_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Star Micronics"
+    },
+    "sku": "TSP143IIIU",
+    "mpn": "B07VQ8G9XM",
+    "description": "Industry-standard USB POS thermal receipt printer with Mfi USB port for iOS device charging. 250mm/s print speed, guillotine auto-cutter, and internal power supply. Includes futurePRNT software, wall mount bracket, and 58mm paper guide. Compatible with Square, iOS, Android, Windows, Mac, and Linux. Anti-curl paper function.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Receipt Printers",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Star-Micronics-TSP143IIIU-Auto-cutter-Internal/dp/B07VQ8G9XM",
+      "price": 229.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 229.00,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Star-Micronics-TSP143IIIU-Auto-cutter-Internal/dp/B07VQ8G9XM",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.6,
+      "reviewCount": 4800,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Volcora 13\" Electronic Cash Register Drawer for POS",
+    "image": "https://m.media-amazon.com/images/I/71-mG3AJLZL._AC_SL1500_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Volcora"
+    },
+    "sku": "500001",
+    "mpn": "B08KT95ZBH",
+    "description": "Heavy-duty 13\" electronic cash drawer for POS systems. Features a 4-bill and 5-coin removable cash tray, 24V RJ11/RJ12 key-lock, and media slot. Compatible with Square, Clover, and most POS receipt printers. Works with any printer that has an RJ11 cash drawer port. Black finish.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Cash Drawers",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Volcora-Electronic-Register-Removable-Compartment/dp/B08KT95ZBH",
+      "price": 49.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 49.99,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Volcora-Electronic-Register-Removable-Compartment/dp/B08KT95ZBH",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": 2900,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MUNBYN 80mm USB Receipt Printer & 16\" Cash Drawer Bundle",
+    "image": "https://m.media-amazon.com/images/I/81Z8L7C0WDL._AC_SL1500_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "MUNBYN"
+    },
+    "sku": "MUNBYN-P068-BUNDLE",
+    "mpn": "B08P5NHHV7",
+    "description": "Complete POS bundle: 80mm thermal receipt printer with 230mm/s print speed + heavy-duty 16\" 5-bill/5-coin cash drawer. Printer supports USB, LAN, and Serial interfaces. Compatible with Windows, Mac, and Linux. Auto-cutter, wall-mount design, and cash drawer trigger included. Not compatible with Square or iOS.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/MUNBYN-Receipt-Printer-Drawer-Register/dp/B08P5NHHV7",
+      "price": 139.99,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 139.99,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/MUNBYN-Receipt-Printer-Drawer-Register/dp/B08P5NHHV7",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4,
+      "reviewCount": 1500,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Zebra DS2208-SR Corded Handheld Barcode Scanner with Stand",
+    "image": "https://m.media-amazon.com/images/I/61e-7Q08eJL._AC_SL1200_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Zebra"
+    },
+    "sku": "DS2208-SR7U2100SGW",
+    "mpn": "DS2208-SR7U2100SGW",
+    "description": "Zebra DS2208 standard range 1D/2D corded imager kit with stand and shielded USB cable. Scans barcodes on paper labels and screens. 100-scan/second scan rate. IP52 sealing for dust and light water resistance. Ideal for retail POS, healthcare, hospitality, and light manufacturing. Black finish.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Bar Code Scanners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/ZEBRA-DS2208-Series-Corded-Handheld/dp/B01N7N7IST",
+      "price": 149.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 149.00,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/ZEBRA-DS2208-Series-Corded-Handheld/dp/B01N7N7IST",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.6,
+      "reviewCount": 3700,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Square Handheld – Portable POS Terminal",
+    "image": "https://m.media-amazon.com/images/I/61KZJDP5PFL._AC_SL1500_.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Square"
+    },
+    "sku": "SQUARE-HANDHELD",
+    "mpn": "B0CXJ34Y7R",
+    "description": "All-in-one portable POS terminal that accepts credit cards, tap, chip, and swipe payments. Built-in receipt printer and barcode scanner. Long-lasting battery. Ideal for restaurants, retail, beauty, and professional services. Works with the Square POS app. Rate: 2.6% + $0.10 per tap, dip, or swipe.",
+    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Square-Handheld-Portable-POS-Payments/dp/B0CXJ34Y7R",
+      "price": 299.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 299.00,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon.com"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.amazon.com/Square-Handheld-Portable-POS-Payments/dp/B0CXJ34Y7R",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": 870,
+      "bestRating": 5
+    }
+  }, 
+
+
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 1HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589181/gallery/D-1.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q09AA28B",
+    "mpn": "S4-Q09AA28B",
+    "description": "LG DUALCOOL INVERTER 1HP (9,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology, fast cooling up to 40 per cent faster, up to 70 per cent energy saving, and low noise operation. Gold Fin corrosion protection. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
+      "price": 760,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 760,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 1.5HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589189/gallery/medium04.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q12JA28J",
+    "mpn": "S4-Q12JA28J",
+    "description": "LG DUALCOOL INVERTER 1.5HP (12,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology (92 per cent mosquito expel rate certified by IAMRAT), fast cooling, energy saving up to 70 per cent, and low noise operation. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
+      "price": 867,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 388900,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 2HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589189/gallery/medium02.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q18KL28E",
+    "mpn": "S4-Q18KL28E",
+    "description": "LG DUALCOOL INVERTER 2HP (18,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology, fast cooling up to 40 per cent faster, up to 70 per cent energy saving, and low noise operation. Ideal for large rooms 18–25 sqm. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18kl28e",
+      "price": 713000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 713000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18kl28e",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 2.5HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589194/gallery/medium03.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q24K228E",
+    "mpn": "S4-Q24K228E",
+    "description": "LG DUALCOOL INVERTER 2.5HP (24,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode+, Mosquito Away technology, fast cooling up to 40 per cent faster, up to 70 per cent energy saving, and quiet operation. Ideal for very large rooms 25–35 sqm. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q24k228e",
+      "price": 822900,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 822900,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q24k228e",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 1HP Split AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589181/gallery/D-3.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C09TZAAA",
+    "mpn": "S4-C09TZAAA",
+    "description": "LG JETCOOL 1HP (9,000 BTU) Eco-friendly Split Air Conditioner with Rotary Compressor, Jet Cooling mode for instant powerful cooling, Dual Sensing auto-swing airflow distribution, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c09tzaaa",
+      "price": 279290,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 279290,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c09tzaaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 1.5HP Split AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07577173/gallery/D-01.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C12TZAAA",
+    "mpn": "S4-C12TZAAA",
+    "description": "LG JETCOOL 1.5HP (12,000 BTU) Eco-friendly Split Air Conditioner (2023 model) with Rotary Compressor, Jet Cooling mode for instant powerful cooling, Dual Sensing auto-swing, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c12tzaaa",
+      "price": 330000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 330000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c12tzaaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 2HP Split AC",
+    "image": "https://www.lg.com/africa/images/gnb-global/africa_a4_Artcool_Black.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C18TZCAA",
+    "mpn": "S4-C18TZCAA",
+    "description": "LG JETCOOL 2HP (18,000 BTU) Eco-friendly Split Air Conditioner with Rotary Compressor, Jet Cooling mode, Dual Sensing auto-swing airflow, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant. Ideal for large rooms.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c18tzcaa",
+      "price": 450000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 450000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c18tzcaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUAL Inverter Floor Standing AC - AirTower L (2.5HP)",
+    "image": "https://www.lg.com/africa/images/HA-RAC-LIPS-WINNER-F4-Q25N2XA0-03-1-Design-desktop.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "F4-Q25N2XA0",
+    "mpn": "F4-Q25N2XA0",
+    "description": "LG 2.5HP Dual Inverter Floor Standing Air Conditioner – AirTower L. Features Power Mode for immediate consistent airflow, user-pattern tailored Cooling/Dehumidification/Power-saving modes, and LG ThinQ™ smart control with Long Sleep Mode and Pet Care Mode.",
+    "category": "Air Conditioners > Residential Air Conditioners > Floor Standing Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25n2xa0",
+      "price": 977500,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 977500,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25n2xa0",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUAL Inverter Floor Standing AC - AirTower M (2.5HP)",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07602922/gallery/D_7.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "F4-Q25Q2YB0",
+    "mpn": "F4-Q25Q2YB0",
+    "description": "LG 2.5HP Dual Inverter Floor Standing Air Conditioner – AirTower M. Enhances interior ambience with Digital Circle Lighting, provides a soft comfortable breeze with One Way Wind, and offers a variety of customizable cooling options. Premium design for modern living spaces.",
+    "category": "Air Conditioners > Residential Air Conditioners > Floor Standing Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25q2yb0",
+      "price": 1200000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1200000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25q2yb0",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  }, 
+
+
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 2HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589195/gallery/D-1.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q18KL28E",
+    "mpn": "S4-Q18KL28E",
+    "description": "LG DUALCOOL INVERTER 2HP (18,000 BTU) Split Air Conditioner with DUAL Inverter Compressor™, Gen Mode+™, Mosquito Away technology, fast cooling up to 40% faster, up to 70% energy saving, and low noise operation. Ideal for large rooms 18–25 sqm. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18kl28e",
+      "price": 713000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 713000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18kl28e",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 2.5HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589194/gallery/medium01.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q24K228E",
+    "mpn": "S4-Q24K228E",
+    "description": "LG DUALCOOL INVERTER 2.5HP (24,000 BTU) Split Air Conditioner with DUAL Inverter Compressor™, Gen Mode+™, Mosquito Away technology, fast cooling up to 40% faster, up to 70% energy saving, and quiet operation. Ideal for very large rooms 25–35 sqm. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q24k228e",
+      "price": 822900,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 822900,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q24k228e",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 1HP Split AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07577161/gallery/D02.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C09TZAAA",
+    "mpn": "S4-C09TZAAA",
+    "description": "LG JETCOOL 1HP (9,000 BTU) Eco-friendly Split Air Conditioner with Rotary Compressor, Jet Cooling mode for instant powerful cooling, Dual Sensing auto-swing airflow distribution, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c09tzaaa",
+      "price": 279290,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 279290,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c09tzaaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 1.5HP Split AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07577173/gallery/D-06.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C12TZAAA",
+    "mpn": "S4-C12TZAAA",
+    "description": "LG JETCOOL 1.5HP (12,000 BTU) Eco-friendly Split Air Conditioner (2023 model) with Rotary Compressor, Jet Cooling mode for instant powerful cooling, Dual Sensing auto-swing, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c12tzaaa",
+      "price": 330000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 330000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c12tzaaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG JETCOOL 2HP Split AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07577148/gallery/D-04.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-C18TZCAA",
+    "mpn": "S4-C18TZCAA",
+    "description": "LG JETCOOL 2HP (18,000 BTU) Eco-friendly Split Air Conditioner with Rotary Compressor, Jet Cooling mode, Dual Sensing auto-swing airflow, Gold Fin™ anti-corrosion coating, LED Diagnosis, 24-hour timer, and auto-restart. R32 eco-friendly refrigerant. Ideal for large rooms.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c18tzcaa",
+      "price": 450000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 450000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-c18tzcaa",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.3,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUAL Inverter Floor Standing AC - AirTower L (2.5HP)",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07602925/gallery/D_2.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "F4-Q25N2XA0",
+    "mpn": "F4-Q25N2XA0",
+    "description": "LG 2.5HP Dual Inverter Floor Standing Air Conditioner – AirTower L. Features Power Mode for immediate consistent airflow, user-pattern tailored Cooling/Dehumidification/Power-saving modes, and LG ThinQ™ smart control with Long Sleep Mode and Pet Care Mode.",
+    "category": "Air Conditioners > Residential Air Conditioners > Floor Standing Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25n2xa0",
+      "price": 977500,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 977500,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25n2xa0",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUAL Inverter Floor Standing AC - AirTower M (2.5HP)",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07602922/gallery/D_6.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "F4-Q25Q2YB0",
+    "mpn": "F4-Q25Q2YB0",
+    "description": "LG 2.5HP Dual Inverter Floor Standing Air Conditioner – AirTower M. Enhances interior ambience with Digital Circle Lighting, provides a soft comfortable breeze with One Way Wind, and offers a variety of customizable cooling options. Premium design for modern living spaces.",
+    "category": "Air Conditioners > Residential Air Conditioners > Floor Standing Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25q2yb0",
+      "price": 1200000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1200000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-f4-q25q2yb0",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL Inverter AC 1HP – 9,000 BTU",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07598500/gallery/D-02.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q09WAQAL",
+    "mpn": "S4-Q09WAQAL",
+    "description": "LG DUALCOOL™ Inverter 1HP (9,000 BTU) Split Air Conditioner with DUAL Inverter Compressor™ for fast cooling, significant energy savings, and less noise. Gold Fin™ anti-corrosion coating. Wide voltage range operation. Auto-restart and 24-hour timer included.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09waqal",
+      "price": 350000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 350000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09waqal",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL Inverter AC 1.5HP – 12,000 BTU",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07580375/gallery/D-03.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q12JAQAL",
+    "mpn": "S4-Q12JAQAL",
+    "description": "LG DUALCOOL™ Inverter 1.5HP (12,000 BTU) Split Air Conditioner with DUAL Inverter Compressor™ for fast cooling up to 40% faster, up to 70% energy saving, and low noise operation. Gold Fin™ corrosion protection. Auto-restart and 24-hour timer. Ideal for rooms 12–18 sqm.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12jaqal",
+      "price": 388900,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 388900,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12jaqal",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL Inverter AC 2HP – 18,000 BTU",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589824/gallery/D-02.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q18JLQAL",
+    "mpn": "S4-Q18JLQAL",
+    "description": "LG DUALCOOL™ Inverter 2HP (18,000 BTU) Split Air Conditioner with DUAL Inverter Compressor™, fast cooling, up to 70% energy saving, and less noise. Gold Fin™ anti-corrosion coating for enhanced durability. Wide voltage tolerance (±25%). Auto-restart and 24-hour timer.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18jlqal",
+      "price": 650000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 650000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q18jlqal",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG ARTCOOL Inverter AC 1.5HP",
+    "image": "https://www.lg.com/content/dam/channel/wcms/africa/images/residential-air-conditioners/lg-s4-q12jarjb/gallery/lg-artcool-s4-q12jarjb-front-view-01.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q12JARJB",
+    "mpn": "S4-Q12JARJB",
+    "description": "LG ARTCOOL Inverter 1.5HP Split Air Conditioner with premium mirror glass front panel, DUAL Inverter Compressor™, Ioniser for clean air, Smart Diagnosis, and ThinQ™ Wi-Fi control. Designed to harmonize with interior décor. Mosquito Away technology. 10-year compressor warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/split-air-conditioners/lg-S4-Q12JARJB",
+      "price": 520000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 520000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/split-air-conditioners/lg-S4-Q12JARJB",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.6,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG Dual Wing Ceiling Fan – Remote Controlled",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07546886/gallery/dm-01.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "LCF12P",
+    "mpn": "LCF12P",
+    "description": "LG LCF12P Dual Wing Ceiling Fan with biomechanically designed blades inspired by humpback whale fins for ultra-quiet operation. Features 40-pole energy-efficient 26.3W inverter motor, dual wings for natural airflow, remote control, Sleep Mode, Auto Off timer, and ThinQ™ Wi-Fi control. 1200mm sweep. 1-year warranty.",
+    "category": "Air Conditioners > Residential Air Conditioners > Ceiling Fan",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-lcf12p",
+      "price": 98000,
+      "priceCurrency": "NGN",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 98000,
+        "priceCurrency": "NGN"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-lcf12p",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  }, 
+
+
+
+    {
+    "@type": "Product",
+    "name": "LG LRFXS2503S 25 Cu. Ft. Smart French Door Refrigerator",
+    "image": "https://m.media-amazon.com/images/I/41kGBR8O6bL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
+    "offers": {
+      "type": "Offer",
+      "price": 699.00,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 1799.00
+      }
+    },
+    "brand": "LG",
+    "sku": "LRFXS2503S",
+    "url": "https://www.amazon.com/LG-LRFXS2503S-Stainless-French-Refrigerator/dp/B09VNWVR2F",
+    "availability": "InStock",
+    "description": "33-inch wide, 24.5 cu. ft. Smart Wi-Fi enabled French door refrigerator with external tall ice and water dispenser, Door Cooling+, Slim SpacePlus Ice System, and PrintProof Stainless Steel finish.",
+    "category": "Appliances: Refrigerators: French Door"
+  },
+ 
+  
+
+
+            // ... [Add all other product items here as in original file]
+            // [--- SNIP: End ---]
+        ];
+
+        function renderProducts(products) {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = ""; // Clear previous content
+
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                img.alt = product.name;
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = product.name;
+
+                const priceDiv = document.createElement('div');
+                priceDiv.className = 'price';
+                priceDiv.textContent = product.offers && product.offers.price ? `$${product.offers.price}` : "N/A";
+                const today = new Date();
+                const minDeliveryDate = new Date(today);
+                minDeliveryDate.setDate(today.getDate() + 3);
+                const maxDeliveryDate = new Date(today);
+                maxDeliveryDate.setDate(today.getDate() + 11);
+
+                function formatDate(date) {
+                    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+                }
+                const deliveryDiv = document.createElement('div');
+                deliveryDiv.className = 'delivery-label';
+                deliveryDiv.textContent = `Delivery: ${formatDate(minDeliveryDate)} - ${formatDate(maxDeliveryDate)}`;
+
+                const link = document.createElement('a');
+                link.href = product.offers && product.offers.url ? product.offers.url : "#";
+                link.textContent = "View Product";
+                link.target = "_blank";
+                link.className = "link";
+                // Price parsing and fallback handling
+                let parsedPrice = 25; // default fallback
+                try {
+                    let priceStr = product.offers.price ? product.offers.price.toString().replace(/[$₦]/g, '').trim() : '';
+                    parsedPrice = parseFloat(priceStr);
+                    if (isNaN(parsedPrice)) {
+                        parsedPrice = 25;
+                        throw new Error('Price is not a valid number');
+                    }
+                } catch (error) {
+                    console.error(`Failed to parse price for product ${product.name}:`, error);
+                }
+
+                // Currency handling (replace zparams with a default/fallback if not present)
+                let origin = product.offers.priceCurrency;
+                if (origin.toLowerCase()=== "usd") {
+                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.30)).toFixed(2))}&image_url=${encodeURIComponent(product.image)}&description=${String(product.description || '') }`;
+                    priceDiv.textContent = '$' + ((parsedPrice * 1.40)).toFixed(2);
+                } else {
+                    link.href = `details_uri.html?origin=usd&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(((parsedPrice * 1.40)*0.000736).toFixed(2))}&image_url=${encodeURIComponent(product.image)} &description=${String(product.description || '') }`;
+                    priceDiv.textContent = '$' + ((parsedPrice * 1.30)*0.000736).toFixed(2);
+                }
+
+                img.onerror = () => {
+                    img.src = "images/fallback.jpg";
+                    console.error(`Failed to load image: ${product.image}`);
+                };
+
+                productItem.appendChild(img);
+                productItem.appendChild(nameDiv);
+                productItem.appendChild(priceDiv);
+                productItem.appendChild(deliveryDiv);
+                productItem.appendChild(link);
+
+                container.appendChild(productItem);
+            });
+        }
+
+        renderProducts(staticProductData);
+
+        // PWA: Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(function(registration) {
+                    // Registration successful
+                    console.log('ServiceWorker registered with scope:', registration.scope);
+                }, function(err) {
+                    // Registration failed
+                    console.log('ServiceWorker registration failed:', err);
+                });
+            });
+        }
+
+        // PWA: Install Banner
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            installBanner.style.display = 'none';
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBanner.style.display = 'none';
+        });
+    </script>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="payment_policy.html" target="_blank">Terms of Service</a>
+            <span>|</span>
+            <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
+            <span>|</span>
+            <a href="mailto:support@rechainglobal.com">Contact Us</a>
+            <span>|</span>
+            <span>2810 N Church St, Wilmington, DE 19802, United States</span>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 Rechain Global Trade&Business LLC. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
