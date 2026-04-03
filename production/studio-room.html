@@ -157,43 +157,79 @@
             // [--- SNIP: The full staticProductData array from the original source ---]
             // For brevity, keep this unchanged.
 
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Square Reader for Magstripe (USB-C)",
-    "image": "https://m.media-amazon.com/images/I/71ab6+31kEL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.jpg?aicid=detailPage-mediaBlock",
-    "brand": {
-      "@type": "Brand",
-      "name": "Square"
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Studio Américain avec un balcon",
+  "description": "Chambre privée dans un appartement avec balcon. Dispose d'un parking gratuit, l'un des rares endroits des environs à offrir cet avantage.",
+  "url": "https://www.airbnb.fr/rooms/1650654751157858620",
+  "identifier": "1650654751157858620",
+  "category": "Vacation Rental > Private Room in Apartment",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Djagble",
+    "addressCountry": "TG"
+  },
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Free Parking",
+      "value": true
     },
-    "sku": "A-SKU-0862",
-    "mpn": "B0DGTHLCGN",
-    "description": "Accept all major credit and debit cards instantly on your iOS or Android device via USB-C. No battery required. Works with the free Square Point of Sale app. Offline payments available for up to 24 hours. One simple rate, no hidden fees or long-term contracts. First reader free, $10 for additional.",
-    "category": "Office Products > Office Electronics > Point-of-Sale (POS) Equipment > Credit Card Readers",
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.amazon.com/Square-Reader-for-magstripe-USB-C/dp/B0DGTHLCGN",
-      "price": 9.88,
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Private Bathroom",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Balcony",
+      "value": true
+    }
+  ],
+  "numberOfRooms": 1,
+  "occupancy": {
+    "@type": "QuantitativeValue",
+    "maxValue": 2,
+    "unitText": "guests"
+  },
+  "bed": {
+    "@type": "BedDetails",
+    "numberOfBeds": 1,
+    "typeOfBed": "Bed"
+  },
+  "tourBookingPage": "https://www.airbnb.fr/rooms/1650654751157858620",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.airbnb.fr/rooms/1650654751157858620",
+    "price": 30.40,
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": 30.40,
       "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 9.88,
-        "priceCurrency": "USD"
-      },
-      "seller": {
-        "@type": "Organization",
-        "name": "Amazon.com"
-      },
-      "availability": "https://schema.org/InStock"
+      "unitCode": "DAY",
+      "unitText": "per night"
     },
-    "url": "https://www.amazon.com/Square-Reader-for-magstripe-USB-C/dp/B0DGTHLCGN",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.6,
-      "reviewCount": 66,
-      "bestRating": 5
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Airbnb"
     }
   },
+  "author": {
+    "@type": "Person",
+    "name": "Djovi Yom Joel",
+    "description": "Hôte depuis 7 ans"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": null,
+    "reviewCount": 0,
+    "bestRating": 5,
+    "description": "Nouveau listing - pas encore d'avis"
+  }
+}, 
 
   {
     "@context": "https://schema.org",
