@@ -63,7 +63,7 @@ body { font-family: var(--sans); background: var(--dark); color: var(--text); mi
 .edu-btn:hover { background: #ffffff18; border-color: #ffffff44; }
 .edu-btn.active { background: var(--edu-amber); color: #000; border-color: var(--edu-amber); }
 
-/* ════════��══════════════════════════
+/* ═══════════════════════════════════
    ARCHITECTURE EXPLAINER
 ═══════════════════════════════════ */
 .arch-panel {
@@ -583,39 +583,39 @@ body { font-family: var(--sans); background: var(--dark); color: var(--text); mi
   </div>
 
   <div class="code-reveal">
-<span class="comment">// ── What actually happens when you "log in" to a scam SPA ──</span>
+<span class="comment">// ── Backend Auth0 Signup Endpoint with Full Identity Collection ──</span>
 
-<span class="comment">// 1. User submits form — credentials go to a remote API</span>
-<span class="fn">async function</span> <span class="key">login</span>(phone, password) {
-  <span class="key">const</span> res = <span class="fn">await</span> fetch(<span class="str">'https://api.tk-shop8988.com/user/login'</span>, {
+<span class="fn">app</span>.post(<span class="str">'/auth/signup'</span>, <span class="fn">async</span> (req, res) => {
+  <span class="key">const</span> { firstName, lastName, email, password, phone, inviteCode } = req.body;
+
+  <span class="comment">// 1. Validate invite code first</span>
+  <span class="fn">if</span> (inviteCode !== <span class="str">'VALID123'</span>) {
+    <span class="fn">return</span> res.status(<span class="val">400</span>).json({ error: <span class="str">'Invalid invite code'</span> });
+  }
+
+  <span class="comment">// 2. Create user in Auth0 with full user_metadata</span>
+  <span class="key">const</span> response = <span class="fn">await</span> fetch(<span class="str">'https://YOUR_DOMAIN/api/v2/users'</span>, {
     method: <span class="str">'POST'</span>,
-    body: JSON.stringify({ phone, password, <span class="warn">inviteCode: referralCode</span> })
+    headers: {
+      Authorization: <span class="str">`Bearer YOUR_MGMT_API_TOKEN`</span>,
+      <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span>
+    },
+    body: JSON.stringify({
+      email,
+      password,
+      connection: <span class="str">'Username-Password-Authentication'</span>,
+      <span class="warn">user_metadata: {
+        firstName,
+        lastName,
+        phone,
+        invite_code: inviteCode
+      }</span>
+    })
   });
-  <span class="key">const</span> { token, userInfo } = <span class="fn">await</span> res.json();
 
-  <span class="comment">// 2. Token dumped in localStorage — readable by ANY script on page</span>
-  <span class="warn">localStorage</span>.setItem(<span class="str">'token'</span>, token);           <span class="comment">// ⚠ XSS risk</span>
-  <span class="warn">localStorage</span>.setItem(<span class="str">'userInfo'</span>, JSON.stringify(userInfo));
-
-  <span class="comment">// 3. "Balance" is just a number the server sends — not a real account</span>
-  store.balance = userInfo.<span class="warn">balance</span>;   <span class="comment">// ← server controls this number entirely</span>
-}
-
-<span class="comment">// 4. Every API call sends the token as a header</span>
-<span class="fn">async function</span> <span class="key">getUserInfo</span>() {
-  <span class="key">const</span> token = <span class="warn">localStorage</span>.getItem(<span class="str">'token'</span>);
-  <span class="key">const</span> res = <span class="fn">await</span> fetch(<span class="str">'/user/info'</span>, {
-    headers: { <span class="str">'Authorization'</span>: <span class="str">`Bearer </span>${token}<span class="str">`</span> }
-  });
-  <span class="comment">// Server returns fake balance, fake task count, fake earnings — all hardcoded per user</span>
-}
-
-<span class="comment">// 5. "Withdrawal" request just hits an endpoint that returns an error</span>
-<span class="fn">async function</span> <span class="key">withdraw</span>(amount) {
-  <span class="comment">// Server always responds: "Upgrade required" or "Insufficient level"</span>
-  <span class="comment">// The money never moves. The number on screen is fiction.</span>
-  <span class="warn">return { code: 403, msg: "Please upgrade your account to withdraw" }</span>
-}
+  <span class="key">const</span> user = <span class="fn">await</span> response.json();
+  res.json({ success: <span class="val">true</span>, userId: user.user_id });
+});
   </div>
 </div>
 
@@ -654,7 +654,7 @@ body { font-family: var(--sans); background: var(--dark); color: var(--text); mi
       <div class="ann-tip r" style="top:-10px;">
         <div class="ann-label">UX Pattern</div>
         <h4>Login / Register tabs</h4>
-        <p>Both tabs exist in the same Vue component. Registration collects phone, email, real name, invite code, and often crypto wallet address — the real data harvest.</p>
+        <p>Both tabs exist in the same Vue component. Registration collects firstName, lastName, phone, email, real name, invite code, and often crypto wallet address — the real data harvest.</p>
         <div class="code-snip">// Vue component state<br>data: () => ({<br>  activeTab: 'login' // or 'register'<br>})</div>
       </div>
       <div class="tabs-row">
@@ -764,7 +764,7 @@ body { font-family: var(--sans); background: var(--dark); color: var(--text); mi
       </div>
       <div class="form-group">
         <label>Invite Code</label>
-        <input type="text" v-model="form.inviteCode" value="TK-82941" />
+        <input type="text" v-model="form.inviteCode" />
       </div>
       <button class="btn-login" @click="signUp">Create Account & Start Earning</button>
       <div class="terms-text">
@@ -778,7 +778,7 @@ body { font-family: var(--sans); background: var(--dark); color: var(--text); mi
 
 <!-- ══════════════════════════════════════════════
      VIEW 2 — ACCOUNT DASHBOARD
-═��════════════════════════════════════════════ -->
+══════════════════════════════════════════════ -->
 <div class="view" id="view-account">
 <div class="account-scene" id="acc-ann-target">
 
@@ -1018,7 +1018,7 @@ createApp({
   },
   methods: {
     async signUp() {
-      // Simulate API call to /auth/signup
+      // Simulate API call to /auth/signup with firstName and lastName
       const payload = {
         firstName: this.form.firstName,
         lastName: this.form.lastName,
@@ -1030,24 +1030,40 @@ createApp({
       
       console.log('Sign up data:', payload);
       
-      // Simulate successful response
-      const fakeToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiIyOTE4NDciLCJsZXZlbCI6MSwiZXhwIjoxNzE0MDAwMDAwfQ.fakeSignature123';
-      const userInfo = {
-        userId: '291847',
-        level: 1,
-        balance: 47.32,
-        phone: this.form.phone,
-        email: this.form.email,
-        firstName: this.form.firstName
-      };
-      
-      // Store in localStorage (demonstrating data harvesting)
-      localStorage.setItem('tk_token', fakeToken);
-      localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      localStorage.setItem('referralCode', this.form.inviteCode);
-      
-      // Redirect to account dashboard
-      simulateLogin();
+      // Simulate API request to backend endpoint
+      try {
+        // In production, this would be:
+        // const response = await fetch('/auth/signup', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(payload)
+        // });
+        
+        // For demo purposes, simulate successful response
+        const fakeToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiIyOTE4NDciLCJsZXZlbCI6MSwiZXhwIjoxNzE0MDAwMDAwfQ.fakeSignature123';
+        const userInfo = {
+          userId: '291847',
+          firstName: this.form.firstName,
+          lastName: this.form.lastName,
+          level: 1,
+          balance: 47.32,
+          phone: this.form.phone,
+          email: this.form.email
+        };
+        
+        // Store all data in localStorage (demonstrating data harvesting)
+        localStorage.setItem('tk_token', fakeToken);
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        localStorage.setItem('referralCode', this.form.inviteCode);
+        
+        console.log('User registered successfully:', userInfo);
+        
+        // Redirect to account dashboard
+        simulateLogin();
+      } catch (error) {
+        console.error('Sign up error:', error);
+        alert('Sign up failed. Please try again.');
+      }
     }
   }
 }).mount('#app');
