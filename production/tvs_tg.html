@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>TV - Televisions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    <!-- iOS support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="POS Machines">
+    <link rel="apple-touch-icon" href="images/pwa-192.png">
+    <meta name="theme-color" content="#1976d2">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            height: 50px;
+            margin: 10px;
+        }
+        .content { margin-top: 80px; }
+        h1 { text-align: center; margin-top: 90px; }
+        .product-listing {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 16px;
+            border-radius: 8px;
+            width: 220px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        }
+        .product-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .product-item .name {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 10px 0 6px 0;
+            color: #222;
+        }
+        .product-item .price {
+            color: #e53935;
+            font-size: 16px;
+            margin: 4px 0 10px 0;
+        }
+        .product-item .link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.18s;
+        }
+        .product-item .link:hover { background: #024284; }
+        @media (max-width: 700px) {
+            .product-listing { flex-direction: column; align-items: center; }
+            .product-item { width: 90%; }
+        }
+        .delivery-label {
+            margin: 8px 0;
+            font-size: 13px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        .site-footer {
+            background: #f5f5f5;
+            color: #444;
+            text-align: center;
+            padding: 25px 10px 10px 10px;
+            margin-top: 40px;
+            font-size: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .site-footer .footer-links {
+            margin-bottom: 8px;
+        }
+        .site-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+        .site-footer span {
+            color: #aaa;
+            margin: 0 4px;
+        }
+        /* PWA install banner style */
+        #installBanner {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #1976d2;
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            z-index: 2000;
+        }
+        #installBanner button {
+            background: #fff;
+            color: #1976d2;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin-left: 12px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://www.rechainglobal.com">
+            <img src="images/rechain.jpg" alt="RG" class="logo">
+        </a>
+    </header>
+    <h1> Liste des produits </h1>
+    <div class="content">
+        <div id="productContainer" class="product-listing"></div>
+    </div>
+    <div id="installBanner">
+        Install this app for a faster experience!
+        <button id="installBtn">Install</button>
+    </div>
+    <script>
+        // Static product data (STARTING WITH VIZIO TV)
+        const staticProductData = [
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "VIZIO V-Series 70-inch 4K UHD LED HDR Smart TV (V705-H1, 2020)",
+  "image": "https://m.media-amazon.com/images/I/71xwBI7RVLL._AC_SX679_.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "VIZIO"
+  },
+  "sku": "B0849W2KRT",
+  "mpn": "V705-H1",
+  "description": "VIZIO V-Series 70-inch (69.5\" Diag.) 4K UHD LED HDR Smart TV with IQ Active processor, Dolby Vision, HDR10+, full array backlight, Active Pixel Tuning, Apple AirPlay 2 & Chromecast Built-in, HDMI 2.1, Auto Game Mode, and SmartCast platform with access to Netflix, Disney+, YouTube, Prime Video, and free streaming channels.",
+  "category": "Televisions > Smart TVs > 4K UHD TVs",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.amazon.com/VIZIO-70-inch-V-Chromecast-Built/dp/B0849W2KRT",
+    "price": 498.00,
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": 498.00,
+      "priceCurrency": "USD"
+    },
+    "seller": {
+      "@type": "Organization",
+      "name": "Amazon.com"
+    },
+    "availability": "https://schema.org/InStock"
+  },
+  "url": "https://www.amazon.com/VIZIO-70-inch-V-Chromecast-Built/dp/B0849W2KRT",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4.5,
+    "reviewCount": null,
+    "bestRating": 5
+  }
+},
+
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 1HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589181/gallery/D-1.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q09AA28B",
+    "mpn": "S4-Q09AA28B",
+    "description": "LG DUALCOOL INVERTER 1HP (9,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology, fast cooling up to 40 per cent faster, up to[...]",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
+      "price": 760,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 760,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LG DUALCOOL INVERTER 1.5HP AC",
+    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589189/gallery/medium04.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "LG"
+    },
+    "sku": "S4-Q12JA28J",
+    "mpn": "S4-Q12JA28J",
+    "description": "LG DUALCOOL INVERTER 1.5HP (12,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology (92 per cent mosquito expel rate certified[...]",
+    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
+      "price": 867,
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 388900,
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "LG Africa / Fouani Nigeria"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": null,
+      "bestRating": 5
+    }
+  }
+        ];
+
+        function renderProducts() {
+            const productContainer = document.getElementById('productContainer');
+            staticProductData.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-item';
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="name">${product.name}</div>
+                    <div class="price">$${product.offers.price.toFixed(2)} ${product.offers.priceCurrency}</div>
+                    <a href="${product.offers.url}" target="_blank" class="link">View on Amazon</a>
+                    <div class="delivery-label">Free Delivery</div>
+                `;
+                productContainer.appendChild(productElement);
+            });
+        }
+
+        // Render products on page load
+        document.addEventListener('DOMContentLoaded', renderProducts);
+
+        // PWA installation logic
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBanner').style.display = 'block';
+        });
+
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                deferredPrompt = null;
+                document.getElementById('installBanner').style.display = 'none';
+            }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed:', err));
+        }
+    </script>
+</body>
+</html>
