@@ -146,12 +146,22 @@
     <div class="content">
         <div id="productContainer" class="product-listing"></div>
     </div>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="https://www.rechainglobal.com">Home</a>
+            <span>|</span>
+            <a href="https://www.rechainglobal.com/about">About</a>
+            <span>|</span>
+            <a href="https://www.rechainglobal.com/contact">Contact</a>
+        </div>
+        <p>&copy; 2024 Rechain Global. All rights reserved.</p>
+    </footer>
     <div id="installBanner">
         Install this app for a faster experience!
         <button id="installBtn">Install</button>
     </div>
     <script>
-        // Static product data (STARTING WITH VIZIO TV)
+        // Static product data (TELEVISION PRODUCTS)
         const staticProductData = [
 {
   "@context": "https://schema.org",
@@ -189,83 +199,7 @@
     "reviewCount": null,
     "bestRating": 5
   }
-},
-
-{
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "LG DUALCOOL INVERTER 1HP AC",
-    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589181/gallery/D-1.jpg",
-    "brand": {
-      "@type": "Brand",
-      "name": "LG"
-    },
-    "sku": "S4-Q09AA28B",
-    "mpn": "S4-Q09AA28B",
-    "description": "LG DUALCOOL INVERTER 1HP (9,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology, fast cooling up to 40 per cent faster, up to[...]",
-    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
-      "price": 760,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 760,
-        "priceCurrency": "USD"
-      },
-      "seller": {
-        "@type": "Organization",
-        "name": "LG Africa / Fouani Nigeria"
-      },
-      "availability": "https://schema.org/InStock"
-    },
-    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q09aa28b",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.5,
-      "reviewCount": null,
-      "bestRating": 5
-    }
-  },
-
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "LG DUALCOOL INVERTER 1.5HP AC",
-    "image": "https://www.lg.com/africa/images/residential-air-conditioners/md07589189/gallery/medium04.jpg",
-    "brand": {
-      "@type": "Brand",
-      "name": "LG"
-    },
-    "sku": "S4-Q12JA28J",
-    "mpn": "S4-Q12JA28J",
-    "description": "LG DUALCOOL INVERTER 1.5HP (12,000 BTU) Split Air Conditioner with DUAL Inverter Compressor, Gen Mode plus, Mosquito Away technology (92 per cent mosquito expel rate certified[...]",
-    "category": "Air Conditioners > Residential Air Conditioners > Split Air Conditioners",
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
-      "price": 867,
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": 388900,
-        "priceCurrency": "USD"
-      },
-      "seller": {
-        "@type": "Organization",
-        "name": "LG Africa / Fouani Nigeria"
-      },
-      "availability": "https://schema.org/InStock"
-    },
-    "url": "https://www.lg.com/africa/residential-air-conditioners/lg-s4-q12ja28j",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.5,
-      "reviewCount": null,
-      "bestRating": 5
-    }
-  }
+}
         ];
 
         function renderProducts() {
@@ -277,7 +211,7 @@
                     <img src="${product.image}" alt="${product.name}">
                     <div class="name">${product.name}</div>
                     <div class="price">$${product.offers.price.toFixed(2)} ${product.offers.priceCurrency}</div>
-                    <a href="${product.offers.url}" target="_blank" class="link">View on Amazon</a>
+                    <a href="${product.offers.url}" target="_blank" class="link">Buy Now</a>
                     <div class="delivery-label">Free Delivery</div>
                 `;
                 productContainer.appendChild(productElement);
